@@ -1,0 +1,125 @@
+.enter-key h1{
+    margin-top: 0;
+    text-align: center;
+}
+
+.key-area {
+    margin-top: 25px;
+    text-align: center;
+}
+
+.key-area input{
+    height: 40px;
+    width: 40%;
+    margin-top: -16px;
+    border-radius: 5px;
+    border: 1px solid var(--primary-color);
+}
+
+.user-date {
+    margin-left:30%;
+    margin-top: 16px;
+}
+.user-logout button{
+    background: var(--primary-color);
+    color: #fff;
+    border: none;
+    outline: none;
+    border-radius: 3px;
+    padding: 1px;
+    font-size: 12;
+}
+
+.user-logout button:hover{
+    background-color: #fff;
+    color: var(--primary-color);
+    border: 1px solid var(--primary-color);
+}
+
+.enter-key button{
+    text-align: center;
+    margin-left: 46%;
+    color: #fff;
+    background: var(--primary-color);
+    border-radius:5px;
+    outline: none;
+    padding: 3px;
+    margin-top: 16px;
+    font-size: 20px;
+}
+
+.enter-key button:hover{
+    background: #fff;
+    color: var(--primary-color);
+    border: 1px solid var(--primary-color);
+}
+
+
+.token-header h1{
+    margin-top: 20px;
+}
+.user-cards {
+    
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 32px;
+    width: 50px;
+    margin-top: 10px;
+    
+}
+
+.user-card-single {
+    display: flex;
+    font-size: 25px;
+    justify-content: space-between;
+    background: var(--primary-color);
+    color: #fff;
+    padding: 16px;
+    border-radius: 5px;
+}
+
+.user-card-single small{
+    margin-top: 8px;
+    font-size: 8px;
+}
+
+.usertoken-btn #cancel {
+    padding: 3px;
+    margin-top: 6px;
+    background: red;
+    color: #fff;
+    font-weight: bold;
+    outline: none;
+    border: none;
+    border-radius: 3px;
+}
+
+.usertoken-btn #finish {
+    padding: 3px;
+    margin-top: 6px;
+    background: green;
+    color: #fff;
+    font-weight: bold;
+    outline: none;
+    border: none;
+    border-radius: 3px;
+}
+
+.usertoken-btn #absent {
+    padding: 3px;
+    margin-top: 6px;
+    background: purple;
+    color: #fff;
+    font-weight: bold;
+    outline: none;
+    border: none;
+    border-radius: 3px;
+}
+
+.usertoken-btn #finish:hover,
+.usertoken-btn #cancel:hover,
+.usertoken-btn #absent:hover
+{
+    background: var(--primary-color);
+    color: #fff;
+}

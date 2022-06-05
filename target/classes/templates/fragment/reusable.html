@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!--user ko side ko nav bar-->
+<div th:fragment="user_side_navbar">
+    <div class="sidebar">
+        <div class="sidebar-brand">
+            <h2><span class="lab la-quinscape "> <span>Queue-Up</span></span></h2>
+        </div>
+        <div class="sidebar-menu">
+            <ul class="navbar">
+                <li class="nav-item active">
+                    <a th:href="@{~/user/userPanel}" > <span class="las la-igloo"></span>
+                        <span>Dashboard</span></a>
+                </li>
+                <li class="nav-item">
+                    <a th:href="@{~/user/token}"> <span class="las la-ticket-alt"></span>
+                        <span>My Token</span></a>
+                </li>
+                <li class="nav-item">
+                    <a th:href="@{~/user/history}"> <span class="las la-ticket-alt"></span>
+                        <span>History</span></a>
+                </li>
+                <li class="nav-item">
+                    <a th:href="@{~/user/account}"> <span class="las la-user-circle"></span>
+                        <span>Account</span></a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<!--user ko top ko bar-->
+<div th:fragment="user_top_bar">
+
+</div>
+
+<!--admin ko side nav bar-->
+<div th:fragment="admin_side_navbar">
+    <div class="sidebar">
+        <div class="sidebar-brand">
+            <h2><span class="lab la-quinscape "> <span>Queue-Up</span></span></h2>
+        </div>
+        <div class="sidebar-menu">
+            <ul class="navbar">
+                <li class="nav-item active">
+                    <a th:href="@{~/admin/adminPanel}" > <span class="las la-igloo"></span>
+                        <span>Dashboard</span></a>
+                </li>
+                <li class="nav-item">
+                    <a th:href="@{~/admin/usersList}"> <span class="las la-users"></span>
+                        <span>Users</span></a>
+                </li>
+                <li class="nav-item">
+                    <a th:href="@{~/admin/status}"> <span class="las la-signal"></span>
+                        <span>Queue Status</span></a>
+                </li>
+                <li class="nav-item">
+                    <a th:href="@{~/admin/key}"> <span class="las la-key"></span>
+                        <span>Generate Key</span></a>
+                </li>
+                <li class="nav-item">
+                    <a th:href="@{~/admin/account}"> <span class="las la-user-circle"></span>
+                        <span>Account</span></a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<!--Admin ko top bar-->
+<div th:fragment="admin_top_bar">
+
+</div>
+</body>
+</html>

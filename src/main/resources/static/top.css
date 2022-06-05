@@ -1,0 +1,33 @@
+.top {
+    --offset: 50px; 
+    
+    position: sticky;
+    bottom: 20px;      
+    margin-right:50; 
+    place-self: end;
+    margin-top: calc(100vh + var(--offset));
+    
+    /* visual styling */
+    width:45px;
+    aspect-ratio:1;
+    background:#fff;
+    border-radius:10px;
+  }
+  .top:before {
+    content:"";
+    position:absolute;
+    inset:30%;
+    transform:translateY(20%) rotate(-45deg);
+    border-top:5px solid #000;
+    border-right:5px solid #000;
+  }
+  
+  p {
+    font-size: 25px;
+  }
+  
+  /* remove the below if you don't want smooth scrolling */
+  html,
+  body {
+    scroll-behavior: smooth;
+  }

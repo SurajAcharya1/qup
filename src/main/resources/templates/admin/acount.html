@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account</title>
+    <link rel="stylesheet" th:href="@{~/admin.css}">
+    <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
+
+        <style>
+            main button{
+                width: 150px;
+                font-size: 20px;
+                border: 1px solid black;
+                border-radius: 10px;
+                background: #c55959;
+            }
+
+            main button:hover{
+                background: purple;
+            }
+        </style>
+
+</head>
+<body>
+    <input type="checkbox" id="nav-toggle">
+    <div th:replace="fragment/reusable :: admin_side_navbar"></div>
+    <div class="main-content">
+        <header>
+            <h2>
+                <label for="nav-toggle">
+                    <span class="las la-bars"></span>
+                </label>
+                Dashboard
+            </h2>
+            <div class="search-wrapper">
+                <span class="las la-search"></span>
+                <input type="search" placeholder="Search Here" />
+            </div>
+            <div class="user-wrapper">
+                <img src="images/problem.png" width="40px" height="40px" alt="">
+                <div>
+                    <h4>Suraj kapali</h4>
+                    <small>Super Admin</small>
+                </div>
+            </div>
+            
+        </header>
+        <main>
+           <a th:href="@{~/}" ><center> <button>Log out</button></center></a>
+        </main>
+</body>
+</html>

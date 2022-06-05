@@ -1,0 +1,369 @@
+
+
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300&display=swap');
+
+:root {
+    --primary-color : purple ;
+    --secondary-color : #9400D3 ;
+    --dark-color : #4B0082;
+    --light-color : 	#9932CC;
+}
+
+/* Universal Selector (Reset garnako lagi) */
+
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0; 
+}
+
+
+/* Website Styles */
+body{
+    font-family: 'lato', sans-serif;
+    line-height: 1.6;
+    color: var(--primary-color);
+}
+
+ul {
+    list-style-type: none;
+}
+
+a {
+
+    text-decoration: none;
+    color: var(--primary-color);
+}
+
+h1, h2 {
+    font-weight: 350;
+    line-height: 1.2;
+    margin: 10px 0px;
+}
+
+p{
+    margin: 10px 0px;     
+}
+
+img {
+    width: 100%;
+}
+
+
+.nav .flex {
+       justify-content: space-between; /* Space-between le navbar ko content lai  2 side ma seperate garxa */
+       overflow: hidden;
+}
+.nav {
+    background-color: var(--primary-color);
+    color: azure;
+    height: 70px;
+    
+}
+/* Utilities : Website vari use hune style */
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    overflow: auto;
+    padding: 0 30px;
+}
+
+.flex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.grid{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.card {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    margin: 10px;
+    color: var(--primary-color);
+}
+
+.btn{
+    display: inline-block;
+    padding: 10px 30px;
+    cursor: pointer;
+    background-color: var(--primary-color);
+    color: azure;
+    border: none;
+    border-radius: 5px;
+}
+
+.btn-outline {
+    background-color: transparent;
+    border: 1px #ffffff solid;
+}
+
+.nav ul{
+    display: flex;
+    
+}
+
+.nav  a{
+    padding: 10px;
+    margin: 0 5px;
+    color: azure;
+}
+
+.nav a:hover{
+    border-bottom: 2px solid #fff;
+}
+
+/* Showcase : website ko hero  */
+
+.showcase{
+    height: 400px;
+    background-color: var(--primary-color);
+    color: azure; 
+    position: relative;
+}
+
+.showcase h1 {
+    font-size: 50px;
+}
+
+.showcase p{
+    margin: 20px 0;
+}
+
+.showcase-login {
+    position: relative;
+    top: 50px;
+    height: 350px;
+    width: 400px;
+    padding: 40px;
+    z-index: 100;
+    justify-self: flex-end;
+}
+
+.showcase-login .form-control{
+    margin: 30px 0;
+}
+
+.showcase-login input[type='text'],
+.showcase-login input[type='password'] {
+
+    border: 0;
+    border-bottom: 2px solid purple;
+    width: 100%;
+    padding: 4px;
+    font-size: 18px;
+
+}
+
+.showcase-login input:focus {
+    outline: none;
+
+}
+
+.showcase::before, 
+.showcase::after {
+
+content: '';
+position: absolute;
+height: 100px;
+bottom: -60px;
+right: 0;
+left: 0;
+background: #fff;
+transform: skewY(-3deg);
+-webkit-transform: skewY(-3deg);
+-moz-transform: skewY(-3deg);
+-ms-transform: skewY(-3deg);
+}
+
+.form-text a:hover{
+border-bottom: 1px solid purple;
+color: #000;
+
+}
+
+.showcase .grid{
+    overflow: visible;
+}
+
+.use {
+    padding-top: 40px;
+}
+.grid-3{
+    grid-template-columns: 1fr 1fr 1fr;
+}
+.text-center{
+    text-align: center;
+}
+
+.use-heading{
+    max-width: 500px;
+    margin: auto;
+    position: relative;
+}
+.use .grid h3{
+    font-size: 25px;
+}
+
+.use .grid p{
+    font-size: 20px;
+    font-weight: bold;
+}
+
+/* Problem Statement */
+.prob-stat .grid {
+    grid-template-columns: 4fr 3fr;
+}
+
+.bg-primary, 
+.btn-primary{
+    background-color: var(--primary-color);
+    color: azure;
+}
+
+.bg-dark, 
+.btn-dark{
+    background-color: var(--dark-color);
+    color: azure;
+}
+
+.bg-light, 
+.btn-light{
+    background-color: var(--light-color);
+    color: azure;
+}
+
+.bg-primary a, 
+.btn-primary a,
+.bg-dark a, 
+.btn-dark a,
+.bg-light a, 
+.btn-light a{
+    color: azure;
+}
+
+
+.lead{
+    font-size: 20px;
+}
+
+.large {
+    font-size: 46px;
+}
+
+/* Margin */
+.my-1{
+    margin: 16px 0;
+}
+
+.my-2 {
+    margin: 24px 0;
+}
+.my-3 {
+    margin: 32px 0;
+}
+.my-4 {
+    margin: 46px 0;
+}
+.my-5 {
+    margin: 60px 0;
+}
+
+.m-1{
+    margin: 16px;
+}
+
+.m-2 {
+    margin: 24px;
+}
+.m-3 {
+    margin: 32px;
+}
+.m-4 {
+    margin: 46px;
+}
+.m-5 {
+    margin: 60px;
+}
+
+
+/* Padding */
+.py-1{
+    padding: 16px 0;
+}
+.py-2 {
+    padding: 24px 0;
+}
+.py-3 {
+    padding: 32px 0;
+}
+.py-4 {
+    padding: 46px 0;
+}
+.py-5 {
+    padding: 60px 0;
+}
+
+.p-1{
+    padding: 16px;
+}
+
+.p-2 {
+    padding: 24px;
+}
+.p-3 {
+    padding: 32px;
+}
+.p-4 {
+    padding: 46px;
+}
+.p-5 {
+    padding: 60px;
+}
+  
+/* Members*/
+
+.members .flex {
+    flex-wrap: wrap;
+}
+.members .card:hover{
+    transform: translateY(-15px);
+}
+
+.members .card .h4{
+    font-size: 20px;
+    margin-bottom: 10px;
+    
+}
+.members .card{
+    text-align: center;
+    margin: 18px 10px 40px;
+    transition: transform 0.2s ease-out;
+}
+  
+/* Footers*/
+
+.footer .social a{
+    margin: 0 10px;
+}
+
+.follow-social a:hover{
+    color: red;
+    margin: 0 8px;
+}
+
+.showcase-login button{
+    border-radius: 5px;
+    padding: 5px;
+    height: 35px;
+}

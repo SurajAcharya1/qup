@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generate Key</title>
+    <link rel="stylesheet" th:href="@{~/key.css}">
+    <link rel="stylesheet" th:href="@{~/admin.css}">
+    <link rel="stylesheet" th:href="@{~/signup.css}">
+    <link rel="stylesheet" th:href="@{~/alert.css}">
+
+
+    <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
+</head>
+<body>
+    <input type="checkbox" id="nav-toggle">
+    <div th:replace="fragment/reusable :: admin_side_navbar"></div>
+    <div class="main-content">
+        <header>
+            <h2>
+                <label for="nav-toggle">
+                    <span class="las la-bars"></span>
+                </label>
+                Dashboard
+            </h2>
+            <div class="search-wrapper">
+                <span class="las la-search"></span>
+                <input type="search" placeholder="Search Here" />
+            </div>
+            <div class="user-wrapper">
+                <img src="images/problem.png" width="40px" height="40px" alt="">
+                <div>
+                    <h4>Suraj kapali</h4>
+                    <small>Super Admin</small>
+                </div>
+            </div>
+        </header>
+
+        <main>
+            <div class="alert">
+                <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                <strong th:text="${message}"></strong>
+            </div>
+            <h1>Generate Token Key</h1>
+            <div class="form.container">
+                <div class="content">
+                    <form th:action="@{~/admin/key/create}" th:method="post" th:object="${keyDto}">
+                        <div class="user-details">
+                            <div class="input-box">
+                                <span style="font-size:20px;" class="details">Key Name</span>
+                                <input style="width:100% ;" type="text" th:field="*{name}" placeholder="Enter key name" required>
+                            </div>
+                            <div class="input-box">
+                                <span style="font-size:20px;" class="details">Key</span>
+                                <input  style="width:100% ;" type="text" th:field="*{key}" placeholder="Enter Key" required>
+                            </div>
+                        </div>
+                        <div class="button">
+                            <input style="width: 40%;" type="submit" onClick=(alert) value="Generate Key">
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="key-grid">
+                <div class="users-status">
+                   <div class="card">
+                       <div class="card-header">
+                           <h2>All Queue Keys</h2>
+                           <button>Sort <span class="las la-filter"></span></button>
+                       </div>
+                       <div class="card-body">
+                           <table width="100%">
+                               <thead>
+                                   <tr>
+                                       <td>S.N</td>
+                                       <td>Key Name</td>
+                                       <td>Generated Keys</td>
+                                   </tr>
+                               </thead>
+                               <tbody>
+                               <tr th:each="key,loop : ${keyList}">
+                                   <td th:text="${loop.count}"></td>
+                                   <td th:text="${key.name}"></td>
+                                   <td th:text="${key.key}"></td>
+                               </tbody>
+                           </table>
+                       </div>
+                   </div>
+                </div>
+        </main>
+</body>
+</html>

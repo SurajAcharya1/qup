@@ -1,0 +1,44 @@
+main{
+    text-align: center;
+}
+
+
+.key {
+    color: var(--primary-color);
+    display: flex;
+    justify-content: space-around;
+    padding: 32px;
+    border-radius: 5px;
+}
+
+.token-key{
+    margin-top: 20px;
+    display: block;
+}
+.key-grid {
+    margin-top: 56px;
+    display: grid;
+    grid-gap: 32px;
+    grid-template-columns: 100% auto;
+
+}
+
+.key button{
+    background: var(--primary-color);
+    border-radius: 10px;
+    color: azure;
+    font-size: 15px;
+    margin-top: 16px;
+    padding: 8px;
+    border: 1px solid var(--primary-color);
+}
+
+
+
+
+.key-text input{
+        width: 400px;
+        height: 50px;
+        font-size: 20px;
+        border-radius: 10px;
+}

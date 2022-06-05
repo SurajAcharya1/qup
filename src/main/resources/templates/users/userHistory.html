@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Token</title>
+    <link rel="stylesheet" th:href="@{~/userPanel.css}">
+    <link rel="stylesheet" th:href="@{~/admin.css}">
+    <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
+
+</head>
+<body>
+    <input type="checkbox" id="nav-toggle">
+    <div th:replace="fragment/reusable :: user_side_navbar"></div>
+    <div class="main-content">
+        <header>
+            <h2>
+                <label for="nav-toggle">
+                    <span class="las la-bars"></span>
+                </label>
+                Dashboard
+            </h2>
+            <div class="search-wrapper">
+                <span class="las la-search"></span>
+                <input type="search" placeholder="Search Here" />
+            </div>
+            <div class="user-logout">
+                <a  th:href="@{~/}" ><button>Logout</button></a>
+            </div>
+        </header>
+       <main>
+        <div class="users-grid">
+            <div class="users-status">
+               <div class="card">
+                   <div class="card-header">
+                       <h2>My Token History</h2>
+                       <button>Filter <span class="las la-filter"></span></button>
+                   </div>
+                   <div class="card-body">
+                       <table width="100%">
+                           <thead>
+                               <tr>
+                                   <td>S.N</td>
+                                   <td>Full Name</td>
+                                   <td>Token Key</td>
+                                   <td>Date</td>
+                                   
+                               </tr>
+                           </thead>
+                           <tbody>
+                               <tr>
+                                <td>1</td>
+                                <td>suraj Kapali</td>
+                                <td>txuraz</td>
+                                <td>2022/04/01</td>
+                                
+                               </tr>
+                               <tr>
+                                <td>2</td>
+                                <td>suraj Acharya</td>
+                                <td>obinoxious</td>
+                                <td>2022/04/01</td>
+                                
+                               </tr>
+                               <tr>
+                                <td>3</td>
+                                <td>Ram bahadur</td>
+                                <td>rame</td>
+                                <td>2022/04/01</td>
+                             
+                               </tr>
+                              
+                           </tbody>
+                       </table>
+                   </div>
+               </div>
+            </div>
+       </main>
+</body>
+</html>
