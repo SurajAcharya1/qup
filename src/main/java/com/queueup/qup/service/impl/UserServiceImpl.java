@@ -29,9 +29,6 @@ public class UserServiceImpl implements UserService{
                 .phoneNumber(userDto.getPhoneNumber())
                 .gender(userDto.getGender())
                 .build();
-        if(userRepo.getUserByUsername(userDto.getUserName())>0){
-
-        }
         entity = userRepo.save(entity);
         return userDto.builder()
                 .id(entity.getId())

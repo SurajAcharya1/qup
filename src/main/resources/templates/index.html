@@ -28,10 +28,6 @@
       <a th:href="@{~/}" title="Close" class="modal-close">Close</a>
       <div class="form.container">
         <div class="title"><h2>Register to Queue-Up</h2></div>
-          <div class="alert">
-              <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
-              <strong th:text="${message}"></strong>
-          </div>
         <div class="content">
             <form th:action="@{~/create}" th:method="post" th:object="${userDto}">
             <div class="user-details">
@@ -68,6 +64,9 @@
             <div class="button">
               <input type="submit" value="Register">
             </div>
+                <div class="alert">
+                    <strong th:text="${message}"></strong>
+                </div>
                 <p>Already have account ?<a th:href="@{~/}">Login !</a></p>
           </form>
         </div>

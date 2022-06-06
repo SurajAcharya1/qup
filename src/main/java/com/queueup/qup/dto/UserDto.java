@@ -20,8 +20,4 @@ public class UserDto {
     private String phoneNumber;
     private String password;
     private String gender;
-    private String existsMessage;
-/*
-    private GenderStatus gender;
-*/
 }
