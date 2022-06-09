@@ -19,7 +19,7 @@ import java.io.Serializable;
 public class User implements Serializable {
     @Id
     @SequenceGenerator(name = "user_id_sequence", sequenceName = "user_id_sequence")
-    @GeneratedValue(generator = "user_id_sequence", strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(generator = "user_id_sequence", strategy = GenerationType.TABLE)
     private Integer id;
 
 

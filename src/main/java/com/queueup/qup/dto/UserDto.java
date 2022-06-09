@@ -1,8 +1,5 @@
 package com.queueup.qup.dto;
 
-/*
-import com.queueup.qup.enums.GenderStatus;
-*/
 import lombok.*;
 
 import javax.persistence.Column;

@@ -6,6 +6,7 @@ import com.queueup.qup.repository.KeyRepo;
 import com.queueup.qup.service.KeyService;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -19,18 +20,20 @@ public class KeyServiceImpl implements KeyService{
     }
 
     @Override
-    public KeyDto save(KeyDto keyDto) {
+
+    public KeyDto save(KeyDto keyDto){
         Key entity = Key.builder()
                 .key_id(keyDto.getKey_id())
                 .name(keyDto.getName())
                 .key(keyDto.getKey())
                 .build();
-        entity = keyRepo.save(entity);
-        return keyDto.builder()
-                .key_id(entity.getKey_id())
-                .name(keyDto.getName())
-                .key(keyDto.getKey())
-                .build();
+
+            entity = keyRepo.save(entity);
+            return keyDto.builder()
+                    .key_id(entity.getKey_id())
+                    .name(keyDto.getName())
+                    .key(keyDto.getKey())
+                    .build();
     }
 
     @Override
