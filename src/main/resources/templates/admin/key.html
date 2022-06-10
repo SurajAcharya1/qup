@@ -58,9 +58,7 @@
                     </form>
                 </div>
             </div>
-            <div class="alert">
-                <strong th:text="${message}"></strong>
-            </div>
+                <h3 th:text="${message}"></h3>
             <div class="key-grid">
                 <div class="users-status">
                    <div class="card">
@@ -75,6 +73,7 @@
                                        <td>S.N</td>
                                        <td>Key Name</td>
                                        <td>Generated Keys</td>
+                                       <td>Action</td>
                                    </tr>
                                </thead>
                                <tbody>
@@ -82,6 +81,7 @@
                                    <td th:text="${loop.count}"></td>
                                    <td th:text="${key.name}"></td>
                                    <td th:text="${key.key}"></td>
+                                   <td><button><a th:href="@{key/delete/} + ${key.key_id}">Delete<a/></button></td>
                                </tbody>
                            </table>
                        </div>

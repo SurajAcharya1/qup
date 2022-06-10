@@ -54,7 +54,7 @@ public class KeyServiceImpl implements KeyService{
     }
 
     @Override
-    public void deleteById(Integer integer) {
-
+    public void deleteById(Integer key_id) {
+        keyRepo.deleteById(key_id);
     }
 }

@@ -1,7 +1,12 @@
-.alert {
+.successAlert {
     padding: 5px;/*
     background-color: #8aee83;
     */color: limegreen;
+}
+.failedAlert {
+    padding: 5px;/*
+    background-color: #8aee83;
+    */color: Red;
 }
 
 .closebtn {

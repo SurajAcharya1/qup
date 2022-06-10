@@ -30,12 +30,14 @@ public class IndexController {
 
     @PostMapping("create")
     public String createUser(@ModelAttribute UserDto userDto, RedirectAttributes redirectAttributes){
-       userDto = userService.save(userDto);
-        if (userDto!= null){
-            redirectAttributes.addFlashAttribute("message","User Registered Successfully");
-        }else{
-            redirectAttributes.addFlashAttribute("message","User Registration Failed");
-        }
-        return "redirect:/#form-modal";
+       try {
+           userDto = userService.save(userDto);
+           redirectAttributes.addFlashAttribute("message","User Registered successfully!!!");
+       }catch (Exception e) {
+           redirectAttributes.addFlashAttribute("message","User Registration Failed");
+           e.fillInStackTrace();
+           return "redirect:/#form-modal";
+       }
+    return "redirect:/#form-modal";
     }
 }

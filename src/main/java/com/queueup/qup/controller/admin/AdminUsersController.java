@@ -6,14 +6,14 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
-@RequestMapping("admin")
+@RequestMapping("admin/userList")
 public class AdminUsersController{
     private final UserServiceImpl userService;
 
     public AdminUsersController(UserServiceImpl userService) {
         this.userService = userService;
     }
-    @GetMapping("usersList")
+    @GetMapping()
     public String openUserPage(Model model){
         model.addAttribute("userList",userService.findAll());
         return "admin/users";
