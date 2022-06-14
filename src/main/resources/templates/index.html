@@ -109,15 +109,18 @@
               </div>
               </div>
           </div>
+        <!-- Login form ko lagi       -->
         <div class="showcase-login card">
             <h2>Get a Token</h2>
-            <form method="post">
+            <h3 th:text="${loginMessage}"></h3>
+            <form th:action="@{~/login/create}" th:method="post" th:object="${loginDto}">
                 <div class="form-control">
-                    <input type="text" name="name" placeholder="Username" required>
+                    <input type="text" name="email" placeholder="Username" required>
                 </div>
                 <div class="form-control">
                     <input type="password" name="password" placeholder="Password" required>
                 </div>
+                <h3 th:text="${loginMessage}"></h3>
                 <input type="submit" value="Login" class="btn btn-primary"> <button class="temp-btn"><a th:href="@{~/admin/adminPanel}">Admin Panel</a></button>  <button class="temp-btn"><a th:href="@{~/user/userPanel}">User Panel</a></button>
                 <div class="form-text">
                     <p>Haven't register Yet ? &nbsp; <a href="#form-modal"><b>Register Now !</b></a></p>

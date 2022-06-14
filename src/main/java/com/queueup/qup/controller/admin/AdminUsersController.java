@@ -6,7 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
-@RequestMapping("admin/userList")
+@RequestMapping("admin/usersList")
 public class AdminUsersController{
     private final UserServiceImpl userService;
 

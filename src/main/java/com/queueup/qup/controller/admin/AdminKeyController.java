@@ -30,7 +30,7 @@ public class AdminKeyController {
         return "redirect:/admin/key";
     }
 
-    @PostMapping("/create")
+    @PostMapping("create")
     public String createKey(@ModelAttribute KeyDto keyDto, RedirectAttributes redirectAttributes){
         try {
             keyDto = keyService.save(keyDto);
