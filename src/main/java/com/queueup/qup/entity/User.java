@@ -41,4 +41,7 @@ public class User implements Serializable {
     @Column(name = "gender", length = 6)
     private String gender;
 
+    @Column(name = "role", length = 5)
+    private String role;
+
 }

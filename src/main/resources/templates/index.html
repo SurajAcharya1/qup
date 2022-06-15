@@ -59,6 +59,9 @@
                   <option value="Other">Other</option>
                 </select>
               </div>
+                <div>
+                    <input type="hidden" id="role" name="role" value="USER">
+                </div>
             </div>
             
             <div class="button">
@@ -81,7 +84,7 @@
 <section class="showcase">
     <div class="container grid">
         <div class="showcase-text">
-            <h1>What is Queue-Up</h1>
+            <h1>What is Queue-Up ?</h1>
             <p>Queue Up is a web-based application that generates the digitized token for the people standing in queue and notifies them when their turn is about to 
                 arrive. </p>
             <a href="#info-modal" class="btn btn-outline"> Read More</a>
@@ -93,18 +96,8 @@
               <div class="modal-text">
                 <p> "Queue Up" is a web-based application that generates the digitized 
                   token for the people standing in queue and notifies them when their turn is about to 
-                  arrive. First a person has to scan a key given by admin which assigns them a token and as per their
+                  arrive. First a person has to enter a key which assigns them a token and as per their
                   token number they will be notified when their turn is about to arrive. </p>
-
-                  <p>The objective of this project is to develop a web-based application which will try
-                  to minimize the hassle which people face ehile standing in a queue. It would be a real 
-                  headache to stand in a long queue. People will have to stand in a queue until their turn
-                  arrives. They cannot do any other work and have to stand there all day keeping their other work undone.
-                  This would be really problematic for the working professionals as they will have to take leave for a whole day to do that particular work. </p>
-
-                  <p>
-                      Therefore, we are doing this project to build a software that tries to address the issue of people who have to 
-                      stand in along queue keeping their important work due.
                   </p>
               </div>
               </div>
@@ -120,8 +113,7 @@
                 <div class="form-control">
                     <input type="password" name="password" placeholder="Password" required>
                 </div>
-                <h3 th:text="${loginMessage}"></h3>
-                <input type="submit" value="Login" class="btn btn-primary"> <button class="temp-btn"><a th:href="@{~/admin/adminPanel}">Admin Panel</a></button>  <button class="temp-btn"><a th:href="@{~/user/userPanel}">User Panel</a></button>
+                <input type="submit" value="Login" class="btn btn-primary">
                 <div class="form-text">
                     <p>Haven't register Yet ? &nbsp; <a href="#form-modal"><b>Register Now !</b></a></p>
                 </div>
@@ -133,7 +125,7 @@
 <!-- How to use App-->
 <section class="use">
     <div class="container">
-        <h1 class="use-heading text-center my-1"><b>How to Use</b></h1>
+        <h1 class="use-heading text-center my-1"><b>How to Use ?</b></h1>
         <h3 class="use-heading text-center my-1">
             Welcome to Queue-Up application and below is the simple steps to get your token number.
         </h3>

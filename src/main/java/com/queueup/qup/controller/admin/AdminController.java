@@ -15,7 +15,7 @@ public class AdminController{
     UserRepo userRepo;
     @GetMapping
     public String openAdminPage(Model model){
-        model.addAttribute("totalUser ", userRepo.totalUsers());
+        model.addAttribute("totalUser", userRepo.totalUsers());
         return "admin/adminPanel";
     }
 

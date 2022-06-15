@@ -16,6 +16,13 @@ public interface UserRepo extends JpaRepository<User,Integer>{
     @Query(value = "select email from tbl_user where email = ?1", nativeQuery = true)
     public String getUserByEmail(String email);
 
-    @Query(value = "select password from tbl_user where password = ?1", nativeQuery = true)
-    public String getUserByPassword(String password);
+    @Query(value = "select password from tbl_user where email = ?1", nativeQuery = true)
+    public String getUserByPassword(String email);
+
+    @Query(value = "select id from tbl_user where email = ?1", nativeQuery = true)
+    public Integer getUserId(String email);
+
+    @Query(value = "select role from tbl_user where email = ?1", nativeQuery = true)
+    public String getRole(String email);
+
 }
