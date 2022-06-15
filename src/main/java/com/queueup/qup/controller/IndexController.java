@@ -51,11 +51,11 @@ public class IndexController {
         Integer loggedInAccountId = userRepo.getUserId(email);
         try {
             if (userRepo.getUserByEmail(email).equals(email) && userRepo.getUserByPassword(email).equals(password)) {
-                if(userRepo.getRole(email).equals("ADMIN")){
-                    return "redirect:/admin/adminPanel/";
+                if(userRepo.getRole(email)==null){
+                    return "redirect:/user/userPanel/";
                 }
                 else{
-                    return "redirect:/user/userPanel/";
+                    return "redirect:/admin/adminPanel/";
                 }
             }
             else{

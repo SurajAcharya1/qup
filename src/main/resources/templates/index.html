@@ -12,96 +12,94 @@
     <title>Queue Up | Ultimate Queue Management</title>
 </head>
 <body>
-    <!-- Naviagation Bar ko lagi-->
-    <div class="nav">
-        <div class="container flex">
-            <h1 class="logo">Queue-Up</h1>
-            <nav>
-                <ul>
-                   <li> <a th:href="@{~/}">Home</a> </li>
-                   <li><a href="#info-modal">About</a></li>
-                   <li> <a href="#form-modal">Sign Up</a> </li>
-                   
-                    <!--SignUp form Modal ko lagi -->
-    <div id="form-modal" class="s-window">
-        <div>
-      <a th:href="@{~/}" title="Close" class="modal-close">Close</a>
-      <div class="form.container">
-        <div class="title"><h2>Register to Queue-Up</h2></div>
-        <div class="content">
-            <form th:action="@{~/create}" th:method="post" th:object="${userDto}">
-            <div class="user-details">
-              <div class="input-box">
-                <span class="details">Full Name</span>
-                  <input type="text" th:field="*{name}" placeholder="Enter your name" required>
-              </div>
-              <div class="input-box">
-                <span class="details">Username</span>
-                  <input type="text" th:field="*{userName}" placeholder="Enter your username" required>
-              </div>
-              <div class="input-box">
-                <span class="details">Email</span>
-                  <input type="email" th:field="*{email}" placeholder="Enter your email" required>
-              </div>
-              <div class="input-box">
-                <span class="details">Phone Number</span>
-                  <input type="text" th:field="*{phoneNumber}" placeholder="Enter your number" name="name" required>
-              </div>
-              <div class="input-box">
-                <span class="details">Password</span>
-                  <input type="password" name="password" th:field="*{password}" placeholder="Enter your password" required>
-              </div>
-              <div class="input-box">
-                <span class="details">Gender</span>
-                <select name="gender" id="gender">
-                  <option value="Male">Male</option>
-                  <option value="Female">Female</option>
-                  <option value="Other">Other</option>
-                </select>
-              </div>
-                <div>
-                    <input type="hidden" id="role" name="role" value="USER">
-                </div>
-            </div>
-            
-            <div class="button">
-              <input type="submit" value="Register">
-            </div>
-                    <h3 th:text="${message}"></h3>
-                <p>Already have account ?<a th:href="@{~/}">Login !</a></p>
-          </form>
-        </div>
-      </div>
-    </div>
-</div>
-        </div>
-                </ul>
-            </nav>
-        </div>
-    </div>
+<h3 th:text="${logoutMessage}"></h3>
+<!-- Naviagation Bar ko lagi-->
+<div class="nav">
+    <div class="container flex">
+        <h1 class="logo">Queue-Up</h1>
+        <nav>
+            <ul>
+                <li> <a th:href="@{~/}">Home</a> </li>
+                <li><a href="#info-modal">About</a></li>
+                <li> <a href="#form-modal">Sign Up</a> </li>
 
-    <!-- Showcase Form ko left side ko lagi-->
+                <!--SignUp form Modal ko lagi -->
+                <div id="form-modal" class="s-window">
+                    <div>
+                        <a th:href="@{~/}" title="Close" class="modal-close">Close</a>
+                        <div class="form.container">
+                            <div class="title"><h2>Register to Queue-Up</h2></div>
+                            <div class="content">
+                                <form th:action="@{~/create}" th:method="post" th:object="${userDto}">
+                                    <div class="user-details">
+                                        <div class="input-box">
+                                            <span class="details">Full Name</span>
+                                            <input type="text" th:field="*{name}" placeholder="Enter your name" required>
+                                        </div>
+                                        <div class="input-box">
+                                            <span class="details">Username</span>
+                                            <input type="text" th:field="*{userName}" placeholder="Enter your username" required>
+                                        </div>
+                                        <div class="input-box">
+                                            <span class="details">Email</span>
+                                            <input type="email" th:field="*{email}" placeholder="Enter your email" required>
+                                        </div>
+                                        <div class="input-box">
+                                            <span class="details">Phone Number</span>
+                                            <input type="text" th:field="*{phoneNumber}" placeholder="Enter your number" name="name" required>
+                                        </div>
+                                        <div class="input-box">
+                                            <span class="details">Password</span>
+                                            <input type="password" name="password" th:field="*{password}" placeholder="Enter your password" required>
+                                        </div>
+                                        <div class="input-box">
+                                            <span class="details">Gender</span>
+                                            <select name="gender" id="gender">
+                                                <option value="Male">Male</option>
+                                                <option value="Female">Female</option>
+                                                <option value="Other">Other</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="button">
+                                        <input type="submit" value="Register">
+                                    </div>
+                                    <h3 th:text="${message}"></h3>
+                                    <p>Already have account ?<a th:href="@{~/}">Login !</a></p>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+    </div>
+    </ul>
+    </nav>
+</div>
+</div>
+
+<!-- Showcase Form ko left side ko lagi-->
 <section class="showcase">
     <div class="container grid">
         <div class="showcase-text">
             <h1>What is Queue-Up ?</h1>
-            <p>Queue Up is a web-based application that generates the digitized token for the people standing in queue and notifies them when their turn is about to 
+            <p>Queue Up is a web-based application that generates the digitized token for the people standing in queue and notifies them when their turn is about to
                 arrive. </p>
             <a href="#info-modal" class="btn btn-outline"> Read More</a>
         </div>
         <div id="info-modal" class="modal-window">
             <div>
-              <a th:href="@{~/}"  title="Close" class="modal-close">Close</a>
-              <h1>What is Queue Up ?</h1>
-              <div class="modal-text">
-                <p> "Queue Up" is a web-based application that generates the digitized 
-                  token for the people standing in queue and notifies them when their turn is about to 
-                  arrive. First a person has to enter a key which assigns them a token and as per their
-                  token number they will be notified when their turn is about to arrive. </p>
-                  </p>
-              </div>
-              </div>
-          </div>
+                <a th:href="@{~/}"  title="Close" class="modal-close">Close</a>
+                <h1>What is Queue Up ?</h1>
+                <div class="modal-text">
+                    <p> "Queue Up" is a web-based application that generates the digitized
+                        token for the people standing in queue and notifies them when their turn is about to
+                        arrive. First a person has to enter a key which assigns them a token and as per their
+                        token number they will be notified when their turn is about to arrive. </p>
+                    </p>
+                </div>
+            </div>
+        </div>
         <!-- Login form ko lagi       -->
         <div class="showcase-login card">
             <h2>Get a Token</h2>
@@ -157,28 +155,28 @@
             <p class="lead ny-1">We all must in the situation where we had to stand a long queue to do our certain task.</p>
             <a href="#prob-modal" class="btn btn-dark">Read More</a>
         </div>
-        
+
         <img src="images/problem.png" alt="">
     </div>
     <div id="prob-modal" class="modal-window">
         <div>
-          <a th:href="@{~/}" title="Close" class="modal-close">Close</a>
-          <h1>Problem Statement</h1>
-          <div class="modal-text">
-            <p> We all have been in the situation where we had to stand a long queue to do our certain task.
-                Either it was when we had to collect our academic certificates after our high school or when awaiting our trial for the vechile license.
-            We keep hearing the news and see it in the social media that people had to stand in a queue for more than 12 hours when they had to prepare their passport. </p>
+            <a th:href="@{~/}" title="Close" class="modal-close">Close</a>
+            <h1>Problem Statement</h1>
+            <div class="modal-text">
+                <p> We all have been in the situation where we had to stand a long queue to do our certain task.
+                    Either it was when we had to collect our academic certificates after our high school or when awaiting our trial for the vechile license.
+                    We keep hearing the news and see it in the social media that people had to stand in a queue for more than 12 hours when they had to prepare their passport. </p>
 
-              <p>
-                  So, there is a big hassle in a queue management, especially when we have to do any work in the government offices. We all might have faced
-                   the problem of unmanaged queue. We all have experienced thet situation and know that how problematic it becomes while standing in those type of big queue.
-                   Not only in government offices but also in corporate offices and sometimes in banks, we keep experience this issue.
-                 </p>
-          </div>
-          </div>
+                <p>
+                    So, there is a big hassle in a queue management, especially when we have to do any work in the government offices. We all might have faced
+                    the problem of unmanaged queue. We all have experienced thet situation and know that how problematic it becomes while standing in those type of big queue.
+                    Not only in government offices but also in corporate offices and sometimes in banks, we keep experience this issue.
+                </p>
+            </div>
+        </div>
 
 </section>
-  <!-- Project Members-->
+<!-- Project Members-->
 <section class="members">
     <h2 class="member text-center my-2">
         Project Members
@@ -189,20 +187,20 @@
             <i class="fas fa-face-grin fa-3x"></i>   <!--Replace with image later-->
             <h5>Follow</h5>
             <div class="follow-social">
-            <a href="#"><i class="fab fa-facebook "></i></a>
-            <a href="#"><i class="fab fa-instagram "></i></a>
-            <a href="#"><i class="fab fa-viber "></i></a>
-        </div>
+                <a href="#"><i class="fab fa-facebook "></i></a>
+                <a href="#"><i class="fab fa-instagram "></i></a>
+                <a href="#"><i class="fab fa-viber "></i></a>
+            </div>
         </div>
         <div class="card">
             <h4>Suraj Kapali</h4>
             <i class="fas fa-face-smile fa-3x"></i> <br>  <!--Replace with image later-->
             <h5>Follow</h5>
             <div class="follow-social">
-            <a href="#"><i class="fab fa-linkedin "></i></a>
-            <a href="#"><i class="fab fa-instagram "></i></a>
-            <a href="#"><i class="fab fa-viber "></i></a>
-        </div>
+                <a href="#"><i class="fab fa-linkedin "></i></a>
+                <a href="#"><i class="fab fa-instagram "></i></a>
+                <a href="#"><i class="fab fa-viber "></i></a>
+            </div>
         </div>
     </div>
 </section>
