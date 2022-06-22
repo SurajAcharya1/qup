@@ -1,15 +1,42 @@
 package com.queueup.qup.controller.admin;
 
+import com.queueup.qup.controller.LogInController;
+import com.queueup.qup.repository.UserRepo;
+import com.queueup.qup.service.impl.TokenServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping("/admin/status")
 public class AdminStatusController {
+    @Autowired
+    UserRepo userRepo;
+    @Autowired
+    LogInController logInController;
+    private final TokenServiceImpl tokenService;
+
+    public AdminStatusController(TokenServiceImpl tokenService) {
+
+        this.tokenService = tokenService;
+    }
+
     @GetMapping
-    public String openAdminStatusPage(){
-        return "admin/status";
+    public String openAdminStatusPage(Model model){
+        try{
+            if(userRepo.getRoleByID(logInController.loggedInUserid).equals("ADMIN")) {
+                model.addAttribute("tokenList",tokenService.findAll());
+                model.addAttribute("userName",userRepo.findNameById(logInController.loggedInUserid));
+                return "admin/status";
+            }else {
+                return "error";
+            }
+        } catch(Exception e){
+            System.out.println(e);
+            return "error";
+        }
     }
 }
 

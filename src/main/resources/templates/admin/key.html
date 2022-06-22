@@ -15,8 +15,35 @@
 </head>
 <body>
     <input type="checkbox" id="nav-toggle">
-    <div th:replace="fragment/reusable :: admin_side_navbar"></div>
-    <div class="main-content">
+    <div class="sidebar">
+        <div class="sidebar-brand">
+            <h2><span class="lab la-quinscape "> <span>Queue-Up</span></span></h2>
+        </div>
+        <div class="sidebar-menu">
+            <ul class="navbar">
+                <li class="nav-item active">
+                    <a th:href="@{~/admin/adminPanel}" > <span class="las la-igloo"></span>
+                        <span>Dashboard</span></a>
+                </li>
+                <li class="nav-item">
+                    <a th:href="@{~/admin/usersList}"> <span class="las la-users"></span>
+                        <span>Users</span></a>
+                </li>
+                <li class="nav-item">
+                    <a th:href="@{~/admin/status}"> <span class="las la-signal"></span>
+                        <span>Queue Status</span></a>
+                </li>
+                <li class="nav-item">
+                    <a th:href="@{~/admin/key}"> <span class="las la-key"></span>
+                        <span>Generate Key</span></a>
+                </li>
+                <li class="nav-item">
+                    <a th:href="@{~/admin/account}"> <span class="las la-user-circle"></span>
+                        <span>Account</span></a>
+                </li>
+            </ul>
+        </div>
+    </div>    <div class="main-content">
         <header>
             <h2>
                 <label for="nav-toggle">
@@ -29,10 +56,9 @@
                 <input type="search" placeholder="Search Here" />
             </div>
             <div class="user-wrapper">
-                <img src="images/problem.png" width="40px" height="40px" alt="">
                 <div>
-                    <h4>Suraj kapali</h4>
-                    <small>Super Admin</small>
+                    <h4 th:text="${userName}"></h4>
+                    <small>Admin</small>
                 </div>
             </div>
         </header>
@@ -53,7 +79,7 @@
                             </div>
                         </div>
                         <div class="button">
-                            <input style="width: 40%;" type="submit" onClick=(alert) value="Generate Key">
+                            <input style="width: 40%;" type="submit"  value="Generate Key">
                         </div>
                     </form>
                 </div>

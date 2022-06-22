@@ -22,7 +22,19 @@ public interface UserRepo extends JpaRepository<User,Integer>{
     @Query(value = "select id from tbl_user where email = ?1", nativeQuery = true)
     public Integer getUserId(String email);
 
+    @Query(value = "select name from tbl_user where id = ?1", nativeQuery = true)
+    public String findNameById(Integer id);
+
+    @Query(value = "select user_name from tbl_user where id = ?1", nativeQuery = true)
+    public String findUsernameById(Integer id);
+
     @Query(value = "select role from tbl_user where email = ?1", nativeQuery = true)
     public String getRole(String email);
+
+    @Query(value = "select role from tbl_user where id= ?1",nativeQuery = true)
+    public String getRoleByID(Integer id);
+
+    @Query(value = "select * from tbl_user where email = ?1", nativeQuery = true)
+    public String findByEmail(String email);
 
 }

@@ -25,8 +25,31 @@
 </head>
 <body>
 <input type="checkbox" id="nav-toggle">
-<div th:replace="fragment/reusable :: user_side_navbar"></div>
-<div class="main-content">
+<div class="sidebar">
+  <div class="sidebar-brand">
+    <h2><span class="lab la-quinscape "> <span>Queue-Up</span></span></h2>
+  </div>
+  <div class="sidebar-menu">
+    <ul class="navbar">
+      <li class="nav-item active">
+        <a th:href="@{~/user/userPanel}" > <span class="las la-igloo"></span>
+          <span>Dashboard</span></a>
+      </li>
+      <li class="nav-item">
+        <a th:href="@{~/user/token}"> <span class="las la-ticket-alt"></span>
+          <span>My Token</span></a>
+      </li>
+      <li class="nav-item">
+        <a th:href="@{~/user/history}"> <span class="las la-ticket-alt"></span>
+          <span>History</span></a>
+      </li>
+      <li class="nav-item">
+        <a th:href="@{~/user/account}"> <span class="las la-user-circle"></span>
+          <span>Account</span></a>
+      </li>
+    </ul>
+  </div>
+</div><div class="main-content">
   <header>
     <h2>
       <label for="nav-toggle">
@@ -38,10 +61,15 @@
       <span class="las la-search"></span>
       <input type="search" placeholder="Search Here" />
     </div>
+    <div class="user-wrapper">
+      <div>
+        <h4 th:text="${userName}"></h4>
+        <small>User</small>
+      </div>
+    </div>
   </header>
   <main>
       <a th:href="@{/logout}" ><center> <button>Log out</button></center></a>
   </main>
-</div>
 </body>
 </html>

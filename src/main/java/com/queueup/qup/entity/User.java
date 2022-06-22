@@ -18,8 +18,7 @@ import java.io.Serializable;
 @NoArgsConstructor
 public class User implements Serializable {
     @Id
-    @SequenceGenerator(name = "user_id_sequence", sequenceName = "user_id_sequence")
-    @GeneratedValue(generator = "user_id_sequence", strategy = GenerationType.TABLE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
 
@@ -43,5 +42,6 @@ public class User implements Serializable {
 
     @Column(name = "role", length = 5)
     private String role;
+
 
 }

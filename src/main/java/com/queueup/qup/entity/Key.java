@@ -17,8 +17,7 @@ import java.io.Serializable;
 @Builder
 public class Key implements Serializable {
     @Id
-    @SequenceGenerator(name = "key_id_sequence", sequenceName = "key_id_sequence")
-    @GeneratedValue(generator = "key_id_sequence", strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer key_id;
 
     @Column(name = "key_name", length = 25)

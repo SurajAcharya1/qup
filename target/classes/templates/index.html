@@ -100,13 +100,13 @@
                 </div>
             </div>
         </div>
-        <!-- Login form ko lagi       -->
+<!-- Login form ko lagi       -->
         <div class="showcase-login card">
             <h2>Get a Token</h2>
             <h3 th:text="${loginMessage}"></h3>
             <form th:action="@{~/login/create}" th:method="post" th:object="${loginDto}">
                 <div class="form-control">
-                    <input type="text" name="email" placeholder="Username" required>
+                    <input type="text" name="email" placeholder="E-mail" required>
                 </div>
                 <div class="form-control">
                     <input type="password" name="password" placeholder="Password" required>

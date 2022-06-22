@@ -7,13 +7,37 @@
     <title>Dashboard</title>
     <link rel="stylesheet" th:href="@{~/userPanel.css}">
     <link rel="stylesheet" th:href="@{~/admin.css}">
+    <link rel="stylesheet" th:href="@{~/signup.css}">
     <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
 
 </head>
 <body>
     <input type="checkbox" id="nav-toggle">
-    <div th:replace="fragment/reusable :: user_side_navbar"></div>
-    <div class="main-content">
+    <div class="sidebar">
+        <div class="sidebar-brand">
+            <h2><span class="lab la-quinscape "> <span>Queue-Up</span></span></h2>
+        </div>
+        <div class="sidebar-menu">
+            <ul class="navbar">
+                <li class="nav-item active">
+                    <a th:href="@{~/user/userPanel}" > <span class="las la-igloo"></span>
+                        <span>Dashboard</span></a>
+                </li>
+                <li class="nav-item">
+                    <a th:href="@{~/user/token}"> <span class="las la-ticket-alt"></span>
+                        <span>My Token</span></a>
+                </li>
+                <li class="nav-item">
+                    <a th:href="@{~/user/history}"> <span class="las la-ticket-alt"></span>
+                        <span>History</span></a>
+                </li>
+                <li class="nav-item">
+                    <a th:href="@{~/user/account}"> <span class="las la-user-circle"></span>
+                        <span>Account</span></a>
+                </li>
+            </ul>
+        </div>
+    </div>    <div class="main-content">
         <header>
             <h2>
                 <label for="nav-toggle">
@@ -25,25 +49,33 @@
                 <span class="las la-search"></span>
                 <input type="search" placeholder="Search Here" />
             </div>
-            <div class="user-logout">
-              <a  th:href="@{/logout}" ><button>Logout</button></a>
-            </div>
+            <div>
+                <div class="user-wrapper">
+                    <div>
+                        <h4 th:text="${userName}"></h4>
+                        <small>User</small>
+                    </div>
+                </div>
         </header>
         <main>
-            <div class="enter-key">
-                <h1>
-                    Enter Token Key
-                </h1>
-                <div class="user-date">
-                    <input type="date" name="user-date" /> Choose Date
+        <div class="enter-key">
+            <h1>Enter Token Key</h1>
+            <div class="form.container">
+                <div class="content">
+                    <form th:action="@{~/user/userPanel/create}" th:method="post" th:object="${tokenDto}" >
+                        <div class="user-details">
+                            <div class="input-box">
+                                <input style="width:80%; margin-left: 375px;" type="text" th:field="*{token_key}" placeholder="Token key here" required>
+                            </div>
+                        </div>
+                        <div class="button">
+                            <input style="width: 10%;margin-left: 550px;" type="submit"  value="Enter">
+                        </div>
+                        <h3 th:text="${tokenMessage}"></h3>
+                    </form>
                 </div>
-                <div class="key-area">
-                <input type="text" name="token-key" id="tkn-key" placeholder="Token Key Here">
             </div>
-            <div class="key-btn">
-                <button>Enter</button>
-            </div>
-            </div><br>
+        </div><br>
 <hr>
             <!-- Key Enter garepaxi Queue ko Status-->
             <div class="token-header">
@@ -52,15 +84,15 @@
             <div class="user-cards">
                 <div class="user-card-single">
                     <div>
-                        <small>Token No.</small>
-                        <h1>80</h1>
-                     
+                        <h6>Token No.</h6>
+                        <h1 th:text="${tokenNumber}"></h1>
+
                     </div>
                 </div>
             </div>
             <div class="usertoken-btn">
-            <button id="cancel">Cancel</button>
-                <button id="finish">Finish</button>
+                <button id="cancel">Cancel</button>
+                    <button id="finish">Finish</button>
             </div>
         </main>
 </body>

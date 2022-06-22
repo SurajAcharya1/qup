@@ -44,28 +44,5 @@ public class IndexController {
        }
     return "redirect:/#form-modal";
     }
-    @PostMapping("login/create")
-    public String login(@ModelAttribute LoginDto loginDto, RedirectAttributes redirectAttributes){
-        String email = loginDto.getEmail();
-        String password = loginDto.getPassword();
-        Integer loggedInAccountId = userRepo.getUserId(email);
-        try {
-            if (userRepo.getUserByEmail(email).equals(email) && userRepo.getUserByPassword(email).equals(password)) {
-                if(userRepo.getRole(email)==null){
-                    return "redirect:/user/userPanel/";
-                }
-                else{
-                    return "redirect:/admin/adminPanel/";
-                }
-            }
-            else{
-                redirectAttributes.addFlashAttribute("loginMessage", "Invalid Username or password");
-                return "redirect:/";
-            }
-        }catch (Exception e){
-            System.out.println(e);
-            redirectAttributes.addFlashAttribute("loginMessage", "Invalid Username or password");
-            return "redirect:/";
-        }
-    }
+
 }

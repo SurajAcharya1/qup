@@ -1,5 +1,8 @@
 server:
   port: 8008
+  error:
+    whitelabel:
+      enabled: false
 
 spring:
   datasource:

@@ -1,5 +1,7 @@
 package com.queueup.qup.service;
 
+import com.queueup.qup.controller.LogInController;
+
 import java.util.List;
 
 public interface GenericCrudService <D, ID>{
@@ -10,4 +12,5 @@ public interface GenericCrudService <D, ID>{
     D findById(ID id);
 
     void deleteById(ID id);
+
 }
