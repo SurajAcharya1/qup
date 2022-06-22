@@ -23,7 +23,6 @@ public class LogInController {
         String email = loginDto.getEmail();
         String password = loginDto.getPassword();
         loggedInUserid = userRepo.getUserId(email);
-        System.out.println(loggedInUserid);
         try {
             if (userRepo.getUserByEmail(email).equals(email) && userRepo.getUserByPassword(email).equals(password)) {
                 if(userRepo.getRole(email)==null){
