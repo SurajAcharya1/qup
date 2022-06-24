@@ -45,16 +45,14 @@
                 </label>
                 Dashboard
             </h2>
-            <div class="search-wrapper">
-                <span class="las la-search"></span>
-                <input type="search" placeholder="Search Here" />
-            </div>
             <div>
                 <div class="user-wrapper">
-                    <div>
-                        <h4 th:text="${userName}"></h4>
-                        <small>User</small>
-                    </div>
+                    <a th:href="@{~/user/account}">
+                        <div>
+                            <h4 th:text="${userName}"></h4>
+                            <small>User</small>
+                        </div>
+                    </a>
                 </div>
         </header>
         <main>

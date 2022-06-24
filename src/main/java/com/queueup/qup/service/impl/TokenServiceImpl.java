@@ -37,6 +37,7 @@ public class TokenServiceImpl implements TokenService {
         entity.setFk_user_id(logInController.loggedInUserid);
         entity.setName(userRepo.findNameById(logInController.loggedInUserid));
         entity.setUsername(userRepo.findUsernameById(logInController.loggedInUserid));
+        entity.setStatus(0);
         entity=tokenRepo.save(entity);
         return tokenDto.builder()
                 .token_id(entity.getToken_id())
@@ -55,6 +56,7 @@ public class TokenServiceImpl implements TokenService {
                         .name(token.getName())
                         .username(token.getUsername())
                         .token_number(token.getToken_number())
+                        .status(token.getStatus())
                         .build()
         ).collect(Collectors.toList());
     }

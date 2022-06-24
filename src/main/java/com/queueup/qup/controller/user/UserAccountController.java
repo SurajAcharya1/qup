@@ -23,6 +23,7 @@ public class UserAccountController {
         try{
             if(userRepo.getRoleByID(logInController.loggedInUserid)==null){
                 model.addAttribute("userName",userRepo.findNameById(logInController.loggedInUserid));
+                model.addAttribute("userDetails",userRepo.getUserDetailsById(logInController.loggedInUserid));
                 return "users/userAccount";
             }
             else{

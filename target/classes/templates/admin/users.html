@@ -47,15 +47,13 @@
                 </label>
                 Dashboard
             </h2>
-            <div class="search-wrapper">
-                <span class="las la-search"></span>
-                <input type="search" placeholder="Search Here" />
-            </div>
             <div class="user-wrapper">
-                <div>
-                    <h4 th:text="${userName}"></h4>
-                    <small>Admin</small>
-                </div>
+                <a th:href="@{~/admin/account}">
+                    <div>
+                        <h4 th:text="${userName}"></h4>
+                        <small>Admin</small>
+                    </div>
+                </a>
             </div>
         </header>
         <main>
@@ -65,7 +63,6 @@
                    <div class="card">
                        <div class="card-header">
                            <h2>Users Information</h2>
-                           <button>Filter <span class="las la-filter"></span></button>
                        </div>
                        <div class="card-body">
                            <table width="100%">

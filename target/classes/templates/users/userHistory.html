@@ -44,15 +44,13 @@
                 </label>
                 Dashboard
             </h2>
-            <div class="search-wrapper">
-                <span class="las la-search"></span>
-                <input type="search" placeholder="Search Here" />
-            </div>
             <div class="user-wrapper">
-                <div>
-                    <h4 th:text="${userName}"></h4>
-                    <small>User</small>
-                </div>
+                <a th:href="@{~/user/account}">
+                    <div>
+                        <h4 th:text="${userName}"></h4>
+                        <small>User</small>
+                    </div>
+                </a>
             </div>
         </header>
        <main>
@@ -68,35 +66,19 @@
                            <thead>
                                <tr>
                                    <td>S.N</td>
-                                   <td>Full Name</td>
                                    <td>Token Key</td>
+                                   <td>Token Number</td>
                                    <td>Date</td>
                                    
                                </tr>
                            </thead>
                            <tbody>
-                               <tr>
-                                <td>1</td>
-                                <td>suraj Kapali</td>
-                                <td>txuraz</td>
-                                <td>2022/04/01</td>
-                                
+                               <tr th:each="history,loop : ${historyList}">
+                                <td th:text="${loop.count}"></td>
+                                <td th:text="${history.token_key}"></td>
+                                <td th:text="${history.token_number}"></td>
+                                <td th:text="${history.date}"></td>
                                </tr>
-                               <tr>
-                                <td>2</td>
-                                <td>suraj Acharya</td>
-                                <td>obinoxious</td>
-                                <td>2022/04/01</td>
-                                
-                               </tr>
-                               <tr>
-                                <td>3</td>
-                                <td>Ram bahadur</td>
-                                <td>rame</td>
-                                <td>2022/04/01</td>
-                             
-                               </tr>
-                              
                            </tbody>
                        </table>
                    </div>

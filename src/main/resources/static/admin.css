@@ -256,6 +256,11 @@ td .status.purple {
     font-weight: bold;
 }
 
+td .status.yellow {
+    color: #997e1a;
+    font-weight: bold;
+}
+
 .queue-status {
     display: flex;
     justify-content: space-between;
@@ -344,9 +349,20 @@ td .status.purple {
     border: none;
     border-radius: 3px;
  }
+#delete {
+    padding: 3px;
+    margin-top: 0px;
+    background: red;
+    color: #fff;
+    font-weight: bold;
+    outline: none;
+    border: none;
+    border-radius: 3px;
+}
 
 
  #finish:hover,
+ #delete:hover,
  #cancel:hover,
  #absent:hover
  {

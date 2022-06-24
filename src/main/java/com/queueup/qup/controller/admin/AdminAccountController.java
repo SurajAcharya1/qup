@@ -16,11 +16,14 @@ public class AdminAccountController {
     LogInController logInController;
     @Autowired
     UserRepo userRepo;
+
+
     @GetMapping
     public String openAdminAccountPage(Model model){
         try{
             if(userRepo.getRoleByID(logInController.loggedInUserid).equals("ADMIN")) {
                 model.addAttribute("userName", userRepo.findNameById(logInController.loggedInUserid));
+                model.addAttribute("adminDetails", userRepo.getUserDetailsById(logInController.loggedInUserid));
                 return "admin/acount";
             }else {
                 return "error";

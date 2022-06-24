@@ -25,6 +25,7 @@ public class AdminController{
             if(userRepo.getRoleByID(logInController.loggedInUserid).equals("ADMIN")) {
                 model.addAttribute("totalToken",tokenRepo.findAll().size());
                 model.addAttribute("totalUser", userRepo.totalUsers());
+                model.addAttribute("tokenList",tokenRepo.findAll());
                 model.addAttribute("userName",userRepo.findNameById(logInController.loggedInUserid));
                 return "admin/adminPanel";
             }else {

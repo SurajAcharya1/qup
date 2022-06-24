@@ -4,9 +4,12 @@ import com.queueup.qup.controller.LogInController;
 import com.queueup.qup.dto.KeyDto;
 import com.queueup.qup.dto.LoginDto;
 import com.queueup.qup.dto.TokenDto;
+import com.queueup.qup.dto.TokenHistoryDto;
 import com.queueup.qup.repository.KeyRepo;
 import com.queueup.qup.repository.TokenRepo;
 import com.queueup.qup.repository.UserRepo;
+import com.queueup.qup.service.TokenHistoryService;
+import com.queueup.qup.service.impl.TokenHistoryServiceImpl;
 import com.queueup.qup.service.impl.TokenServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -31,6 +34,9 @@ public class UserController{
 
     @Autowired
     LogInController logInController;
+
+    @Autowired
+    TokenHistoryServiceImpl tokenHistoryService;
     private final TokenServiceImpl tokenService;
 
     public UserController(TokenServiceImpl tokenService) {
@@ -54,11 +60,12 @@ public class UserController{
     }
 
     @PostMapping("create")
-    public String createUser(@ModelAttribute TokenDto tokenDto, RedirectAttributes redirectAttributes){
+    public String createUser(@ModelAttribute TokenDto tokenDto, TokenHistoryDto tokenHistoryDto,RedirectAttributes redirectAttributes){
         String key = tokenDto.getToken_key();
         try {
             if(keyRepo.getKeyFromLogin(key).equals(key)) {
                 tokenDto = tokenService.save(tokenDto);
+                tokenHistoryDto = tokenHistoryService.save(tokenHistoryDto);
                 redirectAttributes.addFlashAttribute("tokenMessage", "Token Generated Successfully!!!");
             }
         }catch (Exception e) {

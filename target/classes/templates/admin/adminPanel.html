@@ -46,15 +46,13 @@
                 </label>
                 Dashboard
             </h2>
-            <div class="search-wrapper">
-                <span class="las la-search"></span>
-                <input type="search" placeholder="Search Here" />
-            </div>
             <div class="user-wrapper">
-                <div>
-                    <h4 th:text="${userName}"></h4>
-                    <small>Admin</small>
-                </div>
+                <a th:href="@{~/admin/account}">
+                    <div>
+                        <h4 th:text="${userName}"></h4>
+                        <small>Admin</small>
+                    </div>
+                </a>
             </div>
 
         </header>
@@ -97,9 +95,8 @@
                         <h2>Remaining Token </h2>
                     </div>
                         <p class="las la-ticket-alt"></p>
-                </div>
-            </div></a>
-
+                </div></a>
+            </div>
             <div class="recent-grid">
                  <div class="users-status">
                     <div class="card">
@@ -111,63 +108,37 @@
                             <table width="100%">
                                 <thead>
                                     <tr>
+                                        <td>S.No.</td>
+                                        <td>Full Name</td>
                                         <td>Username</td>
                                         <td>Token Number</td>
                                         <td>Status</td>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>suraj Kapali</td>
-                                        <td>1</td>
-                                        <td>
-                                            <span class="status green">
-                                                Complete
-                                            </span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>suraj Acharya</td>
-                                        <td>2</td>
-                                        <td>
-                                            <span class="status green">
-                                                Complete
-                                            </span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Ram bahadur</td>
-                                        <td>3</td>
-                                        <td>
-                                            <span class="status green">
-                                                Complete
-                                            </span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Shyam Bahadur</td>
-                                        <td>4</td>
-                                        <td>
-                                            <span class="status red">
+                                    <tr th:each="token,loop : ${tokenList}">
+                                        <td th:text="${loop.count}"></td>
+                                        <td th:text="${token.name}"></td>
+                                        <td th:text="${token.username}"></td>
+                                        <td th:text="${token.token_number}"></td>
+                                        <td th:if="${token.status==0}">
+                                            <span class="status yellow">
                                                 Incomplete
                                             </span>
                                         </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Hari Bahadur</td>
-                                        <td>5</td>
-                                        <td>
+                                        <td th:if="${token.status==1}">
+                                            <span class="status green">
+                                                Complete
+                                            </span>
+                                        </td>
+                                        <td th:if="${token.status==2}">
                                             <span class="status purple">
                                                 Absent
                                             </span>
                                         </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Any One</td>
-                                        <td>6</td>
-                                        <td>
+                                        <td th:if="${token.status==3}">
                                             <span class="status red">
-                                                Incomplete
+                                                Cancelled
                                             </span>
                                         </td>
                                     </tr>

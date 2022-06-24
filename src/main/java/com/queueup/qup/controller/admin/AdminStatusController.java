@@ -1,6 +1,7 @@
 package com.queueup.qup.controller.admin;
 
 import com.queueup.qup.controller.LogInController;
+import com.queueup.qup.repository.TokenRepo;
 import com.queueup.qup.repository.UserRepo;
 import com.queueup.qup.service.impl.TokenServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class AdminStatusController {
     @Autowired
     UserRepo userRepo;
+
+    @Autowired
+    TokenRepo tokenRepo;
+
     @Autowired
     LogInController logInController;
     private final TokenServiceImpl tokenService;
@@ -27,6 +32,7 @@ public class AdminStatusController {
     public String openAdminStatusPage(Model model){
         try{
             if(userRepo.getRoleByID(logInController.loggedInUserid).equals("ADMIN")) {
+                model.addAttribute("totalToken",tokenService.findAll().size());
                 model.addAttribute("tokenList",tokenService.findAll());
                 model.addAttribute("userName",userRepo.findNameById(logInController.loggedInUserid));
                 return "admin/status";
@@ -37,6 +43,12 @@ public class AdminStatusController {
             System.out.println(e);
             return "error";
         }
+    }
+
+    @GetMapping("/delete")
+    public String deleteAllTokens(){
+        tokenRepo.deleteAllTokens();
+        return "redirect:/admin/status";
     }
 }
 

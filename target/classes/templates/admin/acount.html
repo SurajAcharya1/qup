@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Account</title>
     <link rel="stylesheet" th:href="@{~/admin.css}">
+    <link rel="stylesheet" th:href="@{~/users.css}">
     <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
 
         <style>
@@ -61,20 +62,52 @@
                 </label>
                 Dashboard
             </h2>
-            <div class="search-wrapper">
-                <span class="las la-search"></span>
-                <input type="search" placeholder="Search Here" />
-            </div>
             <div class="user-wrapper">
-                <div>
-                    <h4 th:text="${userName}"></h4>
-                    <small>Admin</small>
-                </div>
+                <a th:href="@{~/admin/account}">
+                    <div>
+                        <h4 th:text="${userName}"></h4>
+                        <small>Admin</small>
+                    </div>
+                </a>
             </div>
             
         </header>
         <main>
-           <a th:href="@{/logout}" ><center> <button>Log out</button></center></a>
+            <div class="card">
+                <div class="card-header">
+                    <h2>Admin Details</h2>
+                </div>
+                <div class="card-body">
+                    <table th:each="admin,loop : ${adminDetails}">
+                        <tr>
+                            <th style="text-align: right;">Full Name : </th>
+                            <td th:text="${admin.name}"></td>
+                        </tr>
+                        <tr>
+                            <th style="text-align: right;">Username : </th>
+                            <td th:text="${admin.userName}"></td>
+                        </tr>
+                        <tr>
+                            <th style="text-align: right;">E-mail : </th>
+                            <td th:text="${admin.email}"></td>
+                        </tr>
+                        <tr>
+                            <th style="text-align: right;">Mobile : </th>
+                            <td th:text="${admin.phoneNumber}"></td>
+                        </tr>
+                        <tr>
+                            <th style="text-align: right;">Gender : </th>
+                            <td th:text="${admin.gender}"></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-body">
+                    <a th:href="@{/logout}" ><left> <button >Log out</button></left></a>
+                </div>
+            </div>
         </main>
 </body>
 </html>

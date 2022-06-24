@@ -57,19 +57,50 @@
       </label>
       Dashboard
     </h2>
-    <div class="search-wrapper">
-      <span class="las la-search"></span>
-      <input type="search" placeholder="Search Here" />
-    </div>
     <div class="user-wrapper">
-      <div>
-        <h4 th:text="${userName}"></h4>
-        <small>User</small>
-      </div>
+      <a th:href="@{~/user/account}">
+        <div>
+          <h4 th:text="${userName}"></h4>
+          <small>User</small>
+        </div>
+      </a>
     </div>
   </header>
   <main>
-      <a th:href="@{/logout}" ><center> <button>Log out</button></center></a>
-  </main>
+    <div class="card">
+      <div class="card-header">
+        <h2>User Details</h2>
+      </div>
+      <div class="card-body">
+        <table th:each="user,loop : ${userDetails}">
+          <tr>
+            <th style="text-align: right;">Full Name : </th>
+            <td th:text="${user.name}"></td>
+          </tr>
+          <tr>
+            <th style="text-align: right;">Username : </th>
+            <td th:text="${user.userName}"></td>
+          </tr>
+          <tr>
+            <th style="text-align: right;">E-mail : </th>
+            <td th:text="${user.email}"></td>
+          </tr>
+          <tr>
+            <th style="text-align: right;">Mobile : </th>
+            <td th:text="${user.phoneNumber}"></td>
+          </tr>
+          <tr>
+            <th style="text-align: right;">Gender : </th>
+            <td th:text="${user.gender}"></td>
+          </tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-body">
+        <a th:href="@{/logout}" ><left> <button >Log out</button></left></a>
+      </div>
+    </div>  </main>
 </body>
 </html>

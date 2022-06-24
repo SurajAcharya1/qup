@@ -47,26 +47,26 @@
                 </label>
                 Dashboard
             </h2>
-            <div class="search-wrapper">
-                <span class="las la-search"></span>
-                <input type="search" placeholder="Search Here" />
-            </div>
             <div class="user-wrapper">
-                <div>
-                    <h4 th:text="${userName}"></h4>
-                    <small>Admin</small>
-                </div>
+                <a th:href="@{~/admin/account}">
+                    <div>
+                        <h4 th:text="${userName}"></h4>
+                        <small>Admin</small>
+                    </div>
+                </a>
             </div>
             
         </header>
         <main>
             <div class="status-cards">
-                <h2>Total Token </h2>
+                <div>
+                <h2>Total Token</h2>
+                </div>
                 <div class="card-single">
                     
                     <div>
                         <small>Token No.</small>
-                        <h1>5</h1>
+                        <h1 th:text="${totalToken}"></h1>
                     </div>
                     <div>
                         <p class="las la-ticket-alt"></p>
@@ -94,7 +94,7 @@
                    <div class="card">
                        <div class="card-header">
                            <h2>Queue Information</h2>
-                           <button>Filter <span class="las la-filter"></span></button>
+                           <button id="delete"><a th:href="@{~/admin/status/delete}">Delete All tokens</a></button>
                        </div>
                        <div class="card-body">
                            <table width="100%">
@@ -113,11 +113,26 @@
                                        <td th:text="${token.name}"></td>
                                        <td th:text="${token.username}"></td>
                                        <td th:text="${token.token_key}"></td>
-                                       <td>
-                                        <span class="status red">
+                                       <td th:if="${token.status==0}">
+                                           <span class="status yellow">
                                             Incomplete
                                         </span>
-                                    </td>
+                                       </td>
+                                       <td th:if="${token.status==1}">
+                                           <span class="status green">
+                                            Complete
+                                        </span>
+                                       </td>
+                                       <td th:if="${token.status==2}">
+                                           <span class="status purple">
+                                            Absent
+                                        </span>
+                                       </td>
+                                       <td th:if="${token.status==3}">
+                                           <span class="status red">
+                                            Cancelled
+                                        </span>
+                                       </td>
                                    </tr>
                                </tbody>
                            </table>

@@ -5,9 +5,11 @@ import org.hibernate.id.IntegralDataTypeHolder;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.sql.Date;
+import java.time.LocalDate;
 
 @Entity
-@Table(name = "tbl_token", uniqueConstraints = {
+@Table(name = "tbl_token_history", uniqueConstraints = {
         @UniqueConstraint(name = "unique_user_id", columnNames = "fk_user_id"),
         @UniqueConstraint(name = "unique_token_number", columnNames = "token_number"),
         @UniqueConstraint(name = "unique_username", columnNames = "username")
@@ -17,11 +19,11 @@ import java.io.Serializable;
 @Getter
 @Setter
 @Builder
-public class Token implements Serializable {
+public class TokenHistory implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer token_id;
+    private Integer token_history_id;
 
     @Column(name = "fk_user_id")
     private Integer fk_user_id;
@@ -38,6 +40,6 @@ public class Token implements Serializable {
     @Column(name = "token_number")
     private Integer token_number;
 
-    @Column(name="status")
-    private Integer Status;
+    @Column(name="date")
+    private LocalDate date;
 }
