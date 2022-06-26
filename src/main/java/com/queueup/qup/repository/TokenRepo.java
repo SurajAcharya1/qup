@@ -10,7 +10,7 @@ import javax.transaction.Transactional;
 
 public interface TokenRepo extends JpaRepository<Token, Integer> {
 
-    @Query(value = "select token_number from tbl_token where fk_user_id = ?1", nativeQuery = true)
+    @Query(value = "select token_number from tbl_token where fk_user_id = ?1 and status=0", nativeQuery = true)
     public Integer getTokenNumber(Integer fk_user_id);
 
     @Modifying

@@ -14,10 +14,7 @@ import com.queueup.qup.service.impl.TokenServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
@@ -74,6 +71,18 @@ public class UserController{
             e.fillInStackTrace();
             return "redirect:/user/userPanel";
         }
+        return "redirect:/user/userPanel";
+    }
+
+    @GetMapping("/absent/{token_number}")
+    public String setStatusToAbsent(@PathVariable("token_number") Integer token_number){
+        tokenRepo.setUserStatusToAbsent(token_number);
+        return "redirect:/user/userPanel";
+    }
+
+    @GetMapping("/cancel/{token_number}")
+    public String setStatusToCancelled(@PathVariable("token_number") Integer token_number) {
+        tokenRepo.setUserStatusToCancelled(token_number);
         return "redirect:/user/userPanel";
     }
 }
