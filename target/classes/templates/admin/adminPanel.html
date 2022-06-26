@@ -81,7 +81,7 @@
                 <a th:href="@{/admin/status}">
                 <div class="card-single">
                     <div>
-                        <h1>6</h1>
+                        <h1 th:text="${currentToken}"></h1>
                         <h2>Current Token</h2>
                     </div>
                     <div>
@@ -91,7 +91,7 @@
                 <a th:href="@{/admin/status}">
                 <div class="card-single">
                     <div>
-                        <h1>74</h1>
+                        <h1 th:text="${remainingToken}"></h1>
                         <h2>Remaining Token </h2>
                     </div>
                         <p class="las la-ticket-alt"></p>

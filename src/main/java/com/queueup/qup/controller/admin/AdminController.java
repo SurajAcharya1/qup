@@ -26,6 +26,8 @@ public class AdminController{
                 model.addAttribute("totalToken",tokenRepo.findAll().size());
                 model.addAttribute("totalUser", userRepo.totalUsers());
                 model.addAttribute("tokenList",tokenRepo.findAll());
+                model.addAttribute("remainingToken",tokenRepo.getRemainingTokenCount());
+                model.addAttribute("currentToken",tokenRepo.getCurrentUserTokenNumber());
                 model.addAttribute("userName",userRepo.findNameById(logInController.loggedInUserid));
                 return "admin/adminPanel";
             }else {

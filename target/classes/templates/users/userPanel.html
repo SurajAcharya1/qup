@@ -58,6 +58,7 @@
         <main>
         <div class="enter-key">
             <h1>Enter Token Key</h1>
+            <h3 style="text-align: center">Today's key: <span style="font-weight: lighter" th:text="${key}"></span></h3>
             <div class="form.container">
                 <div class="content">
                     <form th:action="@{~/user/userPanel/create}" th:method="post" th:object="${tokenDto}" >

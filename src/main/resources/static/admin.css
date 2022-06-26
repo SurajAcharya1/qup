@@ -96,7 +96,7 @@ header label span {
 }
 
 .search-wrapper {
-    border: 2 px solid #000;
+    border: 2px solid black;
     border-radius: 30px;
     height: 50px;
     display: flex;
@@ -120,6 +120,7 @@ header label span {
 .user-wrapper {
     display: flex;
     align-items: center;
+    cursor: pointer;
 }
 
 .user-wrapper img {
@@ -183,7 +184,7 @@ table{
     margin-top: 56px;
     display: grid;
     grid-gap: 32px;
-    grid-template-columns: 70% auto;
+    grid-template-columns: 100% auto;
 
 }
 
@@ -342,7 +343,7 @@ td .status.yellow {
  #absent {
     padding: 3px;
     margin-top: 6px;
-    background: purple;
+    background: var(--light-color);
     color: #fff;
     font-weight: bold;
     outline: none;
@@ -351,7 +352,7 @@ td .status.yellow {
  }
 #delete {
     padding: 3px;
-    margin-top: 0px;
+    margin-top: 6px;
     background: red;
     color: #fff;
     font-weight: bold;
@@ -361,11 +362,38 @@ td .status.yellow {
 }
 
 
- #finish:hover,
- #delete:hover,
- #cancel:hover,
+ #finish:hover
+ {
+     background-color: white;
+     color: green;
+     cursor: pointer;
+     border: 1px solid green;
+ }
+ #delete:hover
+ {
+     background-color: white;
+     color: red;
+     cursor: pointer;
+     border: 1px solid red;
+ }
+ #cancel:hover
+ {
+     background-color: white;
+     color: red;
+     cursor: pointer;
+     border: 1px solid red;
+ }
  #absent:hover
  {
-     color: #000;
+     background-color: white;
+     color: var(--primary-color);
      cursor: pointer;
+     border: 1px solid purple;
  }
+
+
+ a{
+     text-decoration: none;
+     color: black;
+ }
+

@@ -77,13 +77,12 @@
                    
                     <div>
                         <small>Token No.</small>
-                        <h1>4</h1>
+                        <h1 th:text="${currentToken}"></h1>
                     </div>
                     <div>
-                        <button id="cancel">Cancel</button>
-                        <button id="absent">Absent</button>
-                    <button id="finish">Finish</button>
-                    
+                        <button id="finish"><a th:href="@{~/admin/status/finish/} + ${currentToken}">Finish</a></button>
+                        <button id="absent"><a th:href="@{~/admin/status/absent/} + ${currentToken}">Absent</a></button>
+                        <button id="cancel"><a th:href="@{~/admin/status/cancel/} + ${currentToken}">Cancel</a></button>
                     </div>
             </div>
             </div>

@@ -47,6 +47,7 @@ public class UserController{
         try{
             if(userRepo.getRoleByID(logInController.loggedInUserid)==null){
                 model.addAttribute("tokenNumber",tokenRepo.getTokenNumber(logInController.loggedInUserid));
+                model.addAttribute("key",keyRepo.getKey());
                 model.addAttribute("tokenDto", new TokenDto());
                 model.addAttribute("userName",userRepo.findNameById(logInController.loggedInUserid));
                 return "users/userPanel";

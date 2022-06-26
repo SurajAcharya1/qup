@@ -9,4 +9,7 @@ public interface KeyRepo extends JpaRepository<Key,Integer> {
     @Query(value = "select key from tbl_key where key = ?1", nativeQuery = true)
     public String getKeyFromLogin(String key);
 
+    @Query(value = "select key from tbl_key", nativeQuery = true)
+    public String getKey();
+
 }

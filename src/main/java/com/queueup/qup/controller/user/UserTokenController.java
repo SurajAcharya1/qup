@@ -25,6 +25,7 @@ public class UserTokenController{
         try{
             if(userRepo.getRoleByID(logInController.loggedInUserid)==null){
                 model.addAttribute("userName",userRepo.findNameById(logInController.loggedInUserid));
+                model.addAttribute("currentToken",tokenRepo.getCurrentUserTokenNumber());
                 model.addAttribute("tokenNumber", tokenRepo.getTokenNumber(logInController.loggedInUserid));
                 return "users/userToken";
             }

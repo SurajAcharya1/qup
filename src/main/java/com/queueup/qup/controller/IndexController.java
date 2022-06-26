@@ -20,6 +20,9 @@ public class IndexController {
     private final UserServiceImpl userService;
     @Autowired
     UserRepo userRepo;
+
+    @Autowired
+    LogInController logInController;
     public IndexController(UserServiceImpl userService) {
 
         this.userService = userService;
@@ -28,6 +31,7 @@ public class IndexController {
     @GetMapping()
     public String openMainPage(Model model) {
         model.addAttribute("userDto", new UserDto());
+        logInController.loggedInUserid=null;
         return "index";
 
     }
