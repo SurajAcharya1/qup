@@ -104,6 +104,7 @@
                                        <td>Username</td>
                                        <td>Key</td>
                                        <td>Status</td>
+                                       <td>Status Changed By</td>
                                    </tr>
                                </thead>
                                <tbody>
@@ -131,6 +132,12 @@
                                            <span class="status red">
                                             Cancelled
                                         </span>
+                                       </td>
+                                       <td th:if="${token.statusChangedBy=='User'}">
+                                           <span style="font-weight: bold; color: #9400D3;" th:text="${token.statusChangedBy}"></span>
+                                       </td>
+                                       <td th:if="${token.statusChangedBy=='Admin'}">
+                                           <span style="font-weight: bold;" th:text="${token.statusChangedBy}"></span>
                                        </td>
                                    </tr>
                                </tbody>

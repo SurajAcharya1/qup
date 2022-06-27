@@ -38,4 +38,14 @@ public interface TokenRepo extends JpaRepository<Token, Integer> {
     @Transactional
     @Query(value = "update tbl_token set status = 3 where token_number = ?1", nativeQuery = true)
     public void setUserStatusToCancelled(Integer token_number);
+
+    @Modifying
+    @Transactional
+    @Query(value = "update tbl_token set status_changed_by = 'Admin' where token_number = ?1", nativeQuery = true)
+    public void setStatusChangedByAdmin(Integer token_number);
+
+    @Modifying
+    @Transactional
+    @Query(value = "update tbl_token set status_changed_by = 'User' where token_number = ?1", nativeQuery = true)
+    public void setStatusChangedByUser(Integer token_number);
 }

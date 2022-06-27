@@ -57,6 +57,7 @@ public class TokenServiceImpl implements TokenService {
                         .username(token.getUsername())
                         .token_number(token.getToken_number())
                         .status(token.getStatus())
+                        .statusChangedBy(token.getStatusChangedBy())
                         .build()
         ).collect(Collectors.toList());
     }

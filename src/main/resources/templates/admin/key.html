@@ -88,7 +88,6 @@
                    <div class="card">
                        <div class="card-header">
                            <h2>All Queue Keys</h2>
-                           <button>Sort <span class="las la-filter"></span></button>
                        </div>
                        <div class="card-body">
                            <table width="100%">
@@ -105,7 +104,7 @@
                                    <td th:text="${loop.count}"></td>
                                    <td th:text="${key.name}"></td>
                                    <td th:text="${key.key}"></td>
-                                   <td><button><a th:href="@{key/delete/} + ${key.key_id}">Delete</a></button></td>
+                                   <td><button id="delete"><a th:href="@{key/delete/} + ${key.key_id}">Delete</a></button></td>
                                </tbody>
                            </table>
                        </div>

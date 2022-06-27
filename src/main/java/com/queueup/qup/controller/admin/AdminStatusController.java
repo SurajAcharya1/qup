@@ -30,45 +30,47 @@ public class AdminStatusController {
     }
 
     @GetMapping
-    public String openAdminStatusPage(Model model){
-        try{
-            if(userRepo.getRoleByID(logInController.loggedInUserid).equals("ADMIN")) {
-                model.addAttribute("totalToken",tokenService.findAll().size());
-                model.addAttribute("tokenList",tokenService.findAll());
-                model.addAttribute("currentToken",tokenRepo.getCurrentUserTokenNumber());
-                model.addAttribute("userName",userRepo.findNameById(logInController.loggedInUserid));
+    public String openAdminStatusPage(Model model) {
+        try {
+            if (userRepo.getRoleByID(logInController.loggedInUserid).equals("ADMIN")) {
+                model.addAttribute("totalToken", tokenService.findAll().size());
+                model.addAttribute("tokenList", tokenService.findAll());
+                model.addAttribute("currentToken", tokenRepo.getCurrentUserTokenNumber());
+                model.addAttribute("userName", userRepo.findNameById(logInController.loggedInUserid));
                 return "admin/status";
-            }else {
+            } else {
                 return "error";
             }
-        } catch(Exception e){
+        } catch (Exception e) {
             System.out.println(e);
             return "error";
         }
     }
 
     @GetMapping("/delete")
-    public String deleteAllTokens(){
+    public String deleteAllTokens() {
         tokenRepo.deleteAllTokens();
         return "redirect:/admin/status";
     }
 
     @GetMapping("/finish/{token_number}")
-    public String setStatusToComplete(@PathVariable("token_number") Integer token_number){
+    public String setStatusToComplete(@PathVariable("token_number") Integer token_number) {
         tokenRepo.setUserStatustoComplete(token_number);
+        tokenRepo.setStatusChangedByAdmin(token_number);
         return "redirect:/admin/status";
     }
 
     @GetMapping("/absent/{token_number}")
-    public String setStatusToAbsent(@PathVariable("token_number") Integer token_number){
+    public String setStatusToAbsent(@PathVariable("token_number") Integer token_number) {
         tokenRepo.setUserStatusToAbsent(token_number);
+        tokenRepo.setStatusChangedByAdmin(token_number);
         return "redirect:/admin/status";
     }
 
     @GetMapping("/cancel/{token_number}")
-    public String setStatusToCancelled(@PathVariable("token_number") Integer token_number){
+    public String setStatusToCancelled(@PathVariable("token_number") Integer token_number) {
         tokenRepo.setUserStatusToCancelled(token_number);
+        tokenRepo.setStatusChangedByAdmin(token_number);
         return "redirect:/admin/status";
     }
 }
-

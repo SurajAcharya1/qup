@@ -41,12 +41,14 @@ public class UserTokenController{
     @GetMapping("/absent/{token_number}")
     public String setStatusToAbsent(@PathVariable("token_number") Integer token_number){
         tokenRepo.setUserStatusToAbsent(token_number);
+        tokenRepo.setStatusChangedByUser(token_number);
         return "redirect:/user/token";
     }
 
     @GetMapping("/cancel/{token_number}")
     public String setStatusToCancelled(@PathVariable("token_number") Integer token_number){
         tokenRepo.setUserStatusToCancelled(token_number);
+        tokenRepo.setStatusChangedByUser(token_number);
         return "redirect:/user/token";
     }
 }

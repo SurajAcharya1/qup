@@ -40,4 +40,7 @@ public class Token implements Serializable {
 
     @Column(name="status")
     private Integer Status;
+
+    @Column(name = "statusChangedBy")
+    private String statusChangedBy;
 }

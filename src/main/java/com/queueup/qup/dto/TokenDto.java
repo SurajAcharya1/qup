@@ -16,4 +16,5 @@ public class TokenDto {
     private String username;
     private Integer token_number;
     private Integer status;
+    private String statusChangedBy;
 }
