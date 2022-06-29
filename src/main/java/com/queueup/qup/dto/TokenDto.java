@@ -17,4 +17,5 @@ public class TokenDto {
     private Integer token_number;
     private Integer status;
     private String statusChangedBy;
+    private String email;
 }

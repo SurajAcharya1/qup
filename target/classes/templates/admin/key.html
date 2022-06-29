@@ -104,7 +104,12 @@
                                    <td th:text="${loop.count}"></td>
                                    <td th:text="${key.name}"></td>
                                    <td th:text="${key.key}"></td>
-                                   <td><button id="delete"><a th:href="@{key/delete/} + ${key.key_id}">Delete</a></button></td>
+                                   <td>
+                                       <div>
+                                       <button id="delete"><a th:href="@{key/delete/} + ${key.key_id}">Delete</a></button>
+                                       <button id="absent"><!--<a th:href="@{key/delete/} + ${key.key_id}" ></a>-->Update</button>
+                                       </div>
+                                   </td>
                                </tbody>
                            </table>
                        </div>

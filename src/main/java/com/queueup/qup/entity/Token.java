@@ -43,4 +43,7 @@ public class Token implements Serializable {
 
     @Column(name = "statusChangedBy")
     private String statusChangedBy;
+
+    @Column(name = "email")
+    private String email;
 }

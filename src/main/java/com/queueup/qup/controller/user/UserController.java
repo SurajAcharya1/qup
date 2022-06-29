@@ -8,6 +8,7 @@ import com.queueup.qup.dto.TokenHistoryDto;
 import com.queueup.qup.repository.KeyRepo;
 import com.queueup.qup.repository.TokenRepo;
 import com.queueup.qup.repository.UserRepo;
+import com.queueup.qup.service.EmailSenderService;
 import com.queueup.qup.service.TokenHistoryService;
 import com.queueup.qup.service.impl.TokenHistoryServiceImpl;
 import com.queueup.qup.service.impl.TokenServiceImpl;
@@ -34,6 +35,9 @@ public class UserController{
 
     @Autowired
     TokenHistoryServiceImpl tokenHistoryService;
+
+    @Autowired
+    EmailSenderService senderService;
     private final TokenServiceImpl tokenService;
 
     public UserController(TokenServiceImpl tokenService) {
@@ -75,16 +79,36 @@ public class UserController{
     }
 
     @GetMapping("/absent/{token_number}")
-    public String setStatusToAbsent(@PathVariable("token_number") Integer token_number){
-        tokenRepo.setUserStatusToAbsent(token_number);
-        tokenRepo.setStatusChangedByUser(token_number);
-        return "redirect:/user/userPanel";
+    public String setStatusToAbsent(@PathVariable("token_number") Integer token_number, Model model){
+        try {
+            senderService.sendEmail(tokenRepo.getEmailFromTokenNumber(token_number + 1),
+                    "Queue Notification",
+                    "Your turn Is About to come please get to Queue as soon as possible.");
+            tokenRepo.setUserStatusToCancelled(token_number);
+            tokenRepo.setStatusChangedByUser(token_number);
+            return "redirect:/user/userPanel";
+        }catch (Exception e){
+            model.addAttribute("mail","Could not send Mail");
+            tokenRepo.setUserStatusToCancelled(token_number);
+            tokenRepo.setStatusChangedByUser(token_number);
+            return "redirect:/user/userPanel";
+        }
     }
 
     @GetMapping("/cancel/{token_number}")
-    public String setStatusToCancelled(@PathVariable("token_number") Integer token_number) {
-        tokenRepo.setUserStatusToCancelled(token_number);
-        tokenRepo.setStatusChangedByUser(token_number);
-        return "redirect:/user/userPanel";
+    public String setStatusToCancelled(@PathVariable("token_number") Integer token_number, Model model) {
+        try {
+            senderService.sendEmail(tokenRepo.getEmailFromTokenNumber(token_number + 1),
+                    "Queue Notification",
+                    "Your turn Is About to come please get to Queue as soon as possible.");
+            tokenRepo.setUserStatusToCancelled(token_number);
+            tokenRepo.setStatusChangedByUser(token_number);
+            return "redirect:/user/userPanel";
+        }catch (Exception e){
+            model.addAttribute("mail","Could not send Mail");
+            tokenRepo.setUserStatusToCancelled(token_number);
+            tokenRepo.setStatusChangedByUser(token_number);
+            return "redirect:/user/userPanel";
+        }
     }
 }

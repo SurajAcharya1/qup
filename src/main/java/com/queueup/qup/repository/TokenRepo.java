@@ -48,4 +48,7 @@ public interface TokenRepo extends JpaRepository<Token, Integer> {
     @Transactional
     @Query(value = "update tbl_token set status_changed_by = 'User' where token_number = ?1", nativeQuery = true)
     public void setStatusChangedByUser(Integer token_number);
+
+    @Query(value = "select email from tbl_token where token_number = ?1", nativeQuery = true)
+    public String getEmailFromTokenNumber(Integer token_Number);
 }
