@@ -102,9 +102,10 @@
                            <table width="100%">
                                <thead>
                                    <tr>
-                                       <td>Token No.</td>
+                                       <td>S.No.</td>
                                        <td>Full Name</td>
                                        <td>Username</td>
+                                       <td>Token No.</td>
                                        <td>Key</td>
                                        <td>Status</td>
                                        <td>Status Changed By</td>
@@ -112,9 +113,10 @@
                                </thead>
                                <tbody>
                                    <tr th:each="token,loop : ${tokenList}">
-                                       <td th:text="${token.token_number}"></td>
+                                       <td th:text="${loop.count}"></td>
                                        <td th:text="${token.name}"></td>
                                        <td th:text="${token.username}"></td>
+                                       <td th:text="${token.token_number}"></td>
                                        <td th:text="${token.token_key}"></td>
                                        <td th:if="${token.status==0}">
                                            <span class="status yellow">

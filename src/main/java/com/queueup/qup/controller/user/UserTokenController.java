@@ -49,12 +49,12 @@ public class UserTokenController{
             senderService.sendEmail(tokenRepo.getEmailFromTokenNumber(token_number + 1),
                     "Queue Notification",
                     "Your turn Is About to come please get to Queue as soon as possible.");
-            tokenRepo.setUserStatusToCancelled(token_number);
+            tokenRepo.setUserStatusToAbsent(token_number);
             tokenRepo.setStatusChangedByUser(token_number);
             return "redirect:/user/userPanel";
         }catch (Exception e){
             model.addAttribute("mail","Could not send Mail");
-            tokenRepo.setUserStatusToCancelled(token_number);
+            tokenRepo.setUserStatusToAbsent(token_number);
             tokenRepo.setStatusChangedByUser(token_number);
             return "redirect:/user/userPanel";
         }

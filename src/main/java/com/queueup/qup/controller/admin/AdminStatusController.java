@@ -66,12 +66,12 @@ public class AdminStatusController {
             senderService.sendEmail(tokenRepo.getEmailFromTokenNumber(token_number + 1),
                     "Queue Notification",
                     "Your turn Is About to come please get to Queue as soon as possible.");
-            tokenRepo.setUserStatusToCancelled(token_number);
+            tokenRepo.setUserStatustoComplete(token_number);
             tokenRepo.setStatusChangedByAdmin(token_number);
             return "redirect:/admin/status";
         }catch(Exception e){
             redirectAttributes.addFlashAttribute("mail","Could not send Mail");
-            tokenRepo.setUserStatusToCancelled(token_number);
+            tokenRepo.setUserStatustoComplete(token_number);
             tokenRepo.setStatusChangedByAdmin(token_number);
             return "redirect:/admin/status";
         }
@@ -83,12 +83,12 @@ public class AdminStatusController {
             senderService.sendEmail(tokenRepo.getEmailFromTokenNumber(token_number + 1),
                     "Queue Notification",
                     "Your turn Is About to come please get to Queue as soon as possible.");
-            tokenRepo.setUserStatusToCancelled(token_number);
+            tokenRepo.setUserStatusToAbsent(token_number);
             tokenRepo.setStatusChangedByAdmin(token_number);
             return "redirect:/admin/status";
         }catch(Exception e){
             redirectAttributes.addFlashAttribute("mail","Could not send Mail");
-            tokenRepo.setUserStatusToCancelled(token_number);
+            tokenRepo.setUserStatusToAbsent(token_number);
             tokenRepo.setStatusChangedByAdmin(token_number);
             return "redirect:/admin/status";
         }
