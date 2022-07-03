@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 
 import javax.transaction.Transactional;
+import java.time.LocalDate;
 
 public interface TokenRepo extends JpaRepository<Token, Integer> {
 
@@ -51,4 +52,9 @@ public interface TokenRepo extends JpaRepository<Token, Integer> {
 
     @Query(value = "select email from tbl_token where token_number = ?1", nativeQuery = true)
     public String getEmailFromTokenNumber(Integer token_Number);
+
+    @Modifying
+    @Transactional
+    @Query(value = "delete from tbl_token where date != ?1", nativeQuery = true)
+    public void deleteByDate(LocalDate date);
 }

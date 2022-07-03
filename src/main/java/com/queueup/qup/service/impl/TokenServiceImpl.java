@@ -9,6 +9,7 @@ import com.queueup.qup.service.TokenService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -22,6 +23,8 @@ public class TokenServiceImpl implements TokenService {
     @Autowired
     UserRepo userRepo;
     private final TokenRepo tokenRepo;
+
+    LocalDate localdate = LocalDate.now();
 
     public TokenServiceImpl(TokenRepo tokenRepo) {
         this.tokenRepo = tokenRepo;
@@ -39,6 +42,7 @@ public class TokenServiceImpl implements TokenService {
         entity.setUsername(userRepo.findUsernameById(logInController.loggedInUserid));
         entity.setEmail(userRepo.getEmailByID(logInController.loggedInUserid));
         entity.setStatus(0);
+        entity.setDate(localdate);
         entity=tokenRepo.save(entity);
         return tokenDto.builder()
                 .token_id(entity.getToken_id())
@@ -60,6 +64,7 @@ public class TokenServiceImpl implements TokenService {
                         .status(token.getStatus())
                         .statusChangedBy(token.getStatusChangedBy())
                         .email(token.getEmail())
+                        .date(token.getDate())
                         .build()
         ).collect(Collectors.toList());
     }

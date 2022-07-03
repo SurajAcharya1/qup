@@ -5,118 +5,144 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Generate Key</title>
-    <link rel="stylesheet" th:href="@{~/key.css}">
-    <link rel="stylesheet" th:href="@{~/admin.css}">
     <link rel="stylesheet" th:href="@{~/signup.css}">
-    <link rel="stylesheet" th:href="@{~/alert.css}">
-
-
+    <link rel="stylesheet" th:href="@{~/key.css}">
+    <link rel="stylesheet" th:href="@{~/modal.css}">
+    <link rel="stylesheet" th:href="@{~/admin.css}">
     <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
 </head>
 <body>
-    <input type="checkbox" id="nav-toggle">
-    <div class="sidebar">
-        <div class="sidebar-brand">
-            <h2><span class="lab la-quinscape "> <span>Queue-Up</span></span></h2>
-        </div>
-        <div class="sidebar-menu">
-            <ul class="navbar">
-                <li class="nav-item active">
-                    <a th:href="@{~/admin/adminPanel}" > <span class="las la-igloo"></span>
-                        <span>Dashboard</span></a>
-                </li>
-                <li class="nav-item">
-                    <a th:href="@{~/admin/usersList}"> <span class="las la-users"></span>
-                        <span>Users</span></a>
-                </li>
-                <li class="nav-item">
-                    <a th:href="@{~/admin/status}"> <span class="las la-signal"></span>
-                        <span>Queue Status</span></a>
-                </li>
-                <li class="nav-item">
-                    <a th:href="@{~/admin/key}"> <span class="las la-key"></span>
-                        <span>Generate Key</span></a>
-                </li>
-                <li class="nav-item">
-                    <a th:href="@{~/admin/account}"> <span class="las la-user-circle"></span>
-                        <span>Account</span></a>
-                </li>
-            </ul>
-        </div>
-    </div>    <div class="main-content">
-        <header>
-            <h2>
-                <label for="nav-toggle">
-                    <span class="las la-bars"></span>
-                </label>
-                Dashboard
-            </h2>
-            <div class="user-wrapper">
-                <a th:href="@{~/admin/account}">
-                    <div>
-                        <h4 th:text="${userName}"></h4>
-                        <small>Admin</small>
-                    </div>
-                </a>
-            </div>
-        </header>
-
-        <main>
-            <h1>Generate Token Key</h1>
-            <div class="form.container">
-                <div class="content">
-                    <form th:action="@{~/admin/key/create}" th:method="post" th:object="${keyDto}" >
-                        <div class="user-details">
-                            <div class="input-box">
-                                <span style="font-size:20px;" class="details">Key Name</span>
-                                <input style="width:100% ;" type="text" th:field="*{name}" placeholder="Enter key name" required>
-                            </div>
-                            <div class="input-box">
-                                <span style="font-size:20px;" class="details">Key</span>
-                                <input  style="width:100% ;" type="text" th:field="*{key}" placeholder="Enter Key" required>
-                            </div>
-                        </div>
-                        <div class="button">
-                            <input style="width: 40%;" type="submit"  value="Generate Key">
-                        </div>
-                    </form>
-                </div>
-            </div>
-                <h3 th:text="${message}"></h3>
-            <div class="key-grid">
-                <div class="users-status">
-                   <div class="card">
-                       <div class="card-header">
-                           <h2>All Queue Keys</h2>
-                       </div>
-                       <div class="card-body">
-                           <table width="100%">
-                               <thead>
-                                   <tr>
-                                       <td>S.N</td>
-                                       <td>Key Name</td>
-                                       <td>Generated Keys</td>
-                                       <td>Action</td>
-                                   </tr>
-                               </thead>
-                               <tbody>
-                               <tr th:each="key,loop : ${keyList}">
-                                   <td th:text="${loop.count}"></td>
-                                   <td th:text="${key.name}"></td>
-                                   <td th:text="${key.key}"></td>
-                                   <td>
-                                       <div>
-                                       <button id="delete"><a th:href="@{key/delete/} + ${key.key_id}">Delete</a></button>
-                                       <button id="absent"><!--<a th:href="@{key/delete/} + ${key.key_id}" ></a>-->Update</button>
-                                       </div>
-                                   </td>
-                               </tbody>
-                           </table>
-                       </div>
-                   </div>
-                </div>
-            </div>
-        </main>
+<input type="checkbox" id="nav-toggle">
+<div class="sidebar">
+    <div class="sidebar-brand">
+        <h2><span class="lab la-quinscape "> <span>Queue-Up</span></span></h2>
     </div>
+    <div class="sidebar-menu">
+        <ul class="navbar">
+            <li class="nav-item active">
+                <a th:href="@{~/admin/adminPanel}" > <span class="las la-igloo"></span>
+                    <span>Dashboard</span></a>
+            </li>
+            <li class="nav-item">
+                <a th:href="@{~/admin/usersList}"> <span class="las la-users"></span>
+                    <span>Users</span></a>
+            </li>
+            <li class="nav-item">
+                <a th:href="@{~/admin/status}"> <span class="las la-signal"></span>
+                    <span>Queue Status</span></a>
+            </li>
+            <li class="nav-item">
+                <a th:href="@{~/admin/key}"> <span class="las la-key"></span>
+                    <span>Generate Key</span></a>
+            </li>
+            <li class="nav-item">
+                <a th:href="@{~/admin/account}"> <span class="las la-user-circle"></span>
+                    <span>Account</span></a>
+            </li>
+        </ul>
+    </div>
+</div>    <div class="main-content">
+    <header>
+        <h2 style="color: black;">
+            <label for="nav-toggle">
+                <span class="las la-bars"></span>
+            </label>
+            Dashboard
+        </h2>
+        <div class="user-wrapper">
+            <a th:href="@{~/admin/account}">
+                <div>
+                    <h4 th:text="${userName}"></h4>
+                    <small>Admin</small>
+                </div>
+            </a>
+        </div>
+
+    </header>
+    <main>
+        <h1 style="color: black;">Generate Token Key</h1>
+        <div class="form.container">
+            <div class="content">
+                <form th:action="@{~/admin/key/create}" th:method="post" th:object="${keyDto}" >
+                    <div class="user-details">
+                        <div class="input-box">
+                            <span style="font-size:20px; color: black;" class="details">Key Name</span>
+                            <input style="width:100% ;" type="text" th:field="*{name}" placeholder="Enter key name" required>
+                        </div>
+                        <div class="input-box">
+                            <span style="font-size:20px; color: black;" class="details">Key</span>
+                            <input  style="width:100% ;" type="text" th:field="*{key}" placeholder="Enter Key" required>
+                        </div>
+                    </div>
+                    <div class="button">
+                        <input style="width: 40%;" type="submit"  value="Generate Key">
+                    </div>
+                </form>
+            </div>
+        </div>
+        <h3 th:text="${message}" style="color: black;"></h3>
+        <div class="key-grid">
+            <div class="users-status">
+                <div class="card">
+                    <div class="card-header">
+                        <h2>All Queue Keys</h2>
+                    </div>
+                    <div class="card-body">
+                        <table width="100%">
+                            <thead>
+                            <tr>
+                                <td>S.N</td>
+                                <td>Key Name</td>
+                                <td>Generated Keys</td>
+                                <td>Action</td>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="key,loop : ${keyList}">
+                                <td th:text="${loop.count}"></td>
+                                <td th:text="${key.name}"></td>
+                                <td th:text="${key.key}"></td>
+                                <td>
+                                    <div>
+                                        <a th:href="@{key/delete/} + ${key.key_id}"><button id="delete-key">Delete</button></a>
+                                        <a href="#modal-update" ><button id="update-key">Update</button></a>
+                                    </div>
+
+                                </td>
+                            </tbody>
+                            <div id="modal-update" class="modal-window" style="color: azure;">
+                                <div>
+                                    <a th:href="@{~/admin/key}" title="Close" class="modal-close">Close</a>
+                                    <div class="update-head">
+                                        <h2 style="font-size:42px; text-align: left; text-decoration: double;">Update Token Key</h2><hr>
+                                    </div>
+                                    <div class="form.container">
+                                        <div class="content">
+                                            <form action="">
+                                                <div class="user-details">
+                                                    <div class="input-box" >
+                                                        <span style="font-size:20px; margin-right: 435px;"  class="details" >Key Name </span>
+                                                        <input style="width:100% ;" type="text" placeholder="Enter key name" required>
+                                                    </div>
+                                                    <div class="input-box">
+                                                        <span style="font-size:20px; margin-right: 510px;" class="details">Key </span>
+                                                        <input  style="width:100% ;" type="text" placeholder="Enter Key" required>
+                                                    </div>
+                                                </div>
+                                                <div class="button">
+                                                    <input style="width: 30%;" type="submit" value="Update" target="" id="key-btn">
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                    </div>
+                </div>
+            </div>
+            </table>
+        </div>
+</div>
+</main>
 </body>
 </html>

@@ -37,8 +37,49 @@ main{
 
 
 .key-text input{
-        width: 400px;
-        height: 50px;
-        font-size: 20px;
-        border-radius: 10px;
+    width: 400px;
+    height: 50px;
+    font-size: 20px;
+    border-radius: 10px;
+}
+
+
+
+#key-btn{
+    display: inline-block;
+    padding: 10px 30px;
+    cursor: pointer;
+    background-color: var(--dark-color);
+    color: azure;
+    border: 1px double azure;
+    border-radius: 5px;
+    transition: 0.3s;
+}
+#key-btn:hover{
+    background-color: var(--light-color) ;
+}
+h1, h2 {
+    font-weight: 350;
+    line-height: 1.2;
+    margin: 10px 0px;
+}
+
+#delete-key{
+    display: inline-block;
+    padding: 10px 25px;
+    cursor: pointer;
+    background-color: red;
+    color: azure;
+    border: none;
+    border-radius: 5px;
+}
+
+#update-key{
+    display: inline-block;
+    padding: 10px 25px;
+    cursor: pointer;
+    background-color: blue;
+    color: azure;
+    border: none;
+    border-radius: 5px;
 }

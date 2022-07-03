@@ -51,9 +51,9 @@ public class AdminKeyController {
     public String createKey(@ModelAttribute KeyDto keyDto, RedirectAttributes redirectAttributes){
         try {
             keyDto = keyService.save(keyDto);
-            redirectAttributes.addFlashAttribute("message","Key updated Successfully!!!");
+            redirectAttributes.addFlashAttribute("message","Key Generated Successfully!!!");
         }catch(Exception e){
-            redirectAttributes.addFlashAttribute("message","Failed to Update Key!!!");
+            redirectAttributes.addFlashAttribute("message","Failed to Generate Key!!!");
             e.fillInStackTrace();
             return "redirect:/admin/key";
         }

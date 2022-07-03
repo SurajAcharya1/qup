@@ -2,6 +2,8 @@ package com.queueup.qup.dto;
 
 import lombok.*;
 
+import java.time.LocalDate;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
@@ -18,4 +20,5 @@ public class TokenDto {
     private Integer status;
     private String statusChangedBy;
     private String email;
+    private LocalDate date;
 }
