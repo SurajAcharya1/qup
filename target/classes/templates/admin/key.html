@@ -43,7 +43,7 @@
     </div>
 </div>    <div class="main-content">
     <header>
-        <h2 style="color: black;">
+        <h2 style="font-weight: bolder;">
             <label for="nav-toggle">
                 <span class="las la-bars"></span>
             </label>
@@ -60,17 +60,17 @@
 
     </header>
     <main>
-        <h1 style="color: black;">Generate Token Key</h1>
+        <h1 style="font-weight: bolder;">Generate Token Key</h1>
         <div class="form.container">
             <div class="content">
                 <form th:action="@{~/admin/key/create}" th:method="post" th:object="${keyDto}" >
                     <div class="user-details">
                         <div class="input-box">
-                            <span style="font-size:20px; color: black;" class="details">Key Name</span>
+                            <span style="font-size:20px;"class="details">Key Name</span>
                             <input style="width:100% ;" type="text" th:field="*{name}" placeholder="Enter key name" required>
                         </div>
                         <div class="input-box">
-                            <span style="font-size:20px; color: black;" class="details">Key</span>
+                            <span style="font-size:20px;" class="details">Key</span>
                             <input  style="width:100% ;" type="text" th:field="*{key}" placeholder="Enter Key" required>
                         </div>
                     </div>
@@ -80,7 +80,8 @@
                 </form>
             </div>
         </div>
-        <h3 th:text="${message}" style="color: black;"></h3>
+        <h3 th:text="${message}" style="color: #9400D3;"></h3>
+        <h3 th:text="${updateMessage}" style="color: #997e1a;"></h3>
         <div class="key-grid">
             <div class="users-status">
                 <div class="card">
@@ -104,8 +105,8 @@
                                 <td th:text="${key.key}"></td>
                                 <td>
                                     <div>
-                                        <a th:href="@{key/delete/} + ${key.key_id}"><button id="delete-key">Delete</button></a>
-                                        <a href="#modal-update" ><button id="update-key">Update</button></a>
+                                        <a th:href="@{~/admin/key/delete/} + ${key.key_id}"><button id="delete-key">Delete</button></a>
+                                        <a th:href="@{~/admin/key/update/} + ${key.key_id}"><button id="update-key">Update</button></a>
                                     </div>
 
                                 </td>
@@ -118,15 +119,15 @@
                                     </div>
                                     <div class="form.container">
                                         <div class="content">
-                                            <form action="">
+                                            <form th:action="@{~/admin/key/update}" method="post" th:object="${keyDto}">
                                                 <div class="user-details">
                                                     <div class="input-box" >
                                                         <span style="font-size:20px; margin-right: 435px;"  class="details" >Key Name </span>
-                                                        <input style="width:100% ;" type="text" placeholder="Enter key name" required>
+                                                        <input style="width:100% ;" type="text" th:field="*{name}" placeholder="Enter key name" required>
                                                     </div>
                                                     <div class="input-box">
                                                         <span style="font-size:20px; margin-right: 510px;" class="details">Key </span>
-                                                        <input  style="width:100% ;" type="text" placeholder="Enter Key" required>
+                                                        <input  style="width:100% ;" type="text" th:field="*{key}" placeholder="Enter Key" required>
                                                     </div>
                                                 </div>
                                                 <div class="button">
