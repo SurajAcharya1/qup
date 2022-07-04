@@ -16,7 +16,7 @@
 <!-- Naviagation Bar ko lagi-->
 <div class="nav">
     <div class="container flex">
-        <h1 class="logo">Queue-Up</h1>
+        <a th:href="@{~/}"><h1 class="logo">Queue-Up</h1></a>
         <nav>
             <ul>
                 <li> <a th:href="@{~/}">Home</a> </li>
@@ -211,7 +211,7 @@
             <h1>
                 Queue-Up
             </h1>
-            <p>Copyright &copy; 2022</p>
+            <p>Copyright &#169; <span th:text="${date}"></span></p>
         </div>
         <nav>
             <ul>
@@ -222,7 +222,7 @@
         </nav>
 
         <div class="social">
-            <a href="#"><i class="fab fa-github fa-2x"></i></a>
+            <a href="#"><i class="fa-solid fa-envelope fa-2x"></i></a>
             <a href="#"><i class="fab fa-facebook fa-2x"></i></a>
             <a href="#"><i class="fab fa-instagram fa-2x"></i></a>
             <a href="#"><i class="fab fa-viber fa-2x"></i></a>

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Generate Key</title>
+    <title> Generate Key</title>
     <link rel="stylesheet" th:href="@{~/signup.css}">
     <link rel="stylesheet" th:href="@{~/key.css}">
     <link rel="stylesheet" th:href="@{~/modal.css}">
@@ -15,7 +15,7 @@
 <input type="checkbox" id="nav-toggle">
 <div class="sidebar">
     <div class="sidebar-brand">
-        <h2><span class="lab la-quinscape "> <span>Queue-Up</span></span></h2>
+        <h2><span class="lab la-quinscape"> <span>Queue-Up</span></span></h2>
     </div>
     <div class="sidebar-menu">
         <ul class="navbar">
@@ -67,11 +67,11 @@
                     <div class="user-details">
                         <div class="input-box">
                             <span style="font-size:20px;"class="details">Key Name</span>
-                            <input style="width:100% ;" type="text" th:field="*{name}" placeholder="Enter key name" required>
+                            <input style="width:100% ;" type="text" placeholder="Enter key name" th:field="*{name}" required>
                         </div>
                         <div class="input-box">
                             <span style="font-size:20px;" class="details">Key</span>
-                            <input  style="width:100% ;" type="text" th:field="*{key}" placeholder="Enter Key" required>
+                            <input style="width:100% ;" type="text" placeholder="Enter Key" th:field="*{key}" required>
                         </div>
                     </div>
                     <div class="button">
@@ -123,11 +123,11 @@
                                                 <div class="user-details">
                                                     <div class="input-box" >
                                                         <span style="font-size:20px; margin-right: 435px;"  class="details" >Key Name </span>
-                                                        <input style="width:100% ;" type="text" th:field="*{name}" placeholder="Enter key name" required>
+                                                        <input style="width:100% ;" type="text" th:placeholder="${keyName}" th:field="*{name}" required>
                                                     </div>
                                                     <div class="input-box">
                                                         <span style="font-size:20px; margin-right: 510px;" class="details">Key </span>
-                                                        <input  style="width:100% ;" type="text" th:field="*{key}" placeholder="Enter Key" required>
+                                                        <input style="width:100% ;" type="text" th:placeholder="${key}" th:field="*{key}" required>
                                                     </div>
                                                 </div>
                                                 <div class="button">

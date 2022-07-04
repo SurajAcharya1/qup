@@ -3,10 +3,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@300&display=swap');
 
 :root {
-    --primary-color : purple ;
+    --primary-color : purple;
     --secondary-color : #9400D3 ;
     --dark-color : #4B0082;
     --light-color : 	#9932CC;
+    --text-color : azure;
 }
 
 /* Universal Selector (Reset garnako lagi) */
@@ -14,7 +15,7 @@
 * {
     box-sizing: border-box;
     padding: 0;
-    margin: 0; 
+    margin: 0;
 }
 
 
@@ -42,7 +43,7 @@ h1, h2 {
 }
 
 p{
-    margin: 10px 0px;     
+    margin: 10px 0px;
 }
 
 img {
@@ -56,9 +57,9 @@ img {
 }
 .nav {
     background-color: var(--primary-color);
-    color: azure;
+    color: var(--text-color);
     height: 70px;
-    
+
 }
 /* Utilities : Website vari use hune style */
 .container {
@@ -98,7 +99,7 @@ img {
     padding: 10px 30px;
     cursor: pointer;
     background-color: var(--primary-color);
-    color: azure;
+    color: var(--text-color);
     border: none;
     border-radius: 5px;
 }
@@ -110,13 +111,13 @@ img {
 
 .nav ul{
     display: flex;
-    
+
 }
 
 .nav  a{
     padding: 10px;
     margin: 0 5px;
-    color: azure;
+    color: var(--text-color);
 }
 
 .nav a:hover{
@@ -128,7 +129,7 @@ img {
 .showcase{
     height: 400px;
     background-color: var(--primary-color);
-    color: azure; 
+    color: var(--text-color);
     position: relative;
 }
 
@@ -170,7 +171,7 @@ img {
 
 }
 
-.showcase::before, 
+.showcase::before,
 .showcase::after {
 
 content: '';
@@ -225,31 +226,31 @@ color: #000;
     grid-template-columns: 4fr 3fr;
 }
 
-.bg-primary, 
+.bg-primary,
 .btn-primary{
     background-color: var(--primary-color);
-    color: azure;
+    color: var(--text-color);
 }
 
-.bg-dark, 
+.bg-dark,
 .btn-dark{
     background-color: var(--dark-color);
-    color: azure;
+    color: var(--text-color);
 }
 
-.bg-light, 
+.bg-light,
 .btn-light{
     background-color: var(--light-color);
-    color: azure;
+    color: var(--text-color);
 }
 
-.bg-primary a, 
+.bg-primary a,
 .btn-primary a,
-.bg-dark a, 
+.bg-dark a,
 .btn-dark a,
-.bg-light a, 
+.bg-light a,
 .btn-light a{
-    color: azure;
+    color: var(--text-color);
 }
 
 

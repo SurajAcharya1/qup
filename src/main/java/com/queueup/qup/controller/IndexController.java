@@ -14,7 +14,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.util.Date;
 
 @Controller
 @RequestMapping("/")
@@ -38,6 +40,9 @@ public class IndexController {
     @GetMapping()
     public String openMainPage(Model model) {
         model.addAttribute("userDto", new UserDto());
+        Date date = new Date();
+        SimpleDateFormat dateFormatter = new SimpleDateFormat("yyyy");
+        model.addAttribute("date",dateFormatter.format(date));
         logInController.loggedInUserid=null;
         try {
             tokenRepo.deleteByDate(localDate);

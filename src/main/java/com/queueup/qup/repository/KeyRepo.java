@@ -23,4 +23,11 @@ public interface KeyRepo extends JpaRepository<Key,Integer> {
     @Query(value = "update tbl_key set key_name = ?1, key = ?2 where key_id = ?3", nativeQuery = true)
     public void updateKey(String name, String Key, Integer Key_id);
 
+
+    @Query(value = "select key_name from tbl_key where key_id=?1", nativeQuery = true)
+    public String getKeyNamebyId(Integer key_id);
+
+    @Query(value = "select key from tbl_key where key_id=?1", nativeQuery = true)
+    public String getKeybyId(Integer key_id);
+
 }

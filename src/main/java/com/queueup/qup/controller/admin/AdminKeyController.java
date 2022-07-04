@@ -54,9 +54,12 @@ public class AdminKeyController {
 
     Integer Key_id;
     @GetMapping("update/{key_id}")
-    public String updateKey(@PathVariable("key_id") Integer key_id){
+    public String updateKey(@PathVariable("key_id") Integer key_id,RedirectAttributes redirectAttributes){
         try {
             Key_id=key_id;
+            redirectAttributes.addFlashAttribute("keyName",keyRepo.getKeyNamebyId(Key_id));
+            redirectAttributes.addFlashAttribute("key",keyRepo.getKeybyId(Key_id));
+            redirectAttributes.addFlashAttribute("keyId",Key_id);
             return "redirect:/admin/key/#modal-update";
         }catch(Exception e){
             System.out.println(e);
@@ -82,7 +85,7 @@ public class AdminKeyController {
     String Key;
 
     @PostMapping("update")
-    public  String UpdateKey(KeyDto keyDto, RedirectAttributes redirectAttributes){
+    public  String UpdateKey(KeyDto keyDto, RedirectAttributes redirectAttributes, Model model){
         try {
             keyRepo.updateKey(keyDto.getName(), keyDto.getKey(), Key_id);
             redirectAttributes.addFlashAttribute("updateMessage", "Key Updated Successfully!!!");
