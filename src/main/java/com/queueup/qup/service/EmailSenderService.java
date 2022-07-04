@@ -20,7 +20,7 @@ public class EmailSenderService {
         SimpleMailMessage message = new SimpleMailMessage();
         message.setFrom("queue.up4@gmail.com");
         message.setTo(toEmail);
-        message.setText(subject);
+        message.setSubject(subject);
         message.setText(body);
 
 
