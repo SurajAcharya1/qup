@@ -57,4 +57,18 @@ public interface TokenRepo extends JpaRepository<Token, Integer> {
     @Transactional
     @Query(value = "delete from tbl_token where date != ?1", nativeQuery = true)
     public void deleteByDate(LocalDate date);
+
+
+    @Modifying
+    @Transactional
+    @Query(value = "create view incompleteStatus as select token_number, email from tbl_token where status =0", nativeQuery = true)
+    public void createTokenView();
+
+    @Modifying
+    @Transactional
+    @Query(value = "drop view incompleteStatus", nativeQuery = true)
+    public void deleteTokenView();
+
+    @Query(value = "select email from(select row_number() over(order by token_number) as row,email from incompleteStatus) as v where row = 2+?1", nativeQuery = true)
+    public String getEmailFromView(Integer tokenGap);
 }

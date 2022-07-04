@@ -36,8 +36,13 @@ public class AdminStatusController {
         this.tokenService = tokenService;
     }
 
+    Integer tokenGap=0;    //Define the token Gap Here
+
+
     @GetMapping
     public String openAdminStatusPage(Model model) {
+        tokenRepo.deleteTokenView();
+        tokenRepo.createTokenView();
         try {
             if (userRepo.getRoleByID(logInController.loggedInUserid).equals("ADMIN")) {
                 model.addAttribute("totalToken", tokenService.findAll().size());
@@ -63,7 +68,7 @@ public class AdminStatusController {
     @GetMapping("/finish/{token_number}")
     public String setStatusToComplete(@PathVariable("token_number") Integer token_number, RedirectAttributes redirectAttributes) {
         try {
-            senderService.sendEmail(tokenRepo.getEmailFromTokenNumber(token_number + 1),
+            senderService.sendEmail(tokenRepo.getEmailFromView(tokenGap),
                     "Queue Notification",
                     "Your turn Is About to come please get to Queue as soon as possible.");
             tokenRepo.setUserStatustoComplete(token_number);
@@ -80,7 +85,7 @@ public class AdminStatusController {
     @GetMapping("/absent/{token_number}")
     public String setStatusToAbsent(@PathVariable("token_number") Integer token_number, RedirectAttributes redirectAttributes) {
         try {
-            senderService.sendEmail(tokenRepo.getEmailFromTokenNumber(token_number + 1),
+            senderService.sendEmail(tokenRepo.getEmailFromView(tokenGap),
                     "Queue Notification",
                     "Your turn Is About to come please get to Queue as soon as possible.");
             tokenRepo.setUserStatusToAbsent(token_number);
@@ -97,7 +102,7 @@ public class AdminStatusController {
     @GetMapping("/cancel/{token_number}")
     public String setStatusToCancelled(@PathVariable("token_number") Integer token_number, RedirectAttributes redirectAttributes) {
         try {
-            senderService.sendEmail(tokenRepo.getEmailFromTokenNumber(token_number + 1),
+            senderService.sendEmail(tokenRepo.getEmailFromView(tokenGap),
                     "Queue Notification",
                     "Your turn Is About to come please get to Queue as soon as possible.");
             tokenRepo.setUserStatusToCancelled(token_number);
