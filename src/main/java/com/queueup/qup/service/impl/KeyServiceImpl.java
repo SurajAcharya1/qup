@@ -7,12 +7,15 @@ import com.queueup.qup.service.KeyService;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
 public class KeyServiceImpl implements KeyService{
     private final KeyRepo keyRepo;
+
+    LocalDate localDate = LocalDate.now();
 
     public KeyServiceImpl(KeyRepo keyRepo) {
 
@@ -27,7 +30,7 @@ public class KeyServiceImpl implements KeyService{
                 .name(keyDto.getName())
                 .key(keyDto.getKey())
                 .build();
-
+        entity.setDate(localDate);
             entity = keyRepo.save(entity);
             return keyDto.builder()
                     .key_id(entity.getKey_id())
@@ -44,6 +47,7 @@ public class KeyServiceImpl implements KeyService{
                         .key_id(key.getKey_id())
                         .name(key.getName())
                         .key(key.getKey())
+                        .date(key.getDate())
                         .build()
         ).collect(Collectors.toList());
     }

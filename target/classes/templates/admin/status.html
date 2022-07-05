@@ -83,9 +83,9 @@
                         <h1 th:text="${currentToken}"></h1>
                     </div>
                     <div>
-                        <button id="finish"><a th:href="@{~/admin/status/finish/} + ${currentToken}">Finish</a></button>
-                        <button id="absent"><a th:href="@{~/admin/status/absent/} + ${currentToken}">Absent</a></button>
-                        <button id="cancel"><a th:href="@{~/admin/status/cancel/} + ${currentToken}">Cancel</a></button>
+                        <a th:href="@{~/admin/status/finish/} + ${currentToken}"><button id="finish">Finish</button></a>
+                        <a th:href="@{~/admin/status/absent/} + ${currentToken}"><button id="absent">Absent</button></a>
+                        <a th:href="@{~/admin/status/cancel/} + ${currentToken}"><button id="cancel">Cancel</button></a>
                     </div>
             </div>
             </div>
@@ -96,7 +96,7 @@
                    <div class="card">
                        <div class="card-header">
                            <h2>Queue Information</h2>
-                           <button id="delete"><a th:href="@{~/admin/status/delete}">Delete All tokens</a></button>
+                           <a th:href="@{~/admin/status/delete}"><button id="delete">Delete All tokens</button></a>
                        </div>
                        <div class="card-body">
                            <table width="100%">

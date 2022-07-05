@@ -74,8 +74,8 @@
                     <h1 th:text="${tokenNumber}"></h1>
                 </div>
                 <div>
-                    <button id="cancel"><a th:href="@{~/user/token/cancel/} + ${tokenNumber}">Cancel</a></button>
-                <button id="absent"><a th:href="@{~/user/token/absent/} + ${tokenNumber}">Absent</a></button>
+                    <a th:href="@{~/user/token/cancel/} + ${tokenNumber}"><button id="cancel">Cancel</button></a>
+                <a th:href="@{~/user/token/absent/} + ${tokenNumber}"><button id="absent">Absent</button></a>
                 </div>
             </div>
         </div>

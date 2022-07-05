@@ -91,8 +91,8 @@
             </div>
             <br>
             <div>
-                <button id="cancel"><a th:href="@{~/user/userPanel/cancel/} + ${tokenNumber}">Cancel</a></button>
-                    <button id="absent"><a th:href="@{~/user/userPanel/absent/} + ${tokenNumber}">Absent</a></button>
+            <a th:href="@{~/user/userPanel/cancel/} + ${tokenNumber}"><button id="delete">Cancel</button></a>
+                <a th:href="@{~/user/userPanel/absent/} + ${tokenNumber}"><button id="absent">Absent</button></a>
             </div>
         </main>
 </body>

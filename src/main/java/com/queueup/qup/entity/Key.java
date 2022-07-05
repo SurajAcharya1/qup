@@ -4,6 +4,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "tbl_key", uniqueConstraints = {
@@ -25,4 +26,7 @@ public class Key implements Serializable {
 
     @Column(name = "key", length = 25)
     private String key;
+
+    @Column(name = "date")
+    private LocalDate date;
 }

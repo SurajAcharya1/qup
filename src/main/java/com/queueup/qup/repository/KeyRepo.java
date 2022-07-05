@@ -9,6 +9,7 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 
 import javax.transaction.Transactional;
+import java.time.LocalDate;
 
 public interface KeyRepo extends JpaRepository<Key,Integer> {
 
@@ -29,5 +30,10 @@ public interface KeyRepo extends JpaRepository<Key,Integer> {
 
     @Query(value = "select key from tbl_key where key_id=?1", nativeQuery = true)
     public String getKeybyId(Integer key_id);
+
+    @Modifying
+    @Transactional
+    @Query(value = "delete from tbl_key where date != ?1", nativeQuery = true)
+    public void deleteAllKey(LocalDate date);
 
 }

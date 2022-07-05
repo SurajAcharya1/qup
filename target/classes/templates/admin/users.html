@@ -85,7 +85,7 @@
                                     <td th:text="${user.phoneNumber}"></td>
                                     <td th:text="${user.email}"></td>
                                     <td th:text="${user.gender}"></td>
-                                    <td><button id="delete"><a th:href="@{usersList/delete/} + ${user.id}">delete</a></button></td>
+                                    <td><a th:href="@{usersList/delete/} + ${user.id}"><button id="delete">delete</button></a></td>
                                    </tr>
                                </tbody>
                            </table>

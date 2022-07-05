@@ -2,6 +2,7 @@ package com.queueup.qup.controller;
 
 import com.queueup.qup.dto.LoginDto;
 import com.queueup.qup.dto.UserDto;
+import com.queueup.qup.repository.KeyRepo;
 import com.queueup.qup.repository.TokenRepo;
 import com.queueup.qup.repository.UserRepo;
 import com.queueup.qup.service.impl.UserServiceImpl;
@@ -31,6 +32,9 @@ public class IndexController {
     TokenRepo tokenRepo;
 
     @Autowired
+    KeyRepo keyRepo;
+
+    @Autowired
     LogInController logInController;
     public IndexController(UserServiceImpl userService) {
 
@@ -46,6 +50,7 @@ public class IndexController {
         logInController.loggedInUserid=null;
         try {
             tokenRepo.deleteByDate(localDate);
+            keyRepo.deleteAllKey(localDate);
         }catch (Exception e){
             System.out.println(e);
         }
