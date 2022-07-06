@@ -31,7 +31,11 @@ public class KeyServiceImpl implements KeyService{
                 .key(keyDto.getKey())
                 .build();
         entity.setDate(localDate);
+        if(keyRepo.findAll().size()==0){
             entity = keyRepo.save(entity);
+        }else {
+            throw new RuntimeException("cannot generate more than one key");
+        }
             return keyDto.builder()
                     .key_id(entity.getKey_id())
                     .name(keyDto.getName())

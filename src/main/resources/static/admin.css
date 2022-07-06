@@ -354,14 +354,12 @@ td .status.yellow {
     background-color: white;
     color: black;
     border: 1px solid black;
-    /*transition: 0.3s;*/
     cursor: pointer;
 }
 #delete:hover{
     background-color: white;
     color: red;
     border: 1px solid red;
-    /*transition: 0.3s;*/
     cursor: pointer;
 }
 

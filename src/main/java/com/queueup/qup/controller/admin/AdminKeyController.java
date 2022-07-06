@@ -73,12 +73,12 @@ public class AdminKeyController {
         try {
             keyDto = keyService.save(keyDto);
             redirectAttributes.addFlashAttribute("message","Key Generated Successfully!!!");
+            return "redirect:/admin/key";
         }catch(Exception e){
             redirectAttributes.addFlashAttribute("message","Failed to Generate Key!!!");
             e.fillInStackTrace();
             return "redirect:/admin/key";
         }
-        return "redirect:/admin/key";
     }
 
     String Name;

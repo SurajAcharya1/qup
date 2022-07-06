@@ -66,7 +66,7 @@ h1, h2 {
 
 #delete-key{
     display: inline-block;
-    padding: 10px 25px;
+    padding: 5px 15px;
     cursor: pointer;
     background-color: red;
     color: azure;
@@ -76,10 +76,23 @@ h1, h2 {
 
 #update-key{
     display: inline-block;
-    padding: 10px 25px;
+    padding: 5px 15px;
     cursor: pointer;
     background-color: blue;
     color: azure;
     border: none;
     border-radius: 5px;
 }
+#delete-key:hover{
+    background-color: white;
+    color: red;
+    border: 1px solid red;
+    cursor: pointer;
+}
+#update-key:hover{
+    background-color: white;
+    color: blue;
+    border: 1px solid blue;
+    cursor: pointer;
+}
+
