@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -27,16 +28,18 @@ public class AdminController{
         this.tokenService = tokenService;
     }
 
-    @GetMapping
-    public String openAdminPage(Model model){
+    @GetMapping("/{user_name}")
+    public String openAdminPage(Model model, @PathVariable("user_name") String user_name){
+//        logInController.loggedInUserDetail.put(user_name,logInController.userName);
         try{
-            if(userRepo.getRoleByID(logInController.loggedInUserid).equals("ADMIN")) {
+            if(userRepo.getRoleByUserName(logInController.loggedInUserDetail.get(user_name)).equals("ADMIN") ) {
                 model.addAttribute("totalToken",tokenRepo.findAll().size());
                 model.addAttribute("totalUser", userRepo.totalUsers());
                 model.addAttribute("tokenList",tokenService.findAll());
                 model.addAttribute("remainingToken",tokenRepo.getRemainingTokenCount());
                 model.addAttribute("currentToken",tokenRepo.getCurrentUserTokenNumber());
-                model.addAttribute("userName",userRepo.findNameById(logInController.loggedInUserid));
+                model.addAttribute("userName",logInController.loggedInUserDetail.get(user_name));
+                logInController.userName=null;
                 return "admin/adminPanel";
             }else {
                 return "error";

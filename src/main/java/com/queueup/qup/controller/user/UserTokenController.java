@@ -26,11 +26,11 @@ public class UserTokenController{
     @Autowired
     EmailSenderService senderService;
 
-    @GetMapping
-    public String openUserTokenPage(Model model){
+    @GetMapping("/{user_name}")
+    public String openUserTokenPage(Model model, @PathVariable("user_name") String user_name){
         try{
-            if(userRepo.getRoleByID(logInController.loggedInUserid)==null){
-                model.addAttribute("userName",userRepo.findNameById(logInController.loggedInUserid));
+            if(userRepo.getRoleByUserName(logInController.loggedInUserDetail.get(user_name))==null){
+                model.addAttribute("userName",logInController.loggedInUserDetail.get(user_name));
                 model.addAttribute("currentToken",tokenRepo.getCurrentUserTokenNumber());
                 model.addAttribute("tokenNumber", tokenRepo.getTokenNumber(logInController.loggedInUserid));
                 return "users/userToken";

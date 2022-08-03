@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -18,11 +19,11 @@ public class UserAccountController {
     @Autowired
     LogInController logInController;
     public LoginDto loginDto;
-    @GetMapping
-    public String openUserAccountPage(Model model){
+    @GetMapping("/{user_name}")
+    public String openUserAccountPage(Model model, @PathVariable("user_name") String user_name){
         try{
-            if(userRepo.getRoleByID(logInController.loggedInUserid)==null){
-                model.addAttribute("userName",userRepo.findNameById(logInController.loggedInUserid));
+            if(userRepo.getRoleByUserName(logInController.loggedInUserDetail.get(user_name))==null){
+                model.addAttribute("userName",logInController.loggedInUserDetail.get(user_name));
                 model.addAttribute("userDetails",userRepo.getUserDetailsById(logInController.loggedInUserid));
                 return "users/userAccount";
             }

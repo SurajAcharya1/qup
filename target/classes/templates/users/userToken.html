@@ -19,19 +19,19 @@
         <div class="sidebar-menu">
             <ul class="navbar">
                 <li class="nav-item active">
-                    <a th:href="@{~/user/userPanel}" > <span class="las la-igloo"></span>
+                    <a th:href="@{~/user/userPanel/}+${userName}" > <span class="las la-igloo"></span>
                         <span>Dashboard</span></a>
                 </li>
                 <li class="nav-item">
-                    <a th:href="@{~/user/token}"> <span class="las la-ticket-alt"></span>
+                    <a th:href="@{~/user/token/}+${userName}"> <span class="las la-ticket-alt"></span>
                         <span>My Token</span></a>
                 </li>
                 <li class="nav-item">
-                    <a th:href="@{~/user/history}"> <span class="las la-ticket-alt"></span>
+                    <a th:href="@{~/user/history/}+${userName}"> <span class="las la-ticket-alt"></span>
                         <span>History</span></a>
                 </li>
                 <li class="nav-item">
-                    <a th:href="@{~/user/account}"> <span class="las la-user-circle"></span>
+                    <a th:href="@{~/user/account/}+${userName}"> <span class="las la-user-circle"></span>
                         <span>Account</span></a>
                 </li>
             </ul>

@@ -47,7 +47,7 @@ public class IndexController {
         Date date = new Date();
         SimpleDateFormat dateFormatter = new SimpleDateFormat("yyyy");
         model.addAttribute("date",dateFormatter.format(date));
-        logInController.loggedInUserid=null;
+        //logInController.loggedInUserid=null;
         try {
             tokenRepo.deleteByDate(localDate);
             keyRepo.deleteAllKey(localDate);

@@ -24,8 +24,14 @@ public interface UserRepo extends JpaRepository<User,Integer>{
     @Query(value = "select id from tbl_user where email = ?1", nativeQuery = true)
     public Integer getUserId(String email);
 
+    @Query(value="select user_name from tbl_user where email = ?1",nativeQuery = true)
+    public String getUserName(String email);
+
+    @Query(value = "select name from tbl_user where email = ?1", nativeQuery = true)
+    public String findNameByEmail(String email);
+
     @Query(value = "select name from tbl_user where id = ?1", nativeQuery = true)
-    public String findNameById(Integer id);
+    public String findNameById(Integer fk_user_id);
 
     @Query(value = "select user_name from tbl_user where id = ?1", nativeQuery = true)
     public String findUsernameById(Integer id);
@@ -35,6 +41,9 @@ public interface UserRepo extends JpaRepository<User,Integer>{
 
     @Query(value = "select role from tbl_user where id= ?1",nativeQuery = true)
     public String getRoleByID(Integer id);
+
+    @Query(value = "select role from tbl_user where user_name= ?1",nativeQuery = true)
+    public String getRoleByUserName(String user_name);
 
     @Query(value = "select email from tbl_user where id= ?1",nativeQuery = true)
     public String getEmailByID(Integer id);

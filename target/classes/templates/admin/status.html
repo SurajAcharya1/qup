@@ -18,23 +18,23 @@
         <div class="sidebar-menu">
             <ul class="navbar">
                 <li class="nav-item active">
-                    <a th:href="@{~/admin/adminPanel}" > <span class="las la-igloo"></span>
+                    <a th:href="@{~/admin/adminPanel/}+${userName}" > <span class="las la-igloo"></span>
                         <span>Dashboard</span></a>
                 </li>
                 <li class="nav-item">
-                    <a th:href="@{~/admin/usersList}"> <span class="las la-users"></span>
+                    <a th:href="@{~/admin/usersList/}+${userName}"> <span class="las la-users"></span>
                         <span>Users</span></a>
                 </li>
                 <li class="nav-item">
-                    <a th:href="@{~/admin/status}"> <span class="las la-signal"></span>
+                    <a th:href="@{~/admin/status/}+${userName}"> <span class="las la-signal"></span>
                         <span>Queue Status</span></a>
                 </li>
                 <li class="nav-item">
-                    <a th:href="@{~/admin/key}"> <span class="las la-key"></span>
+                    <a th:href="@{~/admin/key/}+${userName}"> <span class="las la-key"></span>
                         <span>Generate Key</span></a>
                 </li>
                 <li class="nav-item">
-                    <a th:href="@{~/admin/account}"> <span class="las la-user-circle"></span>
+                    <a th:href="@{~/admin/account/}+${userName}"> <span class="las la-user-circle"></span>
                         <span>Account</span></a>
                 </li>
             </ul>

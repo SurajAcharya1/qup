@@ -23,19 +23,22 @@ public class AdminKeyController {
 
     @Autowired
     KeyRepo keyRepo;
+
+    public String userName;
     public AdminKeyController(KeyServiceImpl keyService) {
 
         this.keyService = keyService;
     }
 
 
-    @GetMapping
-    public String openAdminKeyPage(Model model){
+    @GetMapping("/{user_name}")
+    public String openAdminKeyPage(Model model, @PathVariable("user_name") String user_name){
+        userName=user_name;
         try{
-            if(userRepo.getRoleByID(logInController.loggedInUserid).equals("ADMIN")) {
+            if(userRepo.getRoleByUserName(logInController.loggedInUserDetail.get(user_name)).equals("ADMIN")) {
                 model.addAttribute("keyDto", new KeyDto());
                 model.addAttribute("keyList",keyService.findAll());
-                model.addAttribute("userName",userRepo.findNameById(logInController.loggedInUserid));
+                model.addAttribute("userName",logInController.loggedInUserDetail.get(user_name));
                 return "admin/key";
             }else {
                return "error";
@@ -49,7 +52,7 @@ public class AdminKeyController {
     @GetMapping("delete/{key_id}")
     public String deleteKey(@PathVariable("key_id") Integer key_id){
         keyService.deleteById(key_id);
-        return "redirect:/admin/key";
+        return "redirect:/admin/key/"+userName;
     }
 
     Integer Key_id;
@@ -60,10 +63,10 @@ public class AdminKeyController {
             redirectAttributes.addFlashAttribute("keyName",keyRepo.getKeyNamebyId(Key_id));
             redirectAttributes.addFlashAttribute("key",keyRepo.getKeybyId(Key_id));
             redirectAttributes.addFlashAttribute("keyId",Key_id);
-            return "redirect:/admin/key/#modal-update";
+            return "redirect:/admin/key/"+userName+"/#modal-update";
         }catch(Exception e){
             System.out.println(e);
-            return "redirect:/admin/key";
+            return "redirect:/admin/key/"+userName;
         }
     }
 
@@ -73,11 +76,11 @@ public class AdminKeyController {
         try {
             keyDto = keyService.save(keyDto);
             redirectAttributes.addFlashAttribute("message","Key Generated Successfully!!!");
-            return "redirect:/admin/key";
+            return "redirect:/admin/key/"+userName;
         }catch(Exception e){
             redirectAttributes.addFlashAttribute("message","Failed to Generate Key!!!");
             e.fillInStackTrace();
-            return "redirect:/admin/key";
+            return "redirect:/admin/key/"+userName;
         }
     }
 
@@ -89,10 +92,10 @@ public class AdminKeyController {
         try {
             keyRepo.updateKey(keyDto.getName(), keyDto.getKey(), Key_id);
             redirectAttributes.addFlashAttribute("updateMessage", "Key Updated Successfully!!!");
-            return "redirect:/admin/key";
+            return "redirect:/admin/key/"+userName;
         }catch(Exception e){
             redirectAttributes.addFlashAttribute("updateMessage", "Could not Update Key");
-            return "redirect:/admin/key";
+            return "redirect:/admin/key/"+userName;
         }
     }
 

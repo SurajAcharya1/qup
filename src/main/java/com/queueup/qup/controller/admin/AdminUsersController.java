@@ -14,17 +14,21 @@ public class AdminUsersController{
     private final UserServiceImpl userService;
     @Autowired
     UserRepo userRepo;
+
     @Autowired
     LogInController logInController;
+
+    public String userName;
     public AdminUsersController(UserServiceImpl userService) {
         this.userService = userService;
     }
-    @GetMapping()
-    public String openUserPage(Model model){
+    @GetMapping("/{user_name}")
+    public String openUserPage(Model model, @PathVariable("user_name") String user_name){
+        userName=user_name;
         try{
-            if(userRepo.getRoleByID(logInController.loggedInUserid).equals("ADMIN")) {
+            if(userRepo.getRoleByUserName(logInController.loggedInUserDetail.get(user_name)).equals("ADMIN")) {
                 model.addAttribute("userList",userService.findAll());
-                model.addAttribute("userName",userRepo.findNameById(logInController.loggedInUserid));
+                model.addAttribute("userName",logInController.loggedInUserDetail.get(user_name));
                 return "admin/users";
             }else {
                 return "error";
@@ -37,6 +41,6 @@ public class AdminUsersController{
     @GetMapping("delete/{id}")
     public String deleteUserDetails(@PathVariable("id") Integer id){
         userService.deleteById(id);
-        return"redirect:/admin/usersList";
+        return"redirect:/admin/usersList/"+userName;
     }
 }

@@ -43,14 +43,16 @@ public class UserController{
     public UserController(TokenServiceImpl tokenService) {
         this.tokenService = tokenService;
     }
-    @GetMapping
-    public String openUserPanelPage(Model model){
+    @GetMapping("/{user_name}")
+    public String openUserPanelPage(@PathVariable("user_name") String user_name,Model model){
         try{
-            if(userRepo.getRoleByID(logInController.loggedInUserid)==null){
+            if(userRepo.getRoleByUserName(logInController.loggedInUserDetail.get(user_name))==null){
+//                logInController.loggedInUserDetail.put(user_name,logInController.userName);
                 model.addAttribute("tokenNumber",tokenRepo.getTokenNumber(logInController.loggedInUserid));
                 model.addAttribute("key",keyRepo.getKey());
                 model.addAttribute("tokenDto", new TokenDto());
-                model.addAttribute("userName",userRepo.findNameById(logInController.loggedInUserid));
+                model.addAttribute("userName",logInController.loggedInUserDetail.get(user_name));
+                logInController.userName=null;
                 return "users/userPanel";
             }
             else{

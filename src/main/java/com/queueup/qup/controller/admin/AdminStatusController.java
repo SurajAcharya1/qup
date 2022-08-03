@@ -39,16 +39,16 @@ public class AdminStatusController {
     Integer tokenGap=3;    //Define the token Gap Here
 
 
-    @GetMapping
-    public String openAdminStatusPage(Model model) {
+    @GetMapping("/{user_name}")
+    public String openAdminStatusPage(Model model, @PathVariable("user_name") String user_name) {
         tokenRepo.deleteTokenView();
         tokenRepo.createTokenView();
         try {
-            if (userRepo.getRoleByID(logInController.loggedInUserid).equals("ADMIN")) {
+            if(userRepo.getRoleByUserName(logInController.loggedInUserDetail.get(user_name)).equals("ADMIN")) {
                 model.addAttribute("totalToken", tokenService.findAll().size());
                 model.addAttribute("tokenList", tokenService.findAll());
                 model.addAttribute("currentToken", tokenRepo.getCurrentUserTokenNumber());
-                model.addAttribute("userName", userRepo.findNameById(logInController.loggedInUserid));
+                model.addAttribute("userName",logInController.loggedInUserDetail.get(user_name));
                 return "admin/status";
             } else {
                 return "error";
