@@ -1,6 +1,7 @@
 package com.queueup.qup.service.impl;
 
 import com.queueup.qup.controller.LogInController;
+import com.queueup.qup.controller.user.UserController;
 import com.queueup.qup.dto.TokenHistoryDto;
 import com.queueup.qup.entity.Token;
 import com.queueup.qup.entity.TokenHistory;
@@ -29,6 +30,9 @@ public class TokenHistoryServiceImpl implements TokenHistoryService {
     UserRepo userRepo;
 
     @Autowired
+    UserController userController;
+
+    @Autowired
     TokenRepo tokenRepo;
     private final TokenHistoryRepo TokenHistoryRepo;
 
@@ -44,10 +48,11 @@ public class TokenHistoryServiceImpl implements TokenHistoryService {
                 .token_history_id(TokenHistoryDto.getToken_history_id())
                 .token_key(TokenHistoryDto.getToken_key())
                 .build();
-        entity.setToken_number(tokenRepo.findAll().size());
-        entity.setFk_user_id(logInController.loggedInUserid);
-        entity.setName(userRepo.findNameById(logInController.loggedInUserid));
-        entity.setUsername(userRepo.findUsernameById(logInController.loggedInUserid));
+        entity.setToken_number(tokenRepo.getTokenNumberByUsername(logInController.loggedInUserDetail.get(userController.UserName)));
+        entity.setFk_user_id(userRepo.getIdByUserName(logInController.loggedInUserDetail.get(userController.UserName)));
+        entity.setName(userRepo.findNameByUserName(logInController.loggedInUserDetail.get(userController.UserName)));
+        entity.setUsername(logInController.loggedInUserDetail.get(userController.UserName));
+        userController.UserName=null;
         entity.setDate(localDate);
         entity=TokenHistoryRepo.save(entity);
         return TokenHistoryDto.builder()

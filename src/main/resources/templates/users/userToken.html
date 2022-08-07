@@ -45,7 +45,7 @@
                 Dashboard
             </h2>
             <div class="user-wrapper">
-                <a th:href="@{~/user/account}">
+                <a th:href="@{~/user/account/}+${userName}">
                     <div>
                         <h4 th:text="${userName}"></h4>
                         <small>User</small>
@@ -74,8 +74,8 @@
                     <h1 th:text="${tokenNumber}"></h1>
                 </div>
                 <div>
-                    <a th:href="@{~/user/token/cancel/} + ${tokenNumber}"><button id="cancel">Cancel</button></a>
-                <a th:href="@{~/user/token/absent/} + ${tokenNumber}"><button id="absent">Absent</button></a>
+                    <a th:href="@{~/user/token/cancel/} + ${tokenNumber} +@{/}+ ${userName}"><button id="cancel">Cancel</button></a>
+                <a th:href="@{~/user/token/absent/} + ${tokenNumber} +@{/}+ ${userName}"><button id="absent">Absent</button></a>
                 </div>
             </div>
         </div>

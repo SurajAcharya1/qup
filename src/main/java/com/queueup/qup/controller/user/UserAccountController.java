@@ -24,7 +24,7 @@ public class UserAccountController {
         try{
             if(userRepo.getRoleByUserName(logInController.loggedInUserDetail.get(user_name))==null){
                 model.addAttribute("userName",logInController.loggedInUserDetail.get(user_name));
-                model.addAttribute("userDetails",userRepo.getUserDetailsById(logInController.loggedInUserid));
+                model.addAttribute("userDetails",userRepo.getUserDetailsByUserName(logInController.loggedInUserDetail.get(user_name)));
                 return "users/userAccount";
             }
             else{

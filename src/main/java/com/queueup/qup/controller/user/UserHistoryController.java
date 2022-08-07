@@ -32,7 +32,7 @@ public class UserHistoryController{
         try{
             if(userRepo.getRoleByUserName(logInController.loggedInUserDetail.get(user_name))==null){
                 model.addAttribute("userName",logInController.loggedInUserDetail.get(user_name));
-                model.addAttribute("historyList",tokenHistoryRepo.getUserHistory(logInController.loggedInUserid));
+                model.addAttribute("historyList",tokenHistoryRepo.getUserHistoryByUsername(logInController.loggedInUserDetail.get(user_name)));
                 return "users/userHistory";
             }
             else{

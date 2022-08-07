@@ -36,7 +36,16 @@ public class AdminStatusController {
         this.tokenService = tokenService;
     }
 
-    Integer tokenGap=3;    //Define the token Gap Here
+    Integer tokenGap=1;    //Define the token gap Here
+    /*
+     tokenGap determines how many token/s will be skipped
+     for example
+     if tokenGap =2 and there are following tokens:
+     1,2,3,4,5
+     and token no. 1 is currently being processed(it's token no. 1's turn)
+     then mail will be sent to token no. 4
+     when token no. 1 will be finished processing
+    */
 
 
     @GetMapping("/{user_name}")
@@ -59,60 +68,60 @@ public class AdminStatusController {
         }
     }
 
-    @GetMapping("/delete")
-    public String deleteAllTokens() {
+    @GetMapping("/delete/{user_name}")
+    public String deleteAllTokens(@PathVariable("user_name") String user_name) {
         tokenRepo.deleteAllTokens();
-        return "redirect:/admin/status";
+        return "redirect:/admin/status/"+user_name;
     }
 
-    @GetMapping("/finish/{token_number}")
-    public String setStatusToComplete(@PathVariable("token_number") Integer token_number, RedirectAttributes redirectAttributes) {
+    @GetMapping("/finish/{token_number}/{user_name}")
+    public String setStatusToComplete(@PathVariable("token_number") Integer token_number, @PathVariable("user_name") String user_name, RedirectAttributes redirectAttributes) {
         try {
             senderService.sendEmail(tokenRepo.getEmailFromView(tokenGap),
                     "Queue Notification",
                     "Your turn Is About to come please get to Queue as soon as possible.");
             tokenRepo.setUserStatustoComplete(token_number);
             tokenRepo.setStatusChangedByAdmin(token_number);
-            return "redirect:/admin/status";
+            return "redirect:/admin/status/"+user_name;
         }catch(Exception e){
             redirectAttributes.addFlashAttribute("mail","Could not send Mail");
             tokenRepo.setUserStatustoComplete(token_number);
             tokenRepo.setStatusChangedByAdmin(token_number);
-            return "redirect:/admin/status";
+            return "redirect:/admin/status/"+user_name;
         }
     }
 
-    @GetMapping("/absent/{token_number}")
-    public String setStatusToAbsent(@PathVariable("token_number") Integer token_number, RedirectAttributes redirectAttributes) {
+    @GetMapping("/absent/{token_number}/{user_name}")
+    public String setStatusToAbsent(@PathVariable("token_number") Integer token_number,@PathVariable("user_name") String user_name, RedirectAttributes redirectAttributes) {
         try {
             senderService.sendEmail(tokenRepo.getEmailFromView(tokenGap),
                     "Queue Notification",
                     "Your turn Is About to come please get to Queue as soon as possible.");
             tokenRepo.setUserStatusToAbsent(token_number);
             tokenRepo.setStatusChangedByAdmin(token_number);
-            return "redirect:/admin/status";
+            return "redirect:/admin/status/"+user_name;
         }catch(Exception e){
             redirectAttributes.addFlashAttribute("mail","Could not send Mail");
             tokenRepo.setUserStatusToAbsent(token_number);
             tokenRepo.setStatusChangedByAdmin(token_number);
-            return "redirect:/admin/status";
+            return "redirect:/admin/status/"+user_name;
         }
     }
 
-    @GetMapping("/cancel/{token_number}")
-    public String setStatusToCancelled(@PathVariable("token_number") Integer token_number, RedirectAttributes redirectAttributes) {
+    @GetMapping("/cancel/{token_number}/{user_name}")
+    public String setStatusToCancelled(@PathVariable("token_number") Integer token_number, @PathVariable("user_name") String user_name, RedirectAttributes redirectAttributes) {
         try {
             senderService.sendEmail(tokenRepo.getEmailFromView(tokenGap),
                     "Queue Notification",
                     "Your turn Is About to come please get to Queue as soon as possible.");
             tokenRepo.setUserStatusToCancelled(token_number);
             tokenRepo.setStatusChangedByAdmin(token_number);
-            return "redirect:/admin/status";
+            return "redirect:/admin/status/"+user_name;
         }catch(Exception e){
             redirectAttributes.addFlashAttribute("mail","Could not send Mail");
             tokenRepo.setUserStatusToCancelled(token_number);
             tokenRepo.setStatusChangedByAdmin(token_number);
-            return "redirect:/admin/status";
+            return "redirect:/admin/status/"+user_name;
         }
     }
 }

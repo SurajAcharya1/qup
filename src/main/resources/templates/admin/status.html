@@ -48,7 +48,7 @@
                 Dashboard
             </h2>
             <div class="user-wrapper">
-                <a th:href="@{~/admin/account}">
+                <a th:href="@{~/admin/account/}+${userName}">
                     <div>
                         <h4 th:text="${userName}"></h4>
                         <small>Admin</small>
@@ -83,9 +83,9 @@
                         <h1 th:text="${currentToken}"></h1>
                     </div>
                     <div>
-                        <a th:href="@{~/admin/status/finish/} + ${currentToken}"><button id="finish">Finish</button></a>
-                        <a th:href="@{~/admin/status/absent/} + ${currentToken}"><button id="absent">Absent</button></a>
-                        <a th:href="@{~/admin/status/cancel/} + ${currentToken}"><button id="cancel">Cancel</button></a>
+                        <a th:href="@{~/admin/status/finish/} + ${currentToken} +@{/}+ ${userName}"><button id="finish">Finish</button></a>
+                        <a th:href="@{~/admin/status/absent/} + ${currentToken} +@{/}+ ${userName}"><button id="absent">Absent</button></a>
+                        <a th:href="@{~/admin/status/cancel/} + ${currentToken} +@{/}+ ${userName}"><button id="cancel">Cancel</button></a>
                     </div>
             </div>
             </div>
@@ -96,7 +96,7 @@
                    <div class="card">
                        <div class="card-header">
                            <h2>Queue Information</h2>
-                           <a th:href="@{~/admin/status/delete}"><button id="delete">Delete All tokens</button></a>
+                           <a th:href="@{~/admin/status/delete/} +${userName}"><button id="delete">Delete All tokens</button></a>
                        </div>
                        <div class="card-body">
                            <table width="100%">

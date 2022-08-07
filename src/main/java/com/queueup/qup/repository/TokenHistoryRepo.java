@@ -10,4 +10,7 @@ public interface TokenHistoryRepo extends JpaRepository<TokenHistory,Integer> {
 
     @Query(value = "select * from tbl_token_history where fk_user_id =?1", nativeQuery = true)
     public List<TokenHistory> getUserHistory(Integer fk_user_id);
+
+    @Query(value = "select * from tbl_token_history where username =?1", nativeQuery = true)
+    public List<TokenHistory> getUserHistoryByUsername(String userName);
 }

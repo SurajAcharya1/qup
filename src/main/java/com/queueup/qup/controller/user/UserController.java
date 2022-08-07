@@ -48,7 +48,7 @@ public class UserController{
         try{
             if(userRepo.getRoleByUserName(logInController.loggedInUserDetail.get(user_name))==null){
 //                logInController.loggedInUserDetail.put(user_name,logInController.userName);
-                model.addAttribute("tokenNumber",tokenRepo.getTokenNumber(logInController.loggedInUserid));
+                model.addAttribute("tokenNumber",tokenRepo.getTokenNumberByUsername(logInController.loggedInUserDetail.get(user_name)));
                 model.addAttribute("key",keyRepo.getKey());
                 model.addAttribute("tokenDto", new TokenDto());
                 model.addAttribute("userName",logInController.loggedInUserDetail.get(user_name));
@@ -63,9 +63,11 @@ public class UserController{
         }
     }
 
-    @PostMapping("create")
-    public String createUser(@ModelAttribute TokenDto tokenDto, TokenHistoryDto tokenHistoryDto,RedirectAttributes redirectAttributes){
+    public String UserName;
+    @PostMapping("create/{user_name}")
+    public String createToken(@ModelAttribute TokenDto tokenDto, TokenHistoryDto tokenHistoryDto,RedirectAttributes redirectAttributes, @PathVariable("user_name") String userName){
         String key = tokenDto.getToken_key();
+        UserName=userName;
         try {
             if(keyRepo.getKeyFromLogin(key).equals(key)) {
                 tokenDto = tokenService.save(tokenDto);
@@ -75,22 +77,22 @@ public class UserController{
         }catch (Exception e) {
             redirectAttributes.addFlashAttribute("tokenMessage","Token Generation Failed");
             e.fillInStackTrace();
-            return "redirect:/user/userPanel";
+            return "redirect:/user/userPanel/"+userName;
         }
-        return "redirect:/user/userPanel";
+        return "redirect:/user/userPanel/"+userName;
     }
 
-    @GetMapping("/absent/{token_number}")
-    public String setStatusToAbsent(@PathVariable("token_number") Integer token_number){
+    @GetMapping("/absent/{token_number}/{user_name}")
+    public String setStatusToAbsent(@PathVariable("token_number") Integer token_number,@PathVariable("user_name") String user_name){
             tokenRepo.setUserStatusToAbsent(token_number);
             tokenRepo.setStatusChangedByUser(token_number);
-            return "redirect:/user/userPanel";
+            return "redirect:/user/userPanel/"+user_name;
     }
 
-    @GetMapping("/cancel/{token_number}")
-    public String setStatusToCancelled(@PathVariable("token_number") Integer token_number) {
+    @GetMapping("/cancel/{token_number}/{user_name}")
+    public String setStatusToCancelled(@PathVariable("token_number") Integer token_number,@PathVariable("user_name") String user_name) {
             tokenRepo.setUserStatusToCancelled(token_number);
             tokenRepo.setStatusChangedByUser(token_number);
-            return "redirect:/user/userPanel";
+            return "redirect:/user/userPanel/"+user_name;
     }
 }

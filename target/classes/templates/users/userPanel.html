@@ -47,7 +47,7 @@
             </h2>
             <div>
                 <div class="user-wrapper">
-                    <a th:href="@{~/user/account}">
+                    <a th:href="@{~/user/account/}+${userName}">
                         <div>
                             <h4 th:text="${userName}"></h4>
                             <small>User</small>
@@ -61,7 +61,7 @@
             <h3 style="text-align: center">Today's key: <span style="font-weight: lighter" th:text="${key}"></span></h3>
             <div class="form.container">
                 <div class="content">
-                    <form th:action="@{~/user/userPanel/create}" th:method="post" th:object="${tokenDto}" >
+                    <form th:action="@{~/user/userPanel/create/}+${userName}" th:method="post" th:object="${tokenDto}" >
                         <div class="user-details">
                             <div class="input-box">
                                 <input style="width:80%; margin-left: 375px;" type="text" th:field="*{token_key}" placeholder="Token key here" required>
@@ -91,8 +91,8 @@
             </div>
             <br>
             <div>
-            <a th:href="@{~/user/userPanel/cancel/} + ${tokenNumber}"><button id="delete">Cancel</button></a>
-                <a th:href="@{~/user/userPanel/absent/} + ${tokenNumber}"><button id="absent">Absent</button></a>
+            <a th:href="@{~/user/userPanel/cancel/} + ${tokenNumber} +@{/}+ ${userName}"><button id="delete">Cancel</button></a>
+                <a th:href="@{~/user/userPanel/absent/} + ${tokenNumber} +@{/}+ ${userName}"><button id="absent">Absent</button></a>
             </div>
         </main>
 </body>

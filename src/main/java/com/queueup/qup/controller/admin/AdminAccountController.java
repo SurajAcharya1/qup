@@ -24,7 +24,7 @@ public class AdminAccountController {
         try{
             if(userRepo.getRoleByUserName(logInController.loggedInUserDetail.get(user_name)).equals("ADMIN")) {
                 model.addAttribute("userName",logInController.loggedInUserDetail.get(user_name));
-                model.addAttribute("adminDetails", userRepo.getUserDetailsById(logInController.loggedInUserid));
+                model.addAttribute("adminDetails",userRepo.getUserDetailsByUserName(logInController.loggedInUserDetail.get(user_name)));
                 return "admin/acount";
             }else {
                 return "error";

@@ -54,4 +54,16 @@ public interface UserRepo extends JpaRepository<User,Integer>{
     @Query(value = "select  * from tbl_user where id = ?1",nativeQuery = true)
     public List<User> getUserDetailsById(Integer id);
 
+    @Query(value = "select  id from tbl_user where user_name = ?1",nativeQuery = true)
+    public Integer getIdByUserName(String userName);
+
+    @Query(value = "select name from tbl_user where user_name = ?1", nativeQuery = true)
+    public String findNameByUserName(String userName);
+
+    @Query(value = "select email from tbl_user where user_name= ?1",nativeQuery = true)
+    public String getEmailByUserName(String userName);
+
+    @Query(value = "select  * from tbl_user where user_name = ?1",nativeQuery = true)
+    public List<User> getUserDetailsByUserName(String userName);
+
 }

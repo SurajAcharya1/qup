@@ -71,4 +71,7 @@ public interface TokenRepo extends JpaRepository<Token, Integer> {
 
     @Query(value = "select email from(select row_number() over(order by token_number) as row,email from incompleteStatus) as v where row = 2+?1", nativeQuery = true)
     public String getEmailFromView(Integer tokenGap);
+
+    @Query(value = "select token_number from tbl_token where username = ?1 and status=0", nativeQuery = true)
+    public Integer getTokenNumberByUsername(String username);
 }

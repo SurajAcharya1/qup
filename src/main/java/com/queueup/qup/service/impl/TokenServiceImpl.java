@@ -1,6 +1,7 @@
 package com.queueup.qup.service.impl;
 
 import com.queueup.qup.controller.LogInController;
+import com.queueup.qup.controller.user.UserController;
 import com.queueup.qup.dto.TokenDto;
 import com.queueup.qup.entity.Token;
 import com.queueup.qup.repository.TokenRepo;
@@ -21,6 +22,9 @@ public class TokenServiceImpl implements TokenService {
     LogInController logInController;
 
     @Autowired
+    UserController userController;
+
+    @Autowired
     UserRepo userRepo;
     private final TokenRepo tokenRepo;
 
@@ -37,10 +41,10 @@ public class TokenServiceImpl implements TokenService {
                 .token_key(tokenDto.getToken_key())
                 .build();
         entity.setToken_number(tokenRepo.findAll().size()+1);
-        entity.setFk_user_id(logInController.loggedInUserid);
-        entity.setName(userRepo.findNameById(logInController.loggedInUserid));
-        entity.setUsername(userRepo.findUsernameById(logInController.loggedInUserid));
-        entity.setEmail(userRepo.getEmailByID(logInController.loggedInUserid));
+        entity.setFk_user_id(userRepo.getIdByUserName(logInController.loggedInUserDetail.get(userController.UserName)));
+        entity.setName(userRepo.findNameByUserName(logInController.loggedInUserDetail.get(userController.UserName)));
+        entity.setUsername(logInController.loggedInUserDetail.get(userController.UserName));
+        entity.setEmail(userRepo.getEmailByUserName(logInController.loggedInUserDetail.get(userController.UserName)));
         entity.setStatus(0);
         entity.setDate(localdate);
         entity=tokenRepo.save(entity);

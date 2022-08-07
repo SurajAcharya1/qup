@@ -45,7 +45,7 @@
                 Dashboard
             </h2>
             <div class="user-wrapper">
-                <a th:href="@{~/user/account}">
+                <a th:href="@{~/user/account/}+${userName}">
                     <div>
                         <h4 th:text="${userName}"></h4>
                         <small>User</small>
