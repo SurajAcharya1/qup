@@ -62,9 +62,9 @@ public class IndexController {
     public String createUser(@ModelAttribute UserDto userDto, RedirectAttributes redirectAttributes){
        try {
            userDto = userService.save(userDto);
-           redirectAttributes.addFlashAttribute("message","User Registered successfully!!!");
+           redirectAttributes.addFlashAttribute("message","User Registered successfully !!!");
        }catch (Exception e) {
-           redirectAttributes.addFlashAttribute("message","User Registration Failed");
+           redirectAttributes.addFlashAttribute("message","User Registration Failed !!!");
            e.fillInStackTrace();
            return "redirect:/#form-modal";
        }

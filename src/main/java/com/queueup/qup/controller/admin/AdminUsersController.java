@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @RequestMapping("admin/usersList")
@@ -39,8 +40,9 @@ public class AdminUsersController{
         }
     }
     @GetMapping("delete/{id}")
-    public String deleteUserDetails(@PathVariable("id") Integer id){
+    public String deleteUserDetails(@PathVariable("id") Integer id, RedirectAttributes redirectAttributes){
         userService.deleteById(id);
+        redirectAttributes.addFlashAttribute("deleteMessage", "User Deleted Successfully!!!");
         return"redirect:/admin/usersList/"+userName;
     }
 }

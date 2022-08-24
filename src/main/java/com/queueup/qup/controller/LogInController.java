@@ -1,7 +1,6 @@
 package com.queueup.qup.controller;
 
 import com.queueup.qup.dto.LoginDto;
-import com.queueup.qup.repository.LoginDetailRepo;
 import com.queueup.qup.repository.TokenRepo;
 import com.queueup.qup.repository.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,9 +23,6 @@ public class LogInController {
     @Autowired
     TokenRepo tokenRepo;
 
-    @Autowired
-    LoginDetailRepo loginDetailRepo;
-
     public Integer loggedInUserid;
     public String email, password, userName;
     public HashMap<String,String> loggedInUserDetail = new HashMap<String,String>();
@@ -40,13 +36,11 @@ public class LogInController {
         try {
             if (userRepo.getUserByEmail(email).equals(email) && userRepo.getUserByPassword(email).equals(password)) {
                 if(userRepo.getRole(email)==null){
-                    loginDetailRepo.setLoginDetails(loggedInUserid, email,userRepo.findNameByEmail(email));
                     model.addAttribute("userName",userName);
                     loggedInUserDetail.put(userName,userName);
                     return "redirect:/user/userPanel/"+userName;
                 }
                 else{
-                    loginDetailRepo.setLoginDetails(loggedInUserid, email,userRepo.findNameByEmail(email));
                     model.addAttribute("userName",userName);
                     loggedInUserDetail.put(userName,userName);
                     return "redirect:/admin/adminPanel/"+userName;

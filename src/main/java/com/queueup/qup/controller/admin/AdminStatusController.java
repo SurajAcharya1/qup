@@ -1,6 +1,7 @@
 package com.queueup.qup.controller.admin;
 
 import com.queueup.qup.controller.LogInController;
+import com.queueup.qup.dto.TokenGapDto;
 import com.queueup.qup.repository.TokenRepo;
 import com.queueup.qup.repository.UserRepo;
 import com.queueup.qup.service.EmailSenderService;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -36,7 +38,7 @@ public class AdminStatusController {
         this.tokenService = tokenService;
     }
 
-    Integer tokenGap=1;    //Define the token gap Here
+    Integer tokenGap=10;    //Define the token gap Here
     /*
      tokenGap determines how many token/s will be skipped
      for example
@@ -55,9 +57,11 @@ public class AdminStatusController {
         try {
             if(userRepo.getRoleByUserName(logInController.loggedInUserDetail.get(user_name)).equals("ADMIN")) {
                 model.addAttribute("totalToken", tokenService.findAll().size());
+                model.addAttribute("tokenGapDto", new TokenGapDto());
                 model.addAttribute("tokenList", tokenService.findAll());
                 model.addAttribute("currentToken", tokenRepo.getCurrentUserTokenNumber());
                 model.addAttribute("userName",logInController.loggedInUserDetail.get(user_name));
+                model.addAttribute("tokenGap",tokenGap);
                 return "admin/status";
             } else {
                 return "error";
@@ -123,5 +127,11 @@ public class AdminStatusController {
             tokenRepo.setStatusChangedByAdmin(token_number);
             return "redirect:/admin/status/"+user_name;
         }
+    }
+
+    @PostMapping("update/{user_name}")
+    public String updateTokenGap(TokenGapDto tokenGapDto, RedirectAttributes redirectAttributes,@PathVariable String user_name){
+        tokenGap=tokenGapDto.getTokenGap();
+        return "redirect:/admin/status/"+user_name;
     }
 }

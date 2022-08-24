@@ -65,7 +65,16 @@
                                     <div class="button">
                                         <input type="submit" value="Register">
                                     </div>
-                                    <h3 th:text="${message}"></h3>
+                                    <span th:if="${message=='User Registration Failed !!!'}">
+                                        <span>
+                                            <h3 style="color: orange;" th:text="${message}"></h3>
+                                        </span>
+                                    </span>
+                                    <span th:if="${message=='User Registered successfully !!!'}">
+                                        <span>
+                                            <h3  style="color: lightgreen;" th:text="${message}"></h3>
+                                        </span>
+                                    </span>
                                     <p>Already have account ?<a th:href="@{~/}">Login !</a></p>
                                 </form>
                             </div>

@@ -72,6 +72,8 @@ public class UserController{
             if(keyRepo.getKeyFromLogin(key).equals(key)) {
                 tokenDto = tokenService.save(tokenDto);
                 tokenHistoryDto = tokenHistoryService.save(tokenHistoryDto);
+                tokenRepo.deleteTokenView();
+                tokenRepo.createTokenView();
                 redirectAttributes.addFlashAttribute("tokenMessage", "Token Generated Successfully!!!");
             }
         }catch (Exception e) {

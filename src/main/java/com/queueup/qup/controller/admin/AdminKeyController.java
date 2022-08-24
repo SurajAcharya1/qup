@@ -88,7 +88,7 @@ public class AdminKeyController {
     String Key;
 
     @PostMapping("update")
-    public  String UpdateKey(KeyDto keyDto, RedirectAttributes redirectAttributes, Model model){
+    public  String UpdateKey(KeyDto keyDto, RedirectAttributes redirectAttributes){
         try {
             keyRepo.updateKey(keyDto.getName(), keyDto.getKey(), Key_id);
             redirectAttributes.addFlashAttribute("updateMessage", "Key Updated Successfully!!!");

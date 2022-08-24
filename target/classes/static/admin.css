@@ -4,7 +4,7 @@
     --primary-color : purple ;
     --secondary-color : #9400D3 ;
     --dark-color : #4B0082;
-    --light-color : 	#9932CC;
+    --light-color : #9932cc;
 }
 
 
@@ -347,9 +347,19 @@ td .status.yellow {
     border: none;
     border-radius: 5px;
 }
+#tokenGap {
+    display: inline-block;
+    padding: 5px 15px;
+    cursor: pointer;
+    background-color:  var(--light-color);
+    color: azure;
+    border: none;
+    border-radius: 5px;
+}
 #absent:hover,
 #finish:hover,
-#cancel:hover
+#cancel:hover,
+#tokenGap:hover
 {
     background-color: white;
     color: black;
