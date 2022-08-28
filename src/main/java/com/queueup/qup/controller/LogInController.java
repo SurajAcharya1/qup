@@ -1,5 +1,6 @@
 package com.queueup.qup.controller;
 
+import com.queueup.qup.PasswordEncryption;
 import com.queueup.qup.dto.LoginDto;
 import com.queueup.qup.repository.TokenRepo;
 import com.queueup.qup.repository.UserRepo;
@@ -23,9 +24,16 @@ public class LogInController {
     @Autowired
     TokenRepo tokenRepo;
 
+    private final PasswordEncryption passwordEncryption;
+
     public Integer loggedInUserid;
     public String email, password, userName;
     public HashMap<String,String> loggedInUserDetail = new HashMap<String,String>();
+
+    public LogInController(PasswordEncryption passwordEncryption) {
+        this.passwordEncryption = passwordEncryption;
+    }
+
     @PostMapping("/create")
     public String login(@ModelAttribute LoginDto loginDto, Model model, RedirectAttributes redirectAttributes){
         email = loginDto.getEmail();
@@ -34,7 +42,7 @@ public class LogInController {
         userName=userRepo.getUserName(email);
 //        loggedInUserDetail.put(userRepo.getUserName(email),email);
         try {
-            if (userRepo.getUserByEmail(email).equals(email) && userRepo.getUserByPassword(email).equals(password)) {
+            if (userRepo.getUserByEmail(email).equals(email) && userRepo.getUserByPassword(email).equals(passwordEncryption.getEncryptedPassword(password))) {
                 if(userRepo.getRole(email)==null){
                     model.addAttribute("userName",userName);
                     loggedInUserDetail.put(userName,userName);

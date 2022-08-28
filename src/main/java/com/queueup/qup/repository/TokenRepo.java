@@ -74,4 +74,7 @@ public interface TokenRepo extends JpaRepository<Token, Integer> {
 
     @Query(value = "select token_number from tbl_token where username = ?1 and status=0", nativeQuery = true)
     public Integer getTokenNumberByUsername(String username);
+
+    @Query(value = "select status from tbl_token where username = ?1", nativeQuery = true)
+    public Integer getTokenStatus(String username);
 }

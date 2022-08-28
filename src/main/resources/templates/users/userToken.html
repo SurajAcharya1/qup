@@ -78,6 +78,9 @@
                 <a th:href="@{~/user/token/absent/} + ${tokenNumber} +@{/}+ ${userName}"><button id="absent">Absent</button></a>
                 </div>
             </div>
+            <div>
+                <h1 th:text="${turn}"></h1>
+            </div>
         </div>
        </main>
     </div>

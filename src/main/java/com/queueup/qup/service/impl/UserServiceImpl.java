@@ -1,5 +1,6 @@
 package com.queueup.qup.service.impl;
 
+import com.queueup.qup.PasswordEncryption;
 import com.queueup.qup.dto.UserDto;
 import com.queueup.qup.entity.User;
 import com.queueup.qup.repository.UserRepo;
@@ -12,10 +13,13 @@ import java.util.stream.Collectors;
 @Service
 public class UserServiceImpl implements UserService{
     private final UserRepo userRepo;
+    private final PasswordEncryption passwordEncryption;
 
-    public UserServiceImpl(UserRepo userRepo) {
+    public UserServiceImpl(UserRepo userRepo,
+                           PasswordEncryption passwordEncryption) {
 
         this.userRepo = userRepo;
+        this.passwordEncryption = passwordEncryption;
     }
 
     @Override
@@ -25,7 +29,7 @@ public class UserServiceImpl implements UserService{
                 .userName(userDto.getUserName())
                 .name(userDto.getName())
                 .email(userDto.getEmail())
-                .password(userDto.getPassword())
+                .password(passwordEncryption.getEncryptedPassword(userDto.getPassword()))
                 .phoneNumber(userDto.getPhoneNumber())
                 .gender(userDto.getGender())
                 .build();

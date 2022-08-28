@@ -33,6 +33,17 @@ public class UserTokenController{
                 model.addAttribute("userName",logInController.loggedInUserDetail.get(user_name));
                 model.addAttribute("currentToken",tokenRepo.getCurrentUserTokenNumber());
                 model.addAttribute("tokenNumber", tokenRepo.getTokenNumberByUsername(logInController.loggedInUserDetail.get(user_name)));
+                if(tokenRepo.getTokenNumberByUsername(logInController.loggedInUserDetail.get(user_name))==null){
+                    model.addAttribute("turn","You Do Not Have Any Token Assigned To Your Account.");
+                }else{
+                    if(tokenRepo.getCurrentUserTokenNumber()==tokenRepo.getTokenNumberByUsername(logInController.loggedInUserDetail.get(user_name))){
+                        model.addAttribute("turn","Congrats, It's Your Turn Now.");
+                        return "users/userToken";
+                    }else{
+                        model.addAttribute("turn", "Keep Patience, Your Turn Is About to Come.");
+                        return "users/userToken";
+                    }
+                }
                 return "users/userToken";
             }
             else{
