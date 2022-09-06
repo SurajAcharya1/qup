@@ -77,7 +77,7 @@ public interface UserRepo extends JpaRepository<User,Integer>{
 
     @Modifying
     @Transactional
-    @Query(value = "insert into tbl_user(email, gender, name, password, phone_number, role, user_name) values ('admin@admin.com','Male','admin',?1,1111111111,'ADMIN','Admin');", nativeQuery = true)
+    @Query(value = "insert into tbl_user(email, gender, name, password, phone_number, role, user_name) values ('admin@admin.com','Admin','Admin',?1,1111111111,'ADMIN','Admin');", nativeQuery = true)
     public void createAdminIfNull(String password);
 
     @Query(value = "select count(role)from tbl_user where role = 'ADMIN'", nativeQuery = true)
