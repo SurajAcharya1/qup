@@ -29,7 +29,7 @@ public class UserTokenController{
     @GetMapping("/{user_name}")
     public String openUserTokenPage(Model model, @PathVariable("user_name") String user_name){
         try{
-            if(userRepo.getRoleByUserName(logInController.loggedInUserDetail.get(user_name))==null){
+            if(userRepo.getRoleByUserName(logInController.loggedInUserDetail.get(user_name)).equals("USER")){
                 model.addAttribute("userName",logInController.loggedInUserDetail.get(user_name));
                 model.addAttribute("currentToken",tokenRepo.getCurrentUserTokenNumber());
                 model.addAttribute("tokenNumber", tokenRepo.getTokenNumberByUsername(logInController.loggedInUserDetail.get(user_name)));

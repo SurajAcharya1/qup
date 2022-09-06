@@ -1,6 +1,6 @@
 package com.queueup.qup.controller;
 
-import com.queueup.qup.dto.LoginDto;
+import com.queueup.qup.PasswordEncryption;
 import com.queueup.qup.dto.UserDto;
 import com.queueup.qup.repository.KeyRepo;
 import com.queueup.qup.repository.TokenRepo;
@@ -25,6 +25,7 @@ public class IndexController {
 
     LocalDate localDate = LocalDate.now();
     private final UserServiceImpl userService;
+    private final PasswordEncryption passwordEncryption;
     @Autowired
     UserRepo userRepo;
 
@@ -36,9 +37,10 @@ public class IndexController {
 
     @Autowired
     LogInController logInController;
-    public IndexController(UserServiceImpl userService) {
+    public IndexController(UserServiceImpl userService, PasswordEncryption passwordEncryption) {
 
         this.userService = userService;
+        this.passwordEncryption = passwordEncryption;
     }
 
     @GetMapping()
@@ -49,6 +51,9 @@ public class IndexController {
         model.addAttribute("date",dateFormatter.format(date));
         //logInController.loggedInUserid=null;
         try {
+            if(userRepo.countAdmin()==0){
+                userRepo.createAdminIfNull(passwordEncryption.getEncryptedPassword("admin"));
+            }
             tokenRepo.deleteByDate(localDate);
             keyRepo.deleteAllKey(localDate);
         }catch (Exception e){

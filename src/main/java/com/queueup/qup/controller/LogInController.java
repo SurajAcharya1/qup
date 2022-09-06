@@ -43,7 +43,7 @@ public class LogInController {
 //        loggedInUserDetail.put(userRepo.getUserName(email),email);
         try {
             if (userRepo.getUserByEmail(email).equals(email) && userRepo.getUserByPassword(email).equals(passwordEncryption.getEncryptedPassword(password))) {
-                if(userRepo.getRole(email)==null){
+                if(userRepo.getRole(email).equals("USER")){
                     model.addAttribute("userName",userName);
                     loggedInUserDetail.put(userName,userName);
                     return "redirect:/user/userPanel/"+userName;

@@ -32,6 +32,7 @@ public class UserServiceImpl implements UserService{
                 .password(passwordEncryption.getEncryptedPassword(userDto.getPassword()))
                 .phoneNumber(userDto.getPhoneNumber())
                 .gender(userDto.getGender())
+                .role("USER")
                 .build();
         entity = userRepo.save(entity);
         return userDto.builder()
@@ -42,6 +43,7 @@ public class UserServiceImpl implements UserService{
                 .password(userDto.getPassword())
                 .phoneNumber(userDto.getPhoneNumber())
                 .gender(userDto.getGender())
+                .role(userDto.getRole())
                 .build();
     }
 
@@ -56,6 +58,7 @@ public class UserServiceImpl implements UserService{
                         .email(user.getEmail())
                         .gender(user.getGender())
                         .phoneNumber(user.getPhoneNumber())
+                        .role(user.getRole())
                         .build()
         ).collect(Collectors.toList());
     }

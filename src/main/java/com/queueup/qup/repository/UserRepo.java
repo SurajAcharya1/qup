@@ -1,15 +1,19 @@
 package com.queueup.qup.repository;
 
+import com.queueup.qup.PasswordEncryption;
 import com.queueup.qup.controller.IndexController;
 import com.queueup.qup.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 public interface UserRepo extends JpaRepository<User,Integer>{
+
 
 
     @Query(value = "select count(*) from tbl_user", nativeQuery = true)
@@ -65,5 +69,18 @@ public interface UserRepo extends JpaRepository<User,Integer>{
 
     @Query(value = "select  * from tbl_user where user_name = ?1",nativeQuery = true)
     public List<User> getUserDetailsByUserName(String userName);
+
+    @Modifying
+    @Transactional
+    @Query(value = "update tbl_user set role = ?1 where id = ?2", nativeQuery = true)
+    public void updateUserRole(String role, Integer id);
+
+    @Modifying
+    @Transactional
+    @Query(value = "insert into tbl_user(email, gender, name, password, phone_number, role, user_name) values ('admin@admin.com','Male','admin',?1,1111111111,'ADMIN','Admin');", nativeQuery = true)
+    public void createAdminIfNull(String password);
+
+    @Query(value = "select count(role)from tbl_user where role = 'ADMIN'", nativeQuery = true)
+    public Integer countAdmin();
 
 }

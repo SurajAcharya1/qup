@@ -8,6 +8,7 @@
     <link rel="stylesheet" th:href="@{~/users.css}">
     <link rel="stylesheet" th:href="@{~/admin.css}">
     <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
 </head>
 <body>
     <input type="checkbox" id="nav-toggle">
@@ -59,6 +60,12 @@
         <main>
             <h1><center>Registered User Detail</center></h1>
             <h3 th:text="${deleteMessage}" style="color: green"></h3>
+            <span th:if="${updateMessage=='User Role Updated Successfully!!!'}">
+            <h3 th:text="${updateMessage}" style="color: green"></h3>
+            </span>
+            <span th:if="${updateMessage=='Failed to Update User Role!!!'}">
+            <h3 th:text="${updateMessage}" style="color: red"></h3>
+            </span>
             <div class="users-grid">
                 <div class="users-status">
                    <div class="card">
@@ -69,13 +76,15 @@
                            <table width="100%">
                                <thead>
                                    <tr>
-                                       <td>S.N</td>
-                                       <td>Full Name</td>
-                                       <td>Username</td>
-                                       <td>Phone Number</td>
-                                       <td>Email</td>
-                                       <td>Gender</td>
-                                       <td>Action</td>
+                                       <td style="font-size: larger">S.N</td>
+                                       <td style="font-size: larger">Full Name</td>
+                                       <td style="font-size: larger">Username</td>
+                                       <td style="font-size: larger">Phone Number</td>
+                                       <td style="font-size: larger">Email</td>
+                                       <td style="font-size: larger">Gender</td>
+                                       <td style="font-size: larger">Role</td>
+                                       <td style="font-size: larger">Action</td>
+                                       <td style="font-size: larger">Update Role</td>
                                    </tr>
                                </thead>
                                <tbody>
@@ -86,7 +95,31 @@
                                     <td th:text="${user.phoneNumber}"></td>
                                     <td th:text="${user.email}"></td>
                                     <td th:text="${user.gender}"></td>
-                                    <td><a th:href="@{~/admin/usersList/delete/} + ${user.id}"><button id="delete">delete</button></a></td>
+                                    <td th:text="${user.role}"></td>
+                                    <td>
+                                        <span th:if="${user.userName}==${userName}">
+                                                <a th:href="@{~/admin/usersList/delete/} + ${user.id}" ><button id="delete" disabled>delete</button></a>
+                                        </span>
+                                        <span th:if="${user.userName}!=${userName}">
+                                                <a th:href="@{~/admin/usersList/delete/} + ${user.id}"><button id="delete">delete</button></a>
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <form name="roleUpdate" th:action="@{~/admin/usersList/updateRole/} + ${user.id}" th:method="post" th:object="${userDto}">
+                                                <select class="details" name="role" id="role" style="padding: 5px 15px; font-size: large">
+                                                    <option value="USER" style="font-size: large;">User</option>
+                                                    <option value="ADMIN" style="font-size: large;">Admin</option>
+                                                </select>
+                                            <span th:if="${user.userName}==${userName}">
+                                                <button onclick="this.roleUpdate.submit()" style="border:none; background:none; vertical-align: middle;" disabled>
+                                                    <i onclick="this.roleUpdate.submit()" class='fas fa-check-circle fa-2x' style='color:#9932cc;'></i></button>
+                                            </span>
+                                            <span th:if="${user.userName}!=${userName}">
+                                                <button onclick="this.roleUpdate.submit()" style="border:none; background:none;  vertical-align: middle;">
+                                                    <i onclick="this.roleUpdate.submit()" class='fas fa-check-circle fa-2x' style='color:#9932cc;'></i></button>
+                                            </span>
+                                        </form>
+                                    </td>
                                    </tr>
                                </tbody>
                            </table>

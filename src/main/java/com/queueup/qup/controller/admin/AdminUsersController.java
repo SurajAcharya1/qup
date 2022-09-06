@@ -1,6 +1,7 @@
 package com.queueup.qup.controller.admin;
 
 import com.queueup.qup.controller.LogInController;
+import com.queueup.qup.dto.UserDto;
 import com.queueup.qup.repository.UserRepo;
 import com.queueup.qup.service.impl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +26,7 @@ public class AdminUsersController{
     }
     @GetMapping("/{user_name}")
     public String openUserPage(Model model, @PathVariable("user_name") String user_name){
+        model.addAttribute("userDto", new UserDto());
         userName=user_name;
         try{
             if(userRepo.getRoleByUserName(logInController.loggedInUserDetail.get(user_name)).equals("ADMIN")) {
@@ -44,5 +46,17 @@ public class AdminUsersController{
         userService.deleteById(id);
         redirectAttributes.addFlashAttribute("deleteMessage", "User Deleted Successfully!!!");
         return"redirect:/admin/usersList/"+userName;
+    }
+
+    @PostMapping("updateRole/{id}")
+    public  String updateUserRole(@PathVariable("id") Integer id, UserDto userDto, RedirectAttributes redirectAttributes){
+        try {
+            userRepo.updateUserRole(userDto.getRole(),id);
+            redirectAttributes.addFlashAttribute("updateMessage","User Role Updated Successfully!!!");
+            return "redirect:/admin/usersList/"+userName;
+        }catch (Exception e){
+            redirectAttributes.addFlashAttribute("updateMessage","Failed to Update User Role!!!");
+            return "redirect:/admin/usersList/"+userName;
+        }
     }
 }

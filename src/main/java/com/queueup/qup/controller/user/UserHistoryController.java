@@ -30,7 +30,7 @@ public class UserHistoryController{
     @GetMapping("/{user_name}")
     public String openUserHistoryPage(Model model, @PathVariable("user_name") String user_name){
         try{
-            if(userRepo.getRoleByUserName(logInController.loggedInUserDetail.get(user_name))==null){
+            if(userRepo.getRoleByUserName(logInController.loggedInUserDetail.get(user_name)).equals("USER")){
                 model.addAttribute("userName",logInController.loggedInUserDetail.get(user_name));
                 model.addAttribute("historyList",tokenHistoryRepo.getUserHistoryByUsername(logInController.loggedInUserDetail.get(user_name)));
                 return "users/userHistory";

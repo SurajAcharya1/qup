@@ -22,7 +22,7 @@ public interface TokenRepo extends JpaRepository<Token, Integer> {
     @Query(value = "select count(*) from tbl_token where status=0", nativeQuery = true)
     public Integer getRemainingTokenCount();
 
-    @Query(value = "select token_number from tbl_token where status=0 fetch first 1 row only ", nativeQuery = true)
+    @Query(value = "select min(token_number) from incompletestatus; ", nativeQuery = true)
     public Integer getCurrentUserTokenNumber();
 
     @Modifying
