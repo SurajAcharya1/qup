@@ -89,13 +89,21 @@
                                </thead>
                                <tbody>
                                    <tr th:each="user,loop : ${userList}">
-                                    <td th:text="${loop.count}"></td>
+                                    <span th:if="${user.userName!='Admin'}">
+                                        <td th:text="${loop.count}"></td>
                                     <td th:text="${user.name}"></td>
                                     <td th:text="${user.userName}"></td>
                                     <td th:text="${user.phoneNumber}"></td>
                                     <td th:text="${user.email}"></td>
                                     <td th:text="${user.gender}"></td>
-                                    <td th:text="${user.role}"></td>
+                                    <td>
+                                        <span th:if="${user.role}=='ADMIN'">
+                                            <strong th:text="${user.role}" style="color: purple"></strong>
+                                        </span>
+                                        <span th:if="${user.role}=='USER'">
+                                            <strong th:text="${user.role}" style="color: #9f671b"></strong>
+                                        </span>
+                                    </td>
                                     <td>
                                         <span th:if="${user.userName}==${userName}">
                                                 <a th:href="@{~/admin/usersList/delete/} + ${user.id}" ><button id="delete" disabled>delete</button></a>
@@ -120,6 +128,7 @@
                                             </span>
                                         </form>
                                     </td>
+                                    </span>
                                    </tr>
                                </tbody>
                            </table>
