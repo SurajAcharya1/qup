@@ -59,6 +59,7 @@
                <div class="card">
                    <div class="card-header">
                        <h2>My Token History</h2>
+                       <a th:href="@{~/user/history/deleteHistory/}+${userName}"><button id="delete">Delete My History</button></a>
                    </div>
                    <div class="card-body">
                        <table width="100%">

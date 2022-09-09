@@ -29,31 +29,35 @@
                         <a th:href="@{~/}" title="Close" class="modal-close">Close</a>
                         <div class="form.container">
                             <div class="title"><h2>Register to Queue-Up</h2></div>
+                            <div><h4><b style="color: orangered">* </b> fields cannot be left empty!!!</h4></div>
                             <div class="content">
                                 <form th:action="@{~/create}" th:method="post" th:object="${userDto}">
                                     <div class="user-details">
                                         <div class="input-box">
-                                            <span class="details">Full Name</span>
+                                            <span class="details">Full Name <b style="color: orangered">*</b></span>
                                             <input type="text" th:field="*{name}" placeholder="Enter your name" required>
                                         </div>
                                         <div class="input-box">
-                                            <span class="details">Username</span>
+                                            <span class="details">Username <b style="color: orangered">*</b></span>
                                             <input type="text" th:field="*{userName}" placeholder="Enter your username" required>
+                                            <span th:text="${uniqueUserName}" style="color: orange"></span>
                                         </div>
                                         <div class="input-box">
-                                            <span class="details">Email</span>
+                                            <span class="details">Email <b style="color: orangered">*</b></span>
                                             <input type="email" th:field="*{email}" placeholder="Enter your email" required>
+                                            <span th:text="${uniqueEmail}" style="color: orange"></span>
                                         </div>
                                         <div class="input-box">
-                                            <span class="details">Phone Number</span>
+                                            <span class="details">Phone Number <b style="color: orangered">*</b></span>
                                             <input type="text" minlength="10" maxlength="10" th:field="*{phoneNumber}" placeholder="Enter your number" name="name" required>
+                                            <span th:text="${uniquePhoneNumber}"style="color: orange"></span>
                                         </div>
                                         <div class="input-box">
-                                            <span class="details">Password</span>
+                                            <span class="details">Password <b style="color: orangered">*</b></span>
                                             <input type="password" minlength="5" maxlength="16" name="password" th:field="*{password}" placeholder="Enter your password" required>
                                         </div>
                                         <div class="input-box">
-                                            <span class="details">Gender</span>
+                                            <span class="details">Gender <b style="color: orangered">*</b></span>
                                             <select name="gender" id="gender">
                                                 <option value="Male">Male</option>
                                                 <option value="Female">Female</option>

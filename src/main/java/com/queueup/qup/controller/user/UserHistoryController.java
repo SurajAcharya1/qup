@@ -42,5 +42,11 @@ public class UserHistoryController{
             return "error";
         }
     }
+
+    @GetMapping("/deleteHistory/{user_name}")
+    public String deleteTokenHistory(@PathVariable("user_name")String user_name){
+        tokenHistoryRepo.deleteTokenHistoriesByUserName(user_name);
+        return "redirect:/user/history/"+user_name;
+    }
 }
 

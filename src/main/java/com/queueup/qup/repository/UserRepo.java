@@ -83,4 +83,13 @@ public interface UserRepo extends JpaRepository<User,Integer>{
     @Query(value = "select count(role)from tbl_user where role = 'ADMIN'", nativeQuery = true)
     public Integer countAdmin();
 
+    @Query(value = "select user_name from tbl_user where user_name = ?1", nativeQuery = true)
+    public String findUserNameByUserName(String userName);
+
+    @Query(value = "select email from tbl_user where email = ?1", nativeQuery = true)
+    public String findEmailByEmail(String email);
+
+    @Query(value = "select phone_number from tbl_user where phone_number = ?1", nativeQuery = true)
+    public String findPhone_numberByphone_number(String phone_number);
+
 }

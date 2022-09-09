@@ -66,7 +66,21 @@ public class IndexController {
     @PostMapping("create")
     public String createUser(@ModelAttribute UserDto userDto, RedirectAttributes redirectAttributes){
        try {
-           userDto = userService.save(userDto);
+           if(userDto.getUserName().equals(userRepo.findUserNameByUserName(userDto.getUserName()))){
+               redirectAttributes.addFlashAttribute("uniqueUserName",userDto.getUserName()+ " is already taken");
+               redirectAttributes.addFlashAttribute("message","User Registration Failed !!!");
+               return "redirect:/#form-modal";
+           } else if (userDto.getEmail().equals(userRepo.findEmailByEmail(userDto.getEmail()))) {
+               redirectAttributes.addFlashAttribute("uniqueEmail","account with email " +userDto.getEmail()+ " already exist");
+               redirectAttributes.addFlashAttribute("message","User Registration Failed !!!");
+               return "redirect:/#form-modal";
+           } else if (userDto.getPhoneNumber().equals(userRepo.findPhone_numberByphone_number(userDto.getPhoneNumber()))) {
+               redirectAttributes.addFlashAttribute("uniquePhoneNumber","account with number " +userDto.getPhoneNumber()+ " already exist");
+               redirectAttributes.addFlashAttribute("message","User Registration Failed !!!");
+               return "redirect:/#form-modal";
+           } else{
+               userDto = userService.save(userDto);
+           }
            redirectAttributes.addFlashAttribute("message","User Registered successfully !!!");
        }catch (Exception e) {
            redirectAttributes.addFlashAttribute("message","User Registration Failed !!!");
