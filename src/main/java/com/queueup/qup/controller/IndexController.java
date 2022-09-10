@@ -45,6 +45,8 @@ public class IndexController {
 
     @GetMapping()
     public String openMainPage(Model model) {
+        tokenRepo.deleteTokenView();
+        userRepo.createTokenViewAtFirst();
         model.addAttribute("userDto", new UserDto());
         Date date = new Date();
         SimpleDateFormat dateFormatter = new SimpleDateFormat("yyyy");

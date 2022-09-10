@@ -92,4 +92,8 @@ public interface UserRepo extends JpaRepository<User,Integer>{
     @Query(value = "select phone_number from tbl_user where phone_number = ?1", nativeQuery = true)
     public String findPhone_numberByphone_number(String phone_number);
 
+    @Modifying
+    @Transactional
+    @Query(value = "create view incompleteStatus as select token_number, email from tbl_token", nativeQuery = true)
+    public void createTokenViewAtFirst();
 }
