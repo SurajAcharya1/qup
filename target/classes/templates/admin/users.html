@@ -120,11 +120,11 @@
                                                 </select>
                                             <span th:if="${user.userName}==${userName}">
                                                 <button onclick="this.roleUpdate.submit()" style="border:none; background:none; vertical-align: middle;" disabled>
-                                                    <i onclick="this.roleUpdate.submit()" class='fas fa-check-circle fa-2x' style='color:#9932cc;'></i></button>
+                                                    <i class='fas fa-check-circle fa-2x' style='color:#9932cc;'></i></button>
                                             </span>
                                             <span th:if="${user.userName}!=${userName}">
                                                 <button onclick="this.roleUpdate.submit()" style="border:none; background:none;  vertical-align: middle;">
-                                                    <i onclick="this.roleUpdate.submit()" class='fas fa-check-circle fa-2x' style='color:#9932cc;'></i></button>
+                                                    <i class='fas fa-check-circle fa-2x' style='color:#9932cc;'></i></button>
                                             </span>
                                         </form>
                                     </td>
