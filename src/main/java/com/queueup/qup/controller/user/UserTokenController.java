@@ -30,6 +30,7 @@ public class UserTokenController{
     public String openUserTokenPage(Model model, @PathVariable("user_name") String user_name){
         try{
             if(userRepo.getRoleByUserName(logInController.loggedInUserDetail.get(user_name)).equals("USER")){
+                model.addAttribute("tokenInfo",tokenRepo.getTokenInfo(user_name));
                 model.addAttribute("userName",logInController.loggedInUserDetail.get(user_name));
                 model.addAttribute("currentToken",tokenRepo.getCurrentUserTokenNumber());
                 model.addAttribute("tokenNumber", tokenRepo.getTokenNumberByUsername(logInController.loggedInUserDetail.get(user_name)));

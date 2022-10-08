@@ -338,6 +338,16 @@ td .status.yellow {
     border-radius: 5px;
 }
 
+#generic-button {
+    display: inline-block;
+    padding: 5px 15px;
+    cursor: pointer;
+    background-color: var(--light-color);
+    color: azure;
+    border: none;
+    border-radius: 5px;
+}
+
 #absent {
     display: inline-block;
     padding: 5px 15px;
@@ -347,6 +357,7 @@ td .status.yellow {
     border: none;
     border-radius: 5px;
 }
+
 #tokenGap {
     display: inline-block;
     padding: 5px 15px;
@@ -356,6 +367,15 @@ td .status.yellow {
     border: none;
     border-radius: 5px;
 }
+
+#generic-button:hover
+{
+    background-color: white;
+    color: black;
+    border: 1px solid black;
+    cursor: pointer;
+}
+
 #absent:hover,
 #finish:hover,
 #cancel:hover,
