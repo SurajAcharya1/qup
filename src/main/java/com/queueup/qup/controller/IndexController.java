@@ -49,6 +49,8 @@ public class IndexController {
         userRepo.createTokenViewAtFirst();
         model.addAttribute("userDto", new UserDto());
         Date date = new Date();
+        long millis=System.currentTimeMillis();
+        java.sql.Date d = new java.sql.Date(millis);
         SimpleDateFormat dateFormatter = new SimpleDateFormat("yyyy");
         model.addAttribute("date",dateFormatter.format(date));
         //logInController.loggedInUserid=null;
@@ -56,8 +58,9 @@ public class IndexController {
             if(userRepo.countAdmin()==0){
                 userRepo.createAdminIfNull(passwordEncryption.getEncryptedPassword("admin"));
             }
-            tokenRepo.deleteByDate(localDate);
-            keyRepo.deleteAllKey(localDate);
+            tokenRepo.deleteByDate(d.toLocalDate());
+            System.out.println(d.toLocalDate());
+            keyRepo.deleteAllKey(d.toLocalDate());
         }catch (Exception e){
             System.out.println(e);
         }

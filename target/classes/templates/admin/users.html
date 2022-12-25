@@ -115,8 +115,14 @@
                                     <td>
                                         <form name="roleUpdate" th:action="@{~/admin/usersList/updateRole/} + ${user.id}" th:method="post" th:object="${userDto}">
                                                 <select class="details" name="role" id="role" style="padding: 5px 15px; font-size: large">
-                                                    <option value="USER" style="font-size: large;">User</option>
-                                                    <option value="ADMIN" style="font-size: large;">Admin</option>
+                                                    <span th:if="${user.role}=='USER'">
+                                                        <option value="USER" style="font-size: large;" selected>User</option>
+                                                        <option value="ADMIN" style="font-size: large;">Admin</option>
+                                                    </span>
+                                                    <span th:if="${user.role}=='ADMIN'">
+                                                        <option value="USER" style="font-size: large;">User</option>
+                                                        <option value="ADMIN" style="font-size: large;" selected>Admin</option>
+                                                    </span>
                                                 </select>
                                             <span th:if="${user.userName}==${userName}">
                                                 <button onclick="this.roleUpdate.submit()" style="border:none; background:none; vertical-align: middle;" disabled>

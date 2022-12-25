@@ -13,6 +13,7 @@ import com.queueup.qup.service.TokenHistoryService;
 import com.queueup.qup.service.impl.TokenHistoryServiceImpl;
 import com.queueup.qup.service.impl.TokenServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -34,13 +35,14 @@ public class UserController{
     LogInController logInController;
 
     @Autowired
+    @Lazy
     TokenHistoryServiceImpl tokenHistoryService;
 
     @Autowired
     EmailSenderService senderService;
     private final TokenServiceImpl tokenService;
 
-    public UserController(TokenServiceImpl tokenService) {
+    public UserController(@Lazy TokenServiceImpl tokenService) {
         this.tokenService = tokenService;
     }
     @GetMapping("/{user_name}")
