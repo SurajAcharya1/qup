@@ -45,14 +45,19 @@ public class IndexController {
 
     @GetMapping()
     public String openMainPage(Model model) {
-        tokenRepo.deleteTokenView();
-        userRepo.createTokenViewAtFirst();
+        try {
+            tokenRepo.deleteTokenView();
+            userRepo.createTokenViewAtFirst();
+        } catch(Exception e) {
+            userRepo.createTokenViewAtFirst();
+            System.out.println(e);
+        }
         model.addAttribute("userDto", new UserDto());
         Date date = new Date();
-        long millis=System.currentTimeMillis();
-        java.sql.Date d = new java.sql.Date(millis);
         SimpleDateFormat dateFormatter = new SimpleDateFormat("yyyy");
         model.addAttribute("date",dateFormatter.format(date));
+        long millis=System.currentTimeMillis();
+        java.sql.Date d = new java.sql.Date(millis);
         System.out.println(d);
         //logInController.loggedInUserid=null;
         try {

@@ -86,6 +86,7 @@ public class AdminStatusController {
                             "Tokens before your token number: "+tokenGap);
             tokenRepo.setUserStatustoComplete(token_number);
             tokenRepo.setStatusChangedByAdmin(token_number);
+            redirectAttributes.addFlashAttribute("mail","Mail sent successfully");
             return "redirect:/admin/status/"+user_name;
         }catch(Exception e){
             redirectAttributes.addFlashAttribute("mail","Could not send Mail");
@@ -103,6 +104,7 @@ public class AdminStatusController {
                     "Queue Notification",
                     "Your turn is about to come please get to Queue as soon as possible. \n\n\n\n" +
                             "Tokens before your token number: "+tokenGap);
+            redirectAttributes.addFlashAttribute("mail","Mail sent successfully");
             tokenRepo.setUserStatusToAbsent(token_number);
             tokenRepo.setStatusChangedByAdmin(token_number);
             return "redirect:/admin/status/"+user_name;
@@ -121,6 +123,7 @@ public class AdminStatusController {
                     "Queue Notification",
                     "Your turn is about to come please get to Queue as soon as possible. \n\n\n\n" +
                             "Tokens before your token number: "+tokenGap);
+            redirectAttributes.addFlashAttribute("mail","Mail sent successfully");
             tokenRepo.setUserStatusToCancelled(token_number);
             tokenRepo.setStatusChangedByAdmin(token_number);
             return "redirect:/admin/status/"+user_name;
