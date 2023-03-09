@@ -91,6 +91,7 @@ public class AdminStatusController {
             redirectAttributes.addFlashAttribute("mail","Could not send Mail");
             tokenRepo.setUserStatustoComplete(token_number);
             tokenRepo.setStatusChangedByAdmin(token_number);
+            System.out.println(e);
             return "redirect:/admin/status/"+user_name;
         }
     }

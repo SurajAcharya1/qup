@@ -53,6 +53,7 @@ public class IndexController {
         java.sql.Date d = new java.sql.Date(millis);
         SimpleDateFormat dateFormatter = new SimpleDateFormat("yyyy");
         model.addAttribute("date",dateFormatter.format(date));
+        System.out.println(d);
         //logInController.loggedInUserid=null;
         try {
             if(userRepo.countAdmin()==0){
